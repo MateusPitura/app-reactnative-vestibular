@@ -5,6 +5,8 @@ import News from './screen/News';
 import Calendar from './screen/Calendar';
 import Bookmark from './screen/Bookmark';
 import Setting from './screen/Setting';
+import { View, Text } from 'react-native';
+import NewsIcon from './asset/icon/news.svg'
 
 const bottomTabNavigator = createBottomTabNavigator();
 
@@ -22,6 +24,12 @@ export default function () {
                     component={News}
                     options={{ 
                         headerShown: false,
+                        tabBarIcon: ()=>(
+                            <View>
+                                <NewsIcon fill='#000' height={'48px'} width={'48px'}/>
+                                <Text>News</Text>
+                            </View>
+                        )
                     }}
                 />
                 <bottomTabNavigator.Screen
