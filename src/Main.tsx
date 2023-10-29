@@ -11,26 +11,39 @@ const bottomTabNavigator = createBottomTabNavigator();
 export default function () {
     return (
         <NavigationContainer>
-            <bottomTabNavigator.Navigator>
+            <bottomTabNavigator.Navigator 
+                initialRouteName='News'
+                screenOptions={{
+                    tabBarShowLabel: false,
+                }}
+            >
                 <bottomTabNavigator.Screen
                     name="News"
                     component={News}
-                    options={{ title: "News" }}
+                    options={{ 
+                        headerShown: false,
+                    }}
                 />
                 <bottomTabNavigator.Screen
                     name="Calendar"
                     component={Calendar}
-                    options={{ title: "Calendar" }}
+                    options={{ 
+                        headerShown: false,
+                    }}
                 />
                 <bottomTabNavigator.Screen
                     name="Bookmark"
                     component={Bookmark}
-                    options={{ title: "Bookmark" }}
+                    options={{ 
+                        headerShown: false,
+                    }}
                 />
                 <bottomTabNavigator.Screen
                     name="Setting"
                     component={Setting}
-                    options={{ title: "Setting" }}
+                    options={{ 
+                        headerShown: false,
+                    }}
                 />
             </bottomTabNavigator.Navigator>
         </NavigationContainer>
