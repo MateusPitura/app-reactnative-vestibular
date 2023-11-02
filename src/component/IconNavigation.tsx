@@ -1,14 +1,16 @@
 import React from "react";
 import { View, Text } from 'react-native';
+import { useTheme } from "@react-navigation/native";
 
 //style
 import Material from "../style/Material";
-import Estilo from "../style/ComponentIconNavigation";
+import StyleAuxiliar from "../style/ComponentIconNavigation";
 import Typography from "../asset/theme/Typography";
 
 export default function (props: any) {
     
-    const Style = Estilo("dark");
+    const { dark } = useTheme();
+    const Style = StyleAuxiliar(dark);
 
     return (
         <View>

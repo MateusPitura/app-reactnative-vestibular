@@ -1,36 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { TouchableOpacity, View, Text } from 'react-native'
+import { useTheme } from '@react-navigation/native'
 
 //style
-import Estilo from '../style/ScreenSetting'
+import StyleAuxiliar from '../style/ScreenSetting'
 import Typography from '../asset/theme/Typography'
 import Material from '../style/Material'
 
-export default function() {
+export default function (props: any) {
 
-    const [theme, setTheme] = useState("light")
-
-    const Style = Estilo(theme);
+    const { dark } = useTheme();
+    const Style = StyleAuxiliar(dark);
 
     return (
         <View style={Style.container}>
             <Text style={[Typography.titleLarge, Style.title]}>Aparência</Text>
             <TouchableOpacity
-                onPress={()=>{setTheme("light")}}
+                onPress={() => { props.setTheme("light")}}
             >
                 <View style={[Material.centralizedContainer, Style.button]}>
                     <Text style={[Style.textOnButton, Typography.labelMedium]}>Modo claro</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={()=>{setTheme("dark")}}
+                onPress={() => { props.setTheme("dark") }}
             >
                 <View style={[Material.centralizedContainer, Style.button]}>
                     <Text style={[Style.textOnButton, Typography.labelMedium]}>Modo escuro</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={()=>{}}
+                onPress={() => { props.setTheme("default") }}
             >
                 <View style={[Material.centralizedContainer, Style.button]}>
                     <Text style={[Style.textOnButton, Typography.labelMedium]}>Padrão do sistema</Text>

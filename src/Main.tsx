@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useColorScheme } from 'react-native';
 
 //component
 import IconNavigation from './component/IconNavigation';
@@ -19,15 +20,37 @@ import SettingIcon from './asset/icon/setting.svg';
 
 //style
 import Color from './asset/theme/Color';
+import Theme from './asset/theme/Theme';
+
 
 const bottomTabNavigator = createBottomTabNavigator();
 
 export default function () {
 
-    const ColorTheme = Color.light;
+    const [themeUser, setThemeUser] = useState("light");
+
+    const themeDefault = useColorScheme();
+
+    const ColorTheme = themeUser == "default" ?
+        themeDefault == "dark" ? Color['dark'] : Color['light']
+        :
+        themeUser == "dark" ? Color['dark'] : Color['light']
+
+    function SettingAuxiliar() {
+        return (
+            <Setting setTheme={setThemeUser} />
+        )
+    }
 
     return (
-        <NavigationContainer>
+        <NavigationContainer
+            theme={
+                themeUser == "default" ?
+                    themeDefault == "dark" ? Theme.dark : Theme.light
+                    :
+                    themeUser == "dark" ? Theme.dark : Theme.light
+            }
+        >
             <bottomTabNavigator.Navigator
                 initialRouteName='Setting'
                 screenOptions={{
@@ -88,7 +111,7 @@ export default function () {
                 />
                 <bottomTabNavigator.Screen
                     name="Setting"
-                    component={Setting}
+                    component={SettingAuxiliar}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (

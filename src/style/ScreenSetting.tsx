@@ -3,7 +3,7 @@ import Color from "../asset/theme/Color";
 
 export default function(theme: any){
 
-    const ColorTheme = theme=="dark"?Color["dark"]:Color["light"];
+    const ColorTheme = theme==true?Color["dark"]:Color["light"];
     
     return StyleSheet.create({
         container: {
