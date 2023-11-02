@@ -17,7 +17,7 @@ import CalendarIcon from './asset/icon/calendar.svg';
 import BookmarIcon from './asset/icon/bookmark.svg';
 import SettingIcon from './asset/icon/setting.svg';
 
-//theme
+//style
 import Color from './asset/theme/Color';
 
 const bottomTabNavigator = createBottomTabNavigator();

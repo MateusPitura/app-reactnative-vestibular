@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import Color from "../asset/theme/Color";
 
-export const style = (theme: any) => {
+export default function(theme: any){
 
-    const ColorTheme = Color[theme];
+    const ColorTheme = theme=="dark"?Color["dark"]:Color["light"];
     
     return StyleSheet.create({
         container: {

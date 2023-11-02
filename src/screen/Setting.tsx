@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { View, Text } from 'react-native'
-import { style } from '../style/ScreenSetting'
-import { TouchableOpacity } from 'react-native'
-import { typography } from '../asset/theme/Typography'
+import { TouchableOpacity, View, Text } from 'react-native'
+
+//style
+import Estilo from '../style/ScreenSetting'
+import Typography from '../asset/theme/Typography'
 import Material from '../style/Material'
 
 export default function() {
 
     const [theme, setTheme] = useState("light")
 
-    const Typography = typography();
-    const Style = style(theme);
+    const Style = Estilo(theme);
 
     return (
         <View style={Style.container}>

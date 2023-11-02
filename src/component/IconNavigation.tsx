@@ -1,17 +1,14 @@
 import React from "react";
 import { View, Text } from 'react-native';
 
-//theme
-import { typography } from "../asset/theme/Typography";
-
 //style
 import Material from "../style/Material";
-import { style } from "../style/ComponentIconNavigation";
+import Estilo from "../style/ComponentIconNavigation";
+import Typography from "../asset/theme/Typography";
 
 export default function (props: any) {
-
-    const Typography = typography();
-    const Style = style();
+    
+    const Style = Estilo("dark");
 
     return (
         <View>
