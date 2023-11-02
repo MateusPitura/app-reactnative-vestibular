@@ -22,56 +22,55 @@ import SettingIcon from './asset/icon/setting.svg';
 import Color from './asset/theme/Color';
 import Theme from './asset/theme/Theme';
 
-
-const bottomTabNavigator = createBottomTabNavigator();
-
 export default function () {
 
-    const [themeUser, setThemeUser] = useState("light");
+    const bottomTabNavigator = createBottomTabNavigator();
 
-    const themeDefault = useColorScheme();
+    const [themeUser, setThemeUser] = useState("light"); //Tema (light, dark, default) definido pelo usuário
 
-    const ColorTheme = themeUser == "default" ?
-        themeDefault == "dark" ? Color['dark'] : Color['light']
+    const themeDefault = useColorScheme(); //Pega o tema padrão do sistema
+
+    const ColorTheme = themeUser == "default" ? //Define a paleta de cores real usada (light, dark)...
+        themeDefault == "dark" ? Color['dark'] : Color['light'] //...se definido pelo usuário como "default" pega o tema do sistema
         :
-        themeUser == "dark" ? Color['dark'] : Color['light']
+        themeUser == "dark" ? Color['dark'] : Color['light'] //..se não foi definido pelo usuário "default" pega o que ele escolheu
 
-    function SettingAuxiliar() {
+    function SettingAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
         return (
-            <Setting setTheme={setThemeUser} />
+            <Setting setTheme={setThemeUser} /> //Passa o setState que define o tema a ser definido pelo usuário
         )
     }
 
     return (
         <NavigationContainer
             theme={
-                themeUser == "default" ?
-                    themeDefault == "dark" ? Theme.dark : Theme.light
+                themeUser == "default" ? //Define a paleta de cores falsa usada (light, dark)...
+                    themeDefault == "dark" ? Theme.dark : Theme.light //...se definido pelo usuário como "default" pega o tema do sistema
                     :
-                    themeUser == "dark" ? Theme.dark : Theme.light
+                    themeUser == "dark" ? Theme.dark : Theme.light //..se não foi definido pelo usuário "default" pega o que ele escolheu
             }
         >
             <bottomTabNavigator.Navigator
-                initialRouteName='Setting'
+                initialRouteName='News' //Tela inicial
                 screenOptions={{
                     tabBarStyle: {
-                        height: 80,
-                        backgroundColor: ColorTheme.surfaceContainer,
+                        height: 80, //Altura do container
+                        backgroundColor: ColorTheme.surfaceContainer, //Cor do container
                     },
-                    tabBarShowLabel: false,
+                    tabBarShowLabel: false, //Não exibe a label de cada tela, pois eu mesmo implemento a label
                 }}
             >
                 <bottomTabNavigator.Screen
                     name="News"
                     component={News}
                     options={{
-                        headerShown: false,
+                        headerShown: false, //Não mostra o cabeçalho
                         tabBarIcon: ({ focused }) => (
                             <IconNavigation focused={focused} label="News">
-                                <NewsIcon
-                                    fill={focused ? ColorTheme.onSurface : ColorTheme.onSurfaceVariant}
-                                    height={24}
-                                    width={24}
+                                <NewsIcon //Icone da label
+                                    fill={focused ? ColorTheme.onSurface : ColorTheme.onSurfaceVariant} //Caso o ícone esteja selecionado muda a cor
+                                    height={24} //Altura
+                                    width={24} //Largura
                                 />
                             </IconNavigation>
                         )

@@ -1,5 +1,4 @@
-/*Essa paleta de cores é usado apenas para "enganar" o Raact Navigation, de fato a única coisa que
-importa é o booleano dark. Assim as cores definidas não são relevantes*/
+//Essa paleta de cores é usado apenas para "enganar" o Raact Navigation, de fato a única coisa que importa é o booleano dark. Assim as cores definidas não são relevantes
 
 const light = {
     dark: false,

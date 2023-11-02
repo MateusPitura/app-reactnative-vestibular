@@ -9,21 +9,21 @@ import Typography from "../asset/theme/Typography";
 
 export default function (props: any) {
     
-    const { dark } = useTheme();
-    const Style = StyleAuxiliar(dark);
+    const { dark } = useTheme(); //Variável booleano que pega se é dark ou light de acordo com a paleta de cores falsa
+    const Style = StyleAuxiliar(dark);  //Usa a variável booleana para definir a paleta de cores real
 
     return (
         <View>
             <View style={[
                 Material.centralizedContainer,
-                props.focused ? Style.activeIndicator : Style.inactiveIndicator
+                props.focused ? Style.activeIndicator : Style.inactiveIndicator //Caso o ícone esteja selecionado exibe ou não o indicador de qual tela foi escolhida
             ]}>
-                {props.children}
+                {props.children} 
             </View>
             <View style={Material.centralizedContainer}>
                 <Text style={[
                     Typography.labelMedium,
-                    props.focused ? Style.activeLabel : Style.inactiveLabel
+                    props.focused ? Style.activeLabel : Style.inactiveLabel //Caso o ícone esteja selecionado muda a aparência da label
                 ]}>{props.label}</Text>
             </View>
         </View>
