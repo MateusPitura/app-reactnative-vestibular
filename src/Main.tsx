@@ -29,7 +29,7 @@ export default function () {
     return (
         <NavigationContainer>
             <bottomTabNavigator.Navigator
-                initialRouteName='News'
+                initialRouteName='Setting'
                 screenOptions={{
                     tabBarStyle: {
                         height: 80,
