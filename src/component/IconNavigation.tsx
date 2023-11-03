@@ -1,16 +1,14 @@
 import React from "react";
 import { View, Text } from 'react-native';
-import { useTheme } from "@react-navigation/native";
 
 //style
-import Material from "../style/Material";
+import Material from "../asset/design/General";
 import StyleAuxiliar from "../style/ComponentIconNavigation";
-import Typography from "../asset/theme/Typography";
+import Typography from "../asset/design/Typography";
 
 export default function (props: any) {
     
-    const { dark } = useTheme(); //Variável booleano que pega se é dark ou light de acordo com a paleta de cores falsa
-    const Style = StyleAuxiliar(dark);  //Usa a variável booleana para definir a paleta de cores real
+    const Style = StyleAuxiliar(); 
 
     return (
         <View>

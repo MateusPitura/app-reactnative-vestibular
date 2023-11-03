@@ -19,8 +19,8 @@ import BookmarIcon from './asset/icon/bookmark.svg';
 import SettingIcon from './asset/icon/setting.svg';
 
 //style
-import Color from './asset/theme/Color';
-import Theme from './asset/theme/Theme';
+import ColorAuxiliar from './asset/design/Color';
+import Theme from './asset/design/Theme';
 
 export default function () {
 
@@ -28,12 +28,12 @@ export default function () {
 
     const [themeUser, setThemeUser] = useState("light"); //Tema (light, dark, default) definido pelo usuário
 
-    const themeDefault = useColorScheme(); //Pega o tema padrão do sistema
+    const themeSystem = useColorScheme(); //Pega o tema padrão do sistema
 
-    const ColorTheme = themeUser == "default" ? //Define a paleta de cores real usada (light, dark)...
-        themeDefault == "dark" ? Color['dark'] : Color['light'] //...se definido pelo usuário como "default" pega o tema do sistema
+    const Color = themeUser == "default" ? //Define a paleta de cores real usada (light, dark)...
+        themeSystem == "dark" ? ColorAuxiliar['dark'] : ColorAuxiliar['light'] //...se definido pelo usuário como "default" pega o tema do sistema
         :
-        themeUser == "dark" ? Color['dark'] : Color['light'] //..se não foi definido pelo usuário "default" pega o que ele escolheu
+        themeUser == "dark" ? ColorAuxiliar['dark'] : ColorAuxiliar['light'] //..se não foi definido pelo usuário "default" pega o que ele escolheu
 
     function SettingAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
         return (
@@ -45,7 +45,7 @@ export default function () {
         <NavigationContainer
             theme={
                 themeUser == "default" ? //Define a paleta de cores falsa usada (light, dark)...
-                    themeDefault == "dark" ? Theme.dark : Theme.light //...se definido pelo usuário como "default" pega o tema do sistema
+                    themeSystem == "dark" ? Theme.dark : Theme.light //...se definido pelo usuário como "default" pega o tema do sistema
                     :
                     themeUser == "dark" ? Theme.dark : Theme.light //..se não foi definido pelo usuário "default" pega o que ele escolheu
             }
@@ -55,7 +55,8 @@ export default function () {
                 screenOptions={{
                     tabBarStyle: {
                         height: 80, //Altura do container
-                        backgroundColor: ColorTheme.surfaceContainer, //Cor do container
+                        backgroundColor: Color.surfaceContainer, //Cor do container
+                        borderTopWidth: 0,
                     },
                     tabBarShowLabel: false, //Não exibe a label de cada tela, pois eu mesmo implemento a label
                 }}
@@ -68,7 +69,7 @@ export default function () {
                         tabBarIcon: ({ focused }) => (
                             <IconNavigation focused={focused} label="News">
                                 <NewsIcon //Icone da label
-                                    fill={focused ? ColorTheme.onSurface : ColorTheme.onSurfaceVariant} //Caso o ícone esteja selecionado muda a cor
+                                    fill={focused ? Color.onSurface : Color.onSurfaceVariant} //Caso o ícone esteja selecionado muda a cor
                                     height={24} //Altura
                                     width={24} //Largura
                                 />
@@ -84,7 +85,7 @@ export default function () {
                         tabBarIcon: ({ focused }) => (
                             <IconNavigation focused={focused} label="Calendar">
                                 <CalendarIcon
-                                    fill={focused ? ColorTheme.onSurface : ColorTheme.onSurfaceVariant}
+                                    fill={focused ? Color.onSurface : Color.onSurfaceVariant}
                                     height={24}
                                     width={24}
                                 />
@@ -100,7 +101,7 @@ export default function () {
                         tabBarIcon: ({ focused }) => (
                             <IconNavigation focused={focused} label="Bookmark">
                                 <BookmarIcon
-                                    fill={focused ? ColorTheme.onSurface : ColorTheme.onSurfaceVariant}
+                                    fill={focused ? Color.onSurface : Color.onSurfaceVariant}
                                     height={24}
                                     width={24}
                                 />
@@ -116,7 +117,7 @@ export default function () {
                         tabBarIcon: ({ focused }) => (
                             <IconNavigation focused={focused} label="Setting">
                                 <SettingIcon
-                                    fill={focused ? ColorTheme.onSurface : ColorTheme.onSurfaceVariant}
+                                    fill={focused ? Color.onSurface : Color.onSurfaceVariant}
                                     height={24}
                                     width={24}
                                 />

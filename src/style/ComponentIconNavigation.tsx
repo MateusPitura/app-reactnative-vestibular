@@ -1,13 +1,15 @@
 import { StyleSheet } from "react-native";
-import Color from "../asset/theme/Color";
+import ColorAuxiliar from "../asset/design/Color";
+import { useTheme } from "@react-navigation/native";
 
-export default function(theme: any){
+export default function(){
 
-    const ColorTheme = theme==true?Color["dark"]:Color["light"]; //Define a paleta de cores real a ser usada com base no parâmetro recebido
+    const { dark } = useTheme(); //Variável booleana que pega se é dark ou light de acordo com a paleta de cores falsa
+    const Color = dark==true?ColorAuxiliar["dark"]:ColorAuxiliar["light"]; //Define a paleta de cores real a ser usada com base no parâmetro recebido
 
     return StyleSheet.create({
         activeIndicator: {
-            backgroundColor: ColorTheme.secondaryContainer,
+            backgroundColor: Color.secondaryContainer,
             width: 64,
             height: 32,
             borderRadius: 32,
@@ -19,10 +21,10 @@ export default function(theme: any){
             borderRadius: 32,
         },
         activeLabel: {
-            color: ColorTheme.onSurface
+            color: Color.onSurface
         },
         inactiveLabel: {
-            color: ColorTheme.onSurfaceVariant
+            color: Color.onSurfaceVariant
         }
     })
 }
