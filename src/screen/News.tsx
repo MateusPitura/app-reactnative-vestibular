@@ -1,107 +1,58 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, FlatList, Text } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenNews'
-import Typography from '../asset/design/Typography';
+
+//component
+import ListItem from '../component/ListItem';
+import Divisor from '../component/Divisor';
 
 export default function () {
 
     const Style = StyleAuxiliar();
 
+    const array = [
+        {
+            id: "1",
+            imageSource: require('../asset/image/photo1.webp'),
+            headline: "Lorem",
+            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "04 nov"
+        },
+        {
+            id: "2",
+            imageSource: require('../asset/image/photo2.webp'),
+            headline: "Ipsum",
+            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "05 nov"
+        },
+        {
+            id: "3",
+            imageSource: require('../asset/image/photo3.webp'),
+            headline: "Dolor",
+            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "06 nov"
+        },
+    ]
+
     return (
         <View style={[Style.container]}>
-            <View style={Style.listContainer}>
-                <View style={Style.imageContainer}>
-                    <Image
-                        source={require("../asset/image/image.webp")}
-                        style={Style.image}
+            <FlatList
+                data={array}
+                keyExtractor={item=>item.id}
+                renderItem={({item})=>
+                    <ListItem
+                        image={item.imageSource}
+                        headline={item.headline}
+                        support={item.support}
+                        trailing={item.trailing}
                     />
-                </View>
-                <View style={Style.text}>
-                    <Text
-                        numberOfLines={1}
-                        style={[Typography.titleMedium, Style.headlineText]}
-                    >
-                        Lorem ipsum dolor sit amet.
-                    </Text>
-                    <Text
-                        numberOfLines={2}
-                        style={[Typography.bodyMedium, Style.supportText]}
-                    >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quia ratione quibusdam dolores sint quasi ab, pariatur veritatis eum cumque.
-                    </Text>
-                </View>
-                <View style={Style.date}>
-                    <Text
-                        numberOfLines={2}
-                        style={[Typography.labelSmall, Style.trailingText]}
-                    >
-                        10+
-                    </Text>
-                </View>
-            </View>
-            <View style={Style.listContainer}>
-                <View style={Style.imageContainer}>
-                    <Image
-                        source={require("../asset/image/image.webp")}
-                        style={Style.image}
-                    />
-                </View>
-                <View style={Style.text}>
-                    <Text
-                        numberOfLines={1}
-                        style={[Typography.titleMedium, Style.headlineText]}
-                    >
-                        Lorem ipsum dolor sit amet.
-                    </Text>
-                    <Text
-                        numberOfLines={2}
-                        style={[Typography.bodyMedium, Style.supportText]}
-                    >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quia ratione quibusdam dolores sint quasi ab, pariatur veritatis eum cumque.
-                    </Text>
-                </View>
-                <View style={Style.date}>
-                    <Text
-                        numberOfLines={2}
-                        style={[Typography.labelSmall, Style.trailingText]}
-                    >
-                        10+
-                    </Text>
-                </View>
-            </View>
-            <View style={Style.listContainer}>
-                <View style={Style.imageContainer}>
-                    <Image
-                        source={require("../asset/image/image.webp")}
-                        style={Style.image}
-                    />
-                </View>
-                <View style={Style.text}>
-                    <Text
-                        numberOfLines={1}
-                        style={[Typography.titleMedium, Style.headlineText]}
-                    >
-                        Lorem ipsum dolor sit amet.
-                    </Text>
-                    <Text
-                        numberOfLines={2}
-                        style={[Typography.bodyMedium, Style.supportText]}
-                    >
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa quia ratione quibusdam dolores sint quasi ab, pariatur veritatis eum cumque.
-                    </Text>
-                </View>
-                <View style={Style.date}>
-                    <Text
-                        numberOfLines={2}
-                        style={[Typography.labelSmall, Style.trailingText]}
-                    >
-                        8 May
-                    </Text>
-                </View>
-            </View>
+                }
+                ItemSeparatorComponent={()=>
+                    <Divisor/>
+                }
+            />
         </View>
-
     )
 } 

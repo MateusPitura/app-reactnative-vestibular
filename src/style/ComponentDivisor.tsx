@@ -8,11 +8,9 @@ export default function(){
     const Color = dark==true?ColorAuxiliar['dark']:ColorAuxiliar['light']
 
     return StyleSheet.create({
-        container:{
-            backgroundColor: Color.surface,
-            flex: 1,
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-        },
+        divisor:{
+            borderBottomWidth: 1,
+            borderColor: Color.outlineVariant,
+        }
     })
 }
