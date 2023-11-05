@@ -2,46 +2,44 @@ import { StyleSheet } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import ColorAuxiliar from "../asset/design/Color";
 
-export default function(){
+export default function () {
 
     const { dark } = useTheme();
-    const Color = dark==true?ColorAuxiliar['dark']:ColorAuxiliar['light']
+    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     return StyleSheet.create({
-        listContainer:{
+        listContainer: {
             flexDirection: 'row',
             height: 88,
             paddingVertical: 12,
             paddingHorizontal: 16,
             borderRadius: 5,
         },
-        imageContainer:{
+        imageContainer: {
             paddingRight: 16,
             justifyContent: 'flex-start',
             alignItems: 'center',
         },
-        image:{
+        image: {
             width: 56,
             height: 56,
             borderRadius: 5,
         },
-        text:{
+        text: {
             flex: 5,
-            justifyContent: 'flex-start',
             paddingRight: 16,
         },
-        headlineText:{
+        headlineText: {
             color: Color.onSurface,
         },
-        supportText:{
+        supportText: {
             color: Color.onSurfaceVariant,
         },
-        date:{
+        date: {
             alignItems: 'flex-end',
             flex: 1,
-            
         },
-        trailingText:{
+        trailingText: {
             color: Color.onSurfaceVariant,
         }
     })
