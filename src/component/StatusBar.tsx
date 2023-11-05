@@ -11,7 +11,7 @@ export default function () {
     return (
         <StatusBar
             backgroundColor={Color.surface}
-            barStyle={'dark-content'}
+            barStyle={dark==true?'light-content':'dark-content'}
         />
     )
 }
