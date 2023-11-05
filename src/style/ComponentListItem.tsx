@@ -13,7 +13,6 @@ export default function () {
             height: 88,
             paddingVertical: 12,
             paddingHorizontal: 16,
-            borderRadius: 5,
         },
         imageContainer: {
             paddingRight: 16,
