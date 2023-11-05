@@ -11,11 +11,11 @@ export default function(){
         container:{
             backgroundColor: Color.surface,
             flex: 1,
-            paddingHorizontal: 8,
         },
         listContainer:{
             paddingBottom: 200,
             paddingTop: 8,
+            paddingHorizontal: 8,
         }
     })
 }
