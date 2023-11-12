@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useColorScheme, View, ActivityIndicator } from 'react-native';
+import { useColorScheme } from 'react-native';
 
 //component
 import IconNavigation from './component/IconNavigation';
+import SplashLoading from './component/SplashLoading';
 
 //screen
 import News from './screen/News';
@@ -23,7 +24,7 @@ import ColorAuxiliar from './asset/design/Color';
 import Theme from './asset/design/Theme';
 
 //model
-import { retriveTheme } from './model/ThemeSaver';
+import { restoreThemeLocaly } from './model/ThemeController';
 
 export default function () {
 
@@ -39,14 +40,8 @@ export default function () {
         :
         themeUser == "dark" ? ColorAuxiliar['dark'] : ColorAuxiliar['light'] //..se não foi definido pelo usuário "default" pega o que ele escolheu
 
-    const recoveryTheme = async() => {
-        const themeSaved = await retriveTheme();
-        setThemeUser(themeSaved);
-        setLoading(false)
-    }
-
-    useEffect(()=>{ //Essa função executa apenas uma vez ao iniciar o aplicativo
-        recoveryTheme();
+    useEffect(() => { //Essa função executa apenas uma vez ao iniciar o aplicativo
+        restoreThemeLocaly(setLoading, setThemeUser);
     }, [])
 
     function SettingAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
@@ -57,12 +52,7 @@ export default function () {
 
     return (
         loading == true ?
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Color.surface}}>
-            <ActivityIndicator
-                size={"large"}
-                color={Color.primary}
-            />
-        </View>
+        <SplashLoading />
         :
         <NavigationContainer
             theme={

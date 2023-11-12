@@ -7,7 +7,7 @@ import Typography from '../asset/design/Typography'
 import Material from '../asset/design/General'
 
 //model
-import { saveThemeOffline } from '../model/ThemeSaver';
+import { saveThemeLocaly } from '../model/ThemeController';
 
 export default function (props: any) {
 
@@ -18,9 +18,8 @@ export default function (props: any) {
             <Text style={[Typography.titleLarge, Style.title]}>Aparência</Text>
             <TouchableOpacity
                 onPress={() => { 
-                    saveThemeOffline("light")
-                    props.setTheme("light")}
-                } //Define o tema como claro
+                    saveThemeLocaly("light", props.setTheme)
+                }} //Define o tema como claro
             >
                 <View style={[Material.centralizedContainer, Style.button]}>
                     <Text style={[Style.textOnButton, Typography.labelMedium]}>Modo claro</Text>
@@ -28,8 +27,7 @@ export default function (props: any) {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => { 
-                    saveThemeOffline("dark")
-                    props.setTheme("dark") 
+                    saveThemeLocaly("dark", props.setTheme)
                 }} //Define o tema como escuro
             >
                 <View style={[Material.centralizedContainer, Style.button]}>
@@ -38,8 +36,7 @@ export default function (props: any) {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => { 
-                    saveThemeOffline("default")
-                    props.setTheme("default") 
+                    saveThemeLocaly("default", props.setTheme)
                 }} //Define o tema como padrão do sistema
             >
                 <View style={[Material.centralizedContainer, Style.button]}>
