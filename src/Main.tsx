@@ -21,7 +21,7 @@ import SettingIcon from './asset/icon/setting.svg';
 
 //style
 import ColorAuxiliar from './asset/design/Color';
-import Theme from './asset/design/Theme';
+import ThemeAuxiliar from './asset/design/Theme';
 
 //model
 import { restoreThemeLocaly } from './model/ThemeController';
@@ -35,11 +35,13 @@ export default function () {
 
     const themeSystem = useColorScheme(); //Pega o tema padrão do sistema
 
-    const Color = themeUser == "default" ? //Define a paleta de cores real usada (light, dark)...
-        themeSystem == "dark" ? ColorAuxiliar['dark'] : ColorAuxiliar['light'] //...se definido pelo usuário como "default" pega o tema do sistema
+    const theme = themeUser == "default" ? 
+        themeSystem == "dark" ? 'dark' : 'light' //Se definido pelo usuário como "default" pega o tema do sistema
         :
-        themeUser == "dark" ? ColorAuxiliar['dark'] : ColorAuxiliar['light'] //..se não foi definido pelo usuário "default" pega o que ele escolheu
+        themeUser == "dark" ? 'dark' : 'light' //Se não foi definido pelo usuário "default" pega o que ele escolheu
 
+    const Color = ColorAuxiliar[theme]
+    
     useEffect(() => { //Essa função executa apenas uma vez ao iniciar o aplicativo
         restoreThemeLocaly(setLoading, setThemeUser);
     }, [])
@@ -54,14 +56,7 @@ export default function () {
         loading == true ?
         <SplashLoading />
         :
-        <NavigationContainer
-            theme={
-                themeUser == "default" ? //Define a paleta de cores falsa usada (light, dark)...
-                    themeSystem == "dark" ? Theme.dark : Theme.light //...se definido pelo usuário como "default" pega o tema do sistema
-                    :
-                    themeUser == "dark" ? Theme.dark : Theme.light //..se não foi definido pelo usuário "default" pega o que ele escolheu
-            }
-        >
+        <NavigationContainer theme={ThemeAuxiliar[theme]}>
             <bottomTabNavigator.Navigator
                 initialRouteName='News' //Tela inicial
                 screenOptions={{
