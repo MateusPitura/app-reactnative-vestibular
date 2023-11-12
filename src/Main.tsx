@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useColorScheme } from 'react-native';
+import { useColorScheme, View, ActivityIndicator } from 'react-native';
 
 //component
 import IconNavigation from './component/IconNavigation';
@@ -22,11 +22,15 @@ import SettingIcon from './asset/icon/setting.svg';
 import ColorAuxiliar from './asset/design/Color';
 import Theme from './asset/design/Theme';
 
+//model
+import { retriveTheme } from './model/ThemeSaver';
+
 export default function () {
 
-    const bottomTabNavigator = createBottomTabNavigator();
-
     const [themeUser, setThemeUser] = useState("light"); //Tema (light, dark, default) definido pelo usuário
+    const [loading, setLoading] = useState(true);
+
+    const bottomTabNavigator = createBottomTabNavigator();
 
     const themeSystem = useColorScheme(); //Pega o tema padrão do sistema
 
@@ -35,6 +39,16 @@ export default function () {
         :
         themeUser == "dark" ? ColorAuxiliar['dark'] : ColorAuxiliar['light'] //..se não foi definido pelo usuário "default" pega o que ele escolheu
 
+    const recoveryTheme = async() => {
+        const themeSaved = await retriveTheme();
+        setThemeUser(themeSaved);
+        setLoading(false)
+    }
+
+    useEffect(()=>{ //Essa função executa apenas uma vez ao iniciar o aplicativo
+        recoveryTheme();
+    }, [])
+
     function SettingAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
         return (
             <Setting setTheme={setThemeUser} /> //Passa o setState que define o tema a ser definido pelo usuário
@@ -42,6 +56,14 @@ export default function () {
     }
 
     return (
+        loading == true ?
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Color.surface}}>
+            <ActivityIndicator
+                size={"large"}
+                color={Color.primary}
+            />
+        </View>
+        :
         <NavigationContainer
             theme={
                 themeUser == "default" ? //Define a paleta de cores falsa usada (light, dark)...
