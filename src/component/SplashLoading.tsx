@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ActivityIndicator, StatusBar, Image } from 'react-native'
+import { View, ActivityIndicator, StatusBar } from 'react-native'
 
 //style
 import Color from "../asset/design/Color";
