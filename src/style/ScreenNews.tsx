@@ -15,7 +15,6 @@ export default function(){
         listContainer:{
             paddingBottom: 200,
             paddingTop: 8,
-            paddingHorizontal: 8,
         }
     })
 }

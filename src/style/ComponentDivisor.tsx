@@ -11,6 +11,7 @@ export default function(){
         divisor:{
             borderBottomWidth: 1,
             borderColor: Color.outlineVariant,
+            marginHorizontal: 16
         }
     })
 }
