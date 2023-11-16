@@ -115,13 +115,13 @@ export default function () {
                         trailing={item.trailing}
                     />
                 }
-                ItemSeparatorComponent={()=>
+                ItemSeparatorComponent={()=> //Separador horizontal
                     <Divisor/>
                 }
-                ListEmptyComponent={
+                ListEmptyComponent={ //Renderiza caso a lista esteja vazia
                     <EmptyContent/>
                 }
-                contentContainerStyle={Style.listContainer}
+                contentContainerStyle={Style.listContainer} //Define o estilo do container
             />
         </View>
     )
