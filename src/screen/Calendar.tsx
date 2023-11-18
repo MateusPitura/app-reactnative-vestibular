@@ -2,7 +2,8 @@ import React from 'react'
 import { View, FlatList, Text } from 'react-native'
 
 //style
-import StyleAuxiliar from '../style/ScreenNews'
+import StyleAuxiliar from '../style/ScreenCalendar'
+import Typography from '../asset/design/Typography'
 
 //component
 import ListItemCalendar from '../component/ListItemCalendar'
@@ -15,92 +16,95 @@ export default function () {
     const array = [
         {
             id: "1",
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            day: "04",
-            month: "nov"
+            headline: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "13h00 às 14h00",
+            day: "30",
+            month: "jan"
         },
         {
             id: "2",
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "Todo o dia",
             day: "05",
-            month: "nov"
+            month: "fev"
         },
         {
             id: "3",
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "13h00 às 14h00",
             day: "06",
-            month: "nov"
+            month: "mar"
         },
         {
             id: "4",
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "Todo o dia",
             day: "04",
-            month: "nov"
+            month: "abr"
         },
         {
             id: "5",
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "13h00 às 14h00",
             day: "05",
-            month: "nov"
+            month: "mai"
         },
         {
             id: "6",
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "Todo o dia",
             day: "06",
-            month: "nov"
+            month: "jun"
         },
         {
             id: "7",
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "13h00 às 14h00",
             day: "04",
-            month: "nov"
+            month: "jul"
         },
         {
             id: "8",
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "Todo o dia",
             day: "05",
-            month: "nov"
+            month: "ago"
         },
         {
             id: "9",
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "13h00 às 14h00",
             day: "06",
-            month: "nov"
+            month: "set"
         },
         {
             id: "10",
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "Todo o dia",
             day: "04",
-            month: "nov"
+            month: "out"
         },
         {
             id: "11",
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "13h00 às 14h00",
             day: "05",
             month: "nov"
         },
         {
             id: "12",
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            support: "Todo o dia",
             day: "06",
-            month: "nov"
+            month: "dez"
         },
     ]
 
     return (
         <View style={Style.container}>
+            <View style={Style.label}>
+                <Text style={[Typography.bodySmall, Style.labelText]}>Próximos eventos</Text>
+            </View>
             <FlatList
                 data={array}
                 keyExtractor={item=>item.id}

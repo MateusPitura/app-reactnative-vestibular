@@ -23,7 +23,7 @@ export default function (props: any) {
                 <View style={Style.monthLabel}>
                     <Text
                         numberOfLines={1}
-                        style={[Typography.labelSmall, Style.dateLabel]}
+                        style={[Typography.labelSmall, Style.dateLabel]} //Precisa ser nesse ordem pois estou sobreescrevendo uma propriedade de labelSmall
                     >
                         {props.month}
                     </Text>

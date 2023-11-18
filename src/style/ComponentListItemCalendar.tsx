@@ -33,7 +33,8 @@ export default function () {
             justifyContent: 'flex-start',
         },
         dateLabel: {
-            color: Color.onPrimaryContainer
+            color: Color.onPrimaryContainer,
+            lineHeight: 12,
         },
         text: {
             justifyContent: 'center',

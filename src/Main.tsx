@@ -58,7 +58,7 @@ export default function () {
         :
         <NavigationContainer theme={ThemeAuxiliar[theme]}>
             <bottomTabNavigator.Navigator
-                initialRouteName='Calendar' //Tela inicial
+                initialRouteName='News' //Tela inicial
                 screenOptions={{
                     tabBarStyle: {
                         height: 80, //Altura do container
