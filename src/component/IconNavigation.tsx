@@ -7,8 +7,8 @@ import StyleAuxiliar from "../style/ComponentIconNavigation";
 import Typography from "../asset/design/Typography";
 
 export default function (props: any) {
-    
-    const Style = StyleAuxiliar(); 
+
+    const Style = StyleAuxiliar();
 
     return (
         <View>
@@ -16,13 +16,15 @@ export default function (props: any) {
                 Material.centralizedContainer,
                 props.focused ? Style.activeIndicator : Style.inactiveIndicator //Caso o ícone esteja selecionado exibe ou não o indicador de qual tela foi escolhida
             ]}>
-                {props.children} 
+                {props.children}
             </View>
             <View style={Material.centralizedContainer}>
-                <Text style={[
-                    Typography.labelMedium,
-                    props.focused ? Style.activeLabel : Style.inactiveLabel //Caso o ícone esteja selecionado muda a aparência da label
-                ]}>{props.label}</Text>
+                <Text
+                    numberOfLines={1}
+                    style={[
+                        Typography.labelMedium,
+                        props.focused ? Style.activeLabel : Style.inactiveLabel //Caso o ícone esteja selecionado muda a aparência da label
+                    ]}>{props.label}</Text>
             </View>
         </View>
     )

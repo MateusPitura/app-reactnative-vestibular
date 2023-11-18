@@ -74,7 +74,7 @@ export default function () {
                     options={{
                         headerShown: false, //Não mostra o cabeçalho
                         tabBarIcon: ({ focused }) => (
-                            <IconNavigation focused={focused} label="News">
+                            <IconNavigation focused={focused} label="Avisos">
                                 <NewsIcon //Icone da label
                                     fill={focused ? Color.onSurface : Color.onSurfaceVariant} //Caso o ícone esteja selecionado muda a cor
                                     height={24} //Altura
@@ -90,7 +90,7 @@ export default function () {
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
-                            <IconNavigation focused={focused} label="Calendar">
+                            <IconNavigation focused={focused} label="Datas">
                                 <CalendarIcon
                                     fill={focused ? Color.onSurface : Color.onSurfaceVariant}
                                     height={24}
@@ -106,7 +106,7 @@ export default function () {
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
-                            <IconNavigation focused={focused} label="Bookmark">
+                            <IconNavigation focused={focused} label="Salvos">
                                 <BookmarIcon
                                     fill={focused ? Color.onSurface : Color.onSurfaceVariant}
                                     height={24}
@@ -122,7 +122,7 @@ export default function () {
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
-                            <IconNavigation focused={focused} label="Setting">
+                            <IconNavigation focused={focused} label="Ajustes">
                                 <SettingIcon
                                     fill={focused ? Color.onSurface : Color.onSurfaceVariant}
                                     height={24}
