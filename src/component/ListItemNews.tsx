@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image } from 'react-native'
 
 //style
-import StyleAuxiliar from '../style/ComponentListItem'
+import StyleAuxiliar from '../style/ComponentListItemNews'
 import Typography from "../asset/design/Typography";
 
 export default function (props: any) {

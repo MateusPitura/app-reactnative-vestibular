@@ -5,7 +5,7 @@ import { View, FlatList } from 'react-native'
 import StyleAuxiliar from '../style/ScreenNews'
 
 //component
-import ListItem from '../component/ListItem';
+import ListItemNews from '../component/ListItemNews';
 import Divisor from '../component/Divisor';
 import EmptyContent from '../component/EmptyContent';
 import StatusBar from '../component/StatusBar';
@@ -108,7 +108,7 @@ export default function () {
                 data={array}
                 keyExtractor={item=>item.id}
                 renderItem={({item})=>
-                    <ListItem
+                    <ListItemNews
                         image={item.imageSource}
                         headline={item.headline}
                         support={item.support}
