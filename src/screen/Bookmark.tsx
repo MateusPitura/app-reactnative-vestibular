@@ -16,73 +16,56 @@ export default function () {
             id: '1',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '2',
             header: 'PSS',
             body: 'Proceso Seletivo Seriado',
-            isBlank: false
         },
         {
             id: '3',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '4',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '5',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '6',
             header: 'PSS',
             body: 'Proceso Seletivo Seriado',
-            isBlank: false
         },
         {
             id: '7',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '8',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '9',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
         },
         {
             id: '10',
             header: 'PSS',
             body: 'Proceso Seletivo Seriado',
-            isBlank: false
         },
         {
             id: '11',
             header: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
-            isBlank: false
-        },
-        {
-            id: '12',
-            header: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
-            isBlank: true
         },
     ]
 
@@ -95,7 +78,6 @@ export default function () {
                     <Card
                         header={item.header}
                         body={item.body}
-                        blank={item.isBlank}
                     />
                 }
                 contentContainerStyle={Style.container}

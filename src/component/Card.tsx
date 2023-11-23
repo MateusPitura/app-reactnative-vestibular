@@ -18,10 +18,6 @@ export default function (props: any) {
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     return (
-        props.blank==true?
-        <View style={[Style.card, Style.blankCard]}>
-        </View>
-        :
         <View style={Style.card}>
             <View style={Style.header}>
                 <View style={Style.title}>
