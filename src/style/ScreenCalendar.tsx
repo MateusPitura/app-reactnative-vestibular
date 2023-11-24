@@ -14,13 +14,7 @@ export default function(){
         },
         listContainer:{
             paddingBottom: 200,
+            paddingTop: 16
         },
-        label:{
-            paddingVertical: 8,
-            paddingHorizontal: 16
-        },
-        labelText:{
-            color: Color.onSurface
-        }
     })
 }

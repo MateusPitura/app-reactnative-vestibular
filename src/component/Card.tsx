@@ -1,21 +1,13 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { useTheme } from '@react-navigation/native'
 
 //style
 import Typography from "../asset/design/Typography";
 import StyleAuxiliar from "../style/ComponentCard"
-import ColorAuxiliar from "../asset/design/Color";
-
-//icon
-import TrashIcon from '../asset/icon/delete.svg'
 
 export default function (props: any) {
 
     const Style = StyleAuxiliar()
-
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     return (
         <View style={Style.card}>
@@ -26,11 +18,7 @@ export default function (props: any) {
                     </Text>
                 </View>
                 <View style={Style.icon}>
-                    <TrashIcon
-                        fill={Color.onTertiary}
-                        height={24}
-                        width={24}
-                    />
+                    {props.children}
                 </View>
             </View>
             <View style={Style.description}>

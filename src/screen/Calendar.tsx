@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenCalendar'
-import Typography from '../asset/design/Typography'
 
 //component
 import ListItemCalendar from '../component/ListItemCalendar'
 import EmptyContent from '../component/EmptyContent'
+import HeaderList from '../component/HeaderList'
 
 export default function () {
 
@@ -100,11 +100,10 @@ export default function () {
         },
     ]
 
+    // const array = null
+
     return (
         <View style={Style.container}>
-            <View style={Style.label}>
-                <Text style={[Typography.bodySmall, Style.labelText]}>Próximos eventos</Text>
-            </View>
             <FlatList
                 data={array}
                 keyExtractor={item=>item.id}
@@ -118,8 +117,11 @@ export default function () {
                 }
                 contentContainerStyle={Style.listContainer}
                 ListEmptyComponent={
-                    <EmptyContent/>
+                    <EmptyContent text="Adicione um vestibular ao seus favoritos"/>
                 }
+                ListHeaderComponent={() => (
+                    <HeaderList text="Próximos eventos"/>
+                )}
             />
         </View>
     )

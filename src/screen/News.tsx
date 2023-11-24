@@ -119,7 +119,7 @@ export default function () {
                     <Divisor/>
                 }
                 ListEmptyComponent={ //Renderiza caso a lista esteja vazia
-                    <EmptyContent/>
+                    <EmptyContent text="Adicione um vestibular ao seus favoritos"/>
                 }
                 contentContainerStyle={Style.listContainer} //Define o estilo do container
             />

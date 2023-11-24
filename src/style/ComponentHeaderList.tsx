@@ -8,17 +8,12 @@ export default function () {
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     return StyleSheet.create({
-        container:{
-            flex: 1,
-            backgroundColor: Color.surface,
+        container: {
+            paddingBottom: 16,
+            paddingHorizontal: 16
         },
-        containerList: {
-            backgroundColor: Color.surface,
-            paddingTop: 16,
-            paddingBottom: 200,
-        },
-        colums:{
-            paddingHorizontal: 12
+        text: {
+            color: Color.onSurfaceVariant,
         }
     })
 }
