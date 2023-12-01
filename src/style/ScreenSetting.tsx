@@ -11,10 +11,11 @@ export default function(){
         container: {
             backgroundColor: Color.surface,
             flex: 1,
-            padding: 10,
+            padding: 16,
         },
         title: {
             color: Color.onSurface,
+            paddingBottom: 16
         },
         button: {
             backgroundColor: Color.primary,
