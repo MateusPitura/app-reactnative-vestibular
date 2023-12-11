@@ -24,7 +24,7 @@ export default function(){
             borderRadius: 10,
         },
         textOnButton: {
-            color: Color.onPrimary,
+            color: Color.onSurface,
         }
     })
 }
