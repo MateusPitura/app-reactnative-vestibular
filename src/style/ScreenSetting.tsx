@@ -15,16 +15,7 @@ export default function(){
         },
         title: {
             color: Color.onSurface,
-            paddingBottom: 16
+            paddingBottom: 8
         },
-        button: {
-            backgroundColor: Color.primary,
-            margin: 10,
-            padding: 10,
-            borderRadius: 10,
-        },
-        textOnButton: {
-            color: Color.onSurface,
-        }
     })
 }

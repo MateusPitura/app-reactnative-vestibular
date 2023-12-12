@@ -8,10 +8,10 @@ import IconNavigation from './component/IconNavigation';
 import SplashLoading from './component/SplashLoading';
 
 //screen
-import News from './screen/News';
-import Calendar from './screen/Calendar';
-import Bookmark from './screen/Bookmark';
-import Setting from './screen/Setting';
+import Avisos from './screen/Avisos';
+import Datas from './screen/Datas';
+import Salvos from './screen/Salvos';
+import Ajustes from './screen/Ajustes';
 
 //icone
 import NewsIcon from './asset/icon/news.svg'
@@ -46,9 +46,9 @@ export default function () {
         restoreThemeLocaly(setLoading, setThemeUser);
     }, [])
 
-    function SettingAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
+    function AjustesAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
         return (
-            <Setting setTheme={setThemeUser} /> //Passa o setState que define o tema a ser definido pelo usuário
+            <Ajustes setTheme={setThemeUser} /> //Passa o setState que define o tema a ser definido pelo usuário
         )
     }
 
@@ -58,7 +58,7 @@ export default function () {
         :
         <NavigationContainer theme={ThemeAuxiliar[theme]}>
             <bottomTabNavigator.Navigator
-                initialRouteName='Setting' //Tela inicial
+                initialRouteName='Avisos' //Tela inicial
                 screenOptions={{
                     tabBarStyle: {
                         height: 80, //Altura do container
@@ -69,8 +69,8 @@ export default function () {
                 }}
             >
                 <bottomTabNavigator.Screen
-                    name="News"
-                    component={News}
+                    name="Avisos"
+                    component={Avisos}
                     options={{
                         headerShown: false, //Não mostra o cabeçalho
                         tabBarIcon: ({ focused }) => (
@@ -85,8 +85,8 @@ export default function () {
                     }}
                 />
                 <bottomTabNavigator.Screen
-                    name="Calendar"
-                    component={Calendar}
+                    name="Datas"
+                    component={Datas}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
@@ -101,8 +101,8 @@ export default function () {
                     }}
                 />
                 <bottomTabNavigator.Screen
-                    name="Bookmark"
-                    component={Bookmark}
+                    name="Salvos"
+                    component={Salvos}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
@@ -117,8 +117,8 @@ export default function () {
                     }}
                 />
                 <bottomTabNavigator.Screen
-                    name="Setting"
-                    component={SettingAuxiliar}
+                    name="Ajustes"
+                    component={AjustesAuxiliar}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ focused }) => (
