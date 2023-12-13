@@ -16,7 +16,6 @@ export default function (props: any) {
     const Style = StyleAuxiliar();
 
     const [userChoice, setUserChoice] = useState("")
-    const options = ["light", "dark", "default"]
 
     const getThemeLocalyAuxiliar = async () => {
         const theme = await getThemeLocaly()
@@ -31,16 +30,16 @@ export default function (props: any) {
         <View style={Style.container}>
             <Text style={[Typography.bodyMedium, Style.title]}>Aparência</Text>
 
-            <RadioButton text="Modo claro" choice={userChoice} theme={options[0]} onPress={() => {
-                saveThemeLocaly(options[0], props.setTheme)
+            <RadioButton text="Modo claro" choice={userChoice} theme={"light"} onPress={(value: any) => {
+                saveThemeLocaly(value, props.setTheme)
             }} />
 
-            <RadioButton text="Modo escuro" choice={userChoice} theme={options[1]} onPress={() => {
-                saveThemeLocaly(options[1], props.setTheme)
+            <RadioButton text="Modo escuro" choice={userChoice} theme={"dark"} onPress={(value: any) => {
+                saveThemeLocaly(value, props.setTheme)
             }} />
 
-            <RadioButton text="Padrão do sistema" choice={userChoice} theme={options[2]} onPress={() => {
-                saveThemeLocaly(options[2], props.setTheme)
+            <RadioButton text="Padrão do sistema" choice={userChoice} theme={"default"} onPress={(value: any) => {
+                saveThemeLocaly(value, props.setTheme)
             }} />
         </View>
     )

@@ -20,7 +20,7 @@ export default function (props: any) {
     return (
         <TouchableOpacity
             onPress={() => {
-                props.onPress()
+                props.onPress(props.theme)
             }}
         >
             <View style={Style.container}>
