@@ -26,9 +26,9 @@ export default function (props: any) {
             <View style={Style.container}>
                 <View style={Style.radioButton}>
                     {props.choice == props.theme ?
-                        <RadioButtonCheckedIcon width={20} fill={Color.primary} />
+                        <RadioButtonCheckedIcon width={20} height={20} fill={Color.primary} />
                         :
-                        <RadioButtonUncheckedIcon width={20} fill={Color.onSurfaceVariant} />
+                        <RadioButtonUncheckedIcon width={20} height={20} fill={Color.onSurfaceVariant} />
                     }
                 </View>
                 <View style={Style.text}>
