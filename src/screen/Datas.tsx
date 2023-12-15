@@ -7,7 +7,7 @@ import StyleAuxiliar from '../style/ScreenCalendar'
 //component
 import ListItemCalendar from '../component/ListItemCalendar'
 import EmptyContent from '../component/EmptyContent'
-import HeaderList from '../component/HeaderList'
+import Label from '../component/Label'
 
 export default function () {
 
@@ -120,7 +120,7 @@ export default function () {
                     <EmptyContent text="Adicione um vestibular ao seus favoritos"/>
                 }
                 ListHeaderComponent={() => (
-                    <HeaderList text="Próximos eventos"/>
+                    <Label text="Próximos eventos"/>
                 )}
             />
         </View>

@@ -14,12 +14,11 @@ export default function () {
         card: {
             backgroundColor: Color.tertiary,
             borderRadius: 12,
-            maxWidth: width/2-20,
             padding: 6,
             flex: 1,
             height: 150,
+            width: 150,
             margin: 4,
-            
         },
         header: {
             flexDirection: 'row'

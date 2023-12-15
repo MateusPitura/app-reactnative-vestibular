@@ -5,13 +5,13 @@ import { useTheme } from '@react-navigation/native'
 //style
 import StyleAuxiliar from '../style/ScreenBookmark'
 import ColorAuxiliar from '../asset/design/Color'
-import Typography from '../asset/design/Typography'
 
 //component
 import CardVertical from '../component/CardVertical'
 import CardHorizontal from '../component/CardHorizontal'
-import HeaderList from '../component/HeaderList'
+import Label from '../component/Label'
 import EmptyContent from '../component/EmptyContent'
+import SearchBar from '../component/SearchBar'
 
 //icon
 import Trash from '../asset/icon/delete.svg'
@@ -76,22 +76,7 @@ export default function () {
 
     return (
         <View style={Style.container}>
-            {/* <View style={{elevation: 5}}> */}
-            <View style={{
-                backgroundColor: Color.surfaceContainerHigh,
-                height: 56,
-                marginHorizontal: 16,
-                marginVertical: 16,
-                borderRadius: 28,
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
-                <Text
-                    style={[Typography.bodyLarge,
-                         {color: Color.onSurfaceVariant}]}
-                >Pesquise por vestibulares</Text>
-            {/* </View> */}
-            </View>
+            <SearchBar text="Pesquise por vestibulares" />
             <FlatList
                 data={array}
                 keyExtractor={item => item.id}
@@ -111,7 +96,7 @@ export default function () {
                 numColumns={2}
                 ListHeaderComponent={
                     <View>
-                        <HeaderList text="Vestibulares recomendados"/>
+                        <Label text="Vestibulares recomendados" />
                         <FlatList
                             data={array}
                             keyExtractor={item => item.id}
@@ -129,13 +114,13 @@ export default function () {
                             }
                             contentContainerStyle={Style.containerListHorizontal}
                             horizontal={true}
-                            
+
                             showsHorizontalScrollIndicator={false}
                             ListEmptyComponent={
                                 <EmptyContent text="Adicione um vestibular ao seus favoritos" />
                             }
                         />
-                        <HeaderList text="Vestibulares salvos"/>
+                        <Label text="Vestibulares salvos" />
                     </View>
                 }
                 ListEmptyComponent={
