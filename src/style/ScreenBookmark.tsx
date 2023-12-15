@@ -12,9 +12,12 @@ export default function () {
             flex: 1,
             backgroundColor: Color.surface,
         },
-        containerList: {
+        containerListHorizontal: {
             backgroundColor: Color.surface,
-            paddingTop: 16,
+            paddingHorizontal: 12
+        },
+        containerListVertical: {
+            backgroundColor: Color.surface,
             paddingBottom: 200,
         },
         colums:{

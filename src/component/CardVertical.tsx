@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 
 //style
 import Typography from "../asset/design/Typography";
-import StyleAuxiliar from "../style/ComponentCard"
+import StyleAuxiliar from "../style/ComponentCardVertical"
 
 export default function (props: any) {
 

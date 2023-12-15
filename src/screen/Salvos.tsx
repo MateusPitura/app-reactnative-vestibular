@@ -1,13 +1,15 @@
 import React from 'react'
-import { View, FlatList } from 'react-native'
+import { View, Text, FlatList, ScrollView } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 //style
 import StyleAuxiliar from '../style/ScreenBookmark'
 import ColorAuxiliar from '../asset/design/Color'
+import Typography from '../asset/design/Typography'
 
 //component
-import Card from '../component/Card'
+import CardVertical from '../component/CardVertical'
+import CardHorizontal from '../component/CardHorizontal'
 import HeaderList from '../component/HeaderList'
 import EmptyContent from '../component/EmptyContent'
 
@@ -74,11 +76,27 @@ export default function () {
 
     return (
         <View style={Style.container}>
+            {/* <View style={{elevation: 5}}> */}
+            <View style={{
+                backgroundColor: Color.surfaceContainerHigh,
+                height: 56,
+                marginHorizontal: 16,
+                marginVertical: 16,
+                borderRadius: 28,
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+                <Text
+                    style={[Typography.bodyLarge,
+                         {color: Color.onSurfaceVariant}]}
+                >Pesquise por vestibulares</Text>
+            {/* </View> */}
+            </View>
             <FlatList
                 data={array}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) =>
-                    <Card
+                    <CardVertical
                         header={item.header}
                         body={item.body}
                     >
@@ -87,13 +105,39 @@ export default function () {
                             width={24}
                             fill={Color.onTertiary}
                         />
-                    </Card>
+                    </CardVertical>
                 }
-                contentContainerStyle={Style.containerList}
+                contentContainerStyle={Style.containerListVertical}
                 numColumns={2}
-                ListHeaderComponent={() => (
-                    <HeaderList text="Vestibulares salvos" />
-                )}
+                ListHeaderComponent={
+                    <View>
+                        <HeaderList text="Vestibulares recomendados"/>
+                        <FlatList
+                            data={array}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }) =>
+                                <CardHorizontal
+                                    header={item.header}
+                                    body={item.body}
+                                >
+                                    <Save
+                                        height={24}
+                                        width={24}
+                                        fill={Color.onTertiary}
+                                    />
+                                </CardHorizontal>
+                            }
+                            contentContainerStyle={Style.containerListHorizontal}
+                            horizontal={true}
+                            
+                            showsHorizontalScrollIndicator={false}
+                            ListEmptyComponent={
+                                <EmptyContent text="Adicione um vestibular ao seus favoritos" />
+                            }
+                        />
+                        <HeaderList text="Vestibulares salvos"/>
+                    </View>
+                }
                 ListEmptyComponent={
                     <EmptyContent text="Adicione um vestibular ao seus favoritos" />
                 }

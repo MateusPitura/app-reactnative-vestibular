@@ -9,8 +9,7 @@ export default function () {
 
     return StyleSheet.create({
         container: {
-            paddingBottom: 16,
-            paddingHorizontal: 16
+            padding: 16,
         },
         text: {
             color: Color.onSurfaceVariant,
