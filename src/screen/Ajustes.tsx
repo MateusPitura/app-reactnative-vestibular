@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 
 //style
-import StyleAuxiliar from '../style/ScreenSetting'
+import StyleAuxiliar from '../style/ScreenAjustes'
 import Typography from '../asset/design/Typography'
 
 //model

@@ -2,7 +2,7 @@ import React from 'react'
 import { View, FlatList } from 'react-native'
 
 //style
-import StyleAuxiliar from '../style/ScreenCalendar'
+import StyleAuxiliar from '../style/ScreenDatas'
 
 //component
 import ListItemCalendar from '../component/ListItemCalendar'

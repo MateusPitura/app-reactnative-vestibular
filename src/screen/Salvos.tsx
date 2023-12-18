@@ -3,7 +3,7 @@ import { View, Text, FlatList, ScrollView } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 //style
-import StyleAuxiliar from '../style/ScreenBookmark'
+import StyleAuxiliar from '../style/ScreenSalvos'
 import ColorAuxiliar from '../asset/design/Color'
 
 //component
@@ -112,12 +112,16 @@ export default function () {
                                     />
                                 </CardHorizontal>
                             }
-                            contentContainerStyle={Style.containerListHorizontal}
+                            contentContainerStyle={
+                                array==null?
+                                Style.containerListHorizontalIfNull
+                                :
+                                Style.containerListHorizontal
+                            }
                             horizontal={true}
-
                             showsHorizontalScrollIndicator={false}
                             ListEmptyComponent={
-                                <EmptyContent text="Adicione um vestibular ao seus favoritos" />
+                                <EmptyContent text="No momento não há recomendações" />
                             }
                         />
                         <Label text="Vestibulares salvos" />

@@ -13,11 +13,13 @@ export default function () {
             backgroundColor: Color.surface,
         },
         containerListHorizontal: {
-            backgroundColor: Color.surface,
+            paddingHorizontal: 12
+        },
+        containerListHorizontalIfNull: {
+            flex: 1,
             paddingHorizontal: 12
         },
         containerListVertical: {
-            backgroundColor: Color.surface,
             paddingBottom: 200,
         },
         colums:{

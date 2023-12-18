@@ -2,7 +2,7 @@ import React from 'react'
 import { View, FlatList } from 'react-native'
 
 //style
-import StyleAuxiliar from '../style/ScreenNews'
+import StyleAuxiliar from '../style/ScreenAvisos'
 
 //component
 import ListItemNews from '../component/ListItemNews';
