@@ -17,7 +17,7 @@ export default function () {
             padding: 6,
             flex: 1,
             height: 150,
-            width: 150,
+            width: width/2-20,
             margin: 4,
         },
         header: {

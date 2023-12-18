@@ -15,7 +15,7 @@ export default function () {
         },
         container: {
             backgroundColor: Color.surfaceContainerHigh,
-            height: 56,
+            height: 48,
             width: '100%',
             maxWidth: 720,
             marginVertical: 16,
