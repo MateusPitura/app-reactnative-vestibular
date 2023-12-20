@@ -11,6 +11,7 @@ export default function(){
         container:{
             backgroundColor: Color.surface,
             flex: 1,
+            paddingTop: 16,
         },
         listContainer:{
             paddingBottom: 200,

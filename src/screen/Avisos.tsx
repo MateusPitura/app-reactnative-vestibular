@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, FlatList } from 'react-native'
 
 //style
@@ -9,8 +9,11 @@ import ListItemNews from '../component/ListItemNews';
 import Divisor from '../component/Divisor';
 import EmptyContent from '../component/EmptyContent';
 import StatusBar from '../component/StatusBar';
+import Tabs from '../component/Tabs';
 
 export default function () {
+
+    const [tabSelected, setTabSelected] = useState(0)
 
     const Style = StyleAuxiliar();
 
@@ -18,96 +21,99 @@ export default function () {
         {
             id: "1",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "ENEM",
+            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "2",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "PSS",
+            support: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "3",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "UTFPR",
+            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "4",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "ENEM",
+            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "5",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "PSS",
+            support: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "6",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "UTFPR",
+            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "7",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "ENEM",
+            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "8",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "Ipsum",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "PSS",
+            support: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "9",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "UTFPR",
+            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "10",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "Lorem",
-            support: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "ENEM",
+            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "11",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "Ipsum",
+            headline: "PSS",
             support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "12",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "Dolor",
-            support: "Dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            headline: "UTFPR",
+            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
     ]
 
+    // const array = null
+
     return (
         <View style={[Style.container]}>
-            <StatusBar/>
+            <Tabs data={array} setSelected={setTabSelected} selected={tabSelected}/>
+            <StatusBar />
             <FlatList
                 data={array}
-                keyExtractor={item=>item.id}
-                renderItem={({item})=>
+                keyExtractor={item => item.id}
+                renderItem={({ item }) =>
                     <ListItemNews
                         image={item.imageSource}
                         headline={item.headline}
@@ -115,11 +121,9 @@ export default function () {
                         trailing={item.trailing}
                     />
                 }
-                ItemSeparatorComponent={()=> //Separador horizontal
-                    <Divisor/>
-                }
+                ItemSeparatorComponent={() => <Divisor />}
                 ListEmptyComponent={ //Renderiza caso a lista esteja vazia
-                    <EmptyContent text="Adicione um vestibular ao seus favoritos"/>
+                    <EmptyContent text="Adicione um vestibular ao seus favoritos" />
                 }
                 contentContainerStyle={Style.listContainer} //Define o estilo do container
             />

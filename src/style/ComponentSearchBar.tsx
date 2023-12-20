@@ -19,7 +19,7 @@ export default function () {
             width: '100%',
             maxWidth: 720,
             marginVertical: 16,
-            borderRadius: 28,
+            borderRadius: 24,
             alignItems: 'center',
             justifyContent: 'flex-start',
             flexDirection: 'row',
