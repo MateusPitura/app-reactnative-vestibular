@@ -12,10 +12,10 @@ export default function () {
             height: 47,
             alignItems: 'center'
         },
-        containerTouchable:{
+        touchable:{
             flex: 1,
         },
-        touchable:{
+        box:{
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',

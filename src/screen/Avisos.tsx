@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, FlatList } from 'react-native'
+import { SafeAreaView, FlatList } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenAvisos'
@@ -102,13 +102,41 @@ export default function () {
             support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
+        {
+            id: "13",
+            imageSource: require('../asset/image/photo3.webp'),
+            headline: "UTFPR",
+            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "06 nov"
+        },
+        {
+            id: "14",
+            imageSource: require('../asset/image/photo1.webp'),
+            headline: "ENEM",
+            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "04 nov"
+        },
+        {
+            id: "15",
+            imageSource: require('../asset/image/photo2.webp'),
+            headline: "PSS",
+            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "05 nov"
+        },
+        {
+            id: "16",
+            imageSource: require('../asset/image/photo3.webp'),
+            headline: "UTFPR",
+            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            trailing: "06 nov"
+        },
     ]
 
     // const array = null
 
     return (
-        <View style={[Style.container]}>
-            <Tabs data={array} setSelected={setTabSelected} selected={tabSelected}/>
+        <SafeAreaView style={[Style.container]}>
+            <Tabs data={array} setSelected={setTabSelected} selected={tabSelected} />
             <StatusBar />
             <FlatList
                 data={array}
@@ -127,6 +155,6 @@ export default function () {
                 }
                 contentContainerStyle={Style.listContainer} //Define o estilo do container
             />
-        </View>
+        </SafeAreaView>
     )
 } 

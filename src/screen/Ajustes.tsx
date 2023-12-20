@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text } from 'react-native'
+import { SafeAreaView, Text } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenAjustes'
@@ -27,7 +27,7 @@ export default function (props: any) {
     }, [])
 
     return (
-        <View style={Style.container}>
+        <SafeAreaView style={Style.container}>
             <Text style={[Typography.bodyMedium, Style.title]}>Aparência</Text>
 
             <RadioButton text="Modo claro" choice={userChoice} theme={"light"} onPress={(value: any) => {
@@ -41,6 +41,6 @@ export default function (props: any) {
             <RadioButton text="Padrão do sistema" choice={userChoice} theme={"default"} onPress={(value: any) => {
                 saveThemeLocaly(value, props.setTheme)
             }} />
-        </View>
+        </SafeAreaView>
     )
 } 

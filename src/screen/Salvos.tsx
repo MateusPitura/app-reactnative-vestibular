@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList, ScrollView } from 'react-native'
+import { View, FlatList, SafeAreaView } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 //style
@@ -75,7 +75,7 @@ export default function () {
     // const array = null
 
     return (
-        <View style={Style.container}>
+        <SafeAreaView style={Style.container}>
             <SearchBar text="Pesquise por vestibulares" />
             <FlatList
                 data={array}
@@ -132,6 +132,6 @@ export default function () {
                 }
                 columnWrapperStyle={Style.colums}
             />
-        </View>
+        </SafeAreaView>
     )
 } 

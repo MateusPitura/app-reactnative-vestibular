@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, FlatList } from 'react-native'
+import { SafeAreaView, FlatList } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -106,7 +106,7 @@ export default function () {
     // const array = null
 
     return (
-        <View style={Style.container}>
+        <SafeAreaView style={Style.container}>
             <Tabs data={array} setSelected={setTabSelected} selected={tabSelected} />
             <FlatList
                 data={array}
@@ -127,6 +127,6 @@ export default function () {
                     <Label text="Próximos eventos" />
                 )}
             />
-        </View>
+        </SafeAreaView>
     )
 } 

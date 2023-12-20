@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 
 //style
 import StyleAuxiliar from '../style/ComponentTabs'
@@ -16,29 +16,31 @@ export default function (props: any) {
                     data={props.data}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
-                        <View style={Style.containerTouchable}>
-                            <TouchableOpacity
-                                style={Style.touchable}
-                                onPress={() => {
-                                    props.setSelected(item.id)
-                                }}>
-                                <Text style={
-                                    props.selected == item.id ?
-                                        [Typography.titleSmall, Style.textSelected]
+                        <TouchableWithoutFeedback
+                            style={Style.touchable}
+                            onPress={() => {
+                                props.setSelected(item.id)
+                            }}>
+                            <View>
+                                <View style={Style.box}>
+                                    <Text style={
+                                        props.selected == item.id ?
+                                            [Typography.titleSmall, Style.textSelected]
+                                            :
+                                            [Typography.titleSmall, Style.textUnselected]
+                                    }>
+                                        {item.headline}
+                                    </Text>
+                                </View>
+                                <View style={Style.indicatorContainer}>
+                                    {props.selected == item.id ?
+                                        <View style={Style.indicator}></View>
                                         :
-                                        [Typography.titleSmall, Style.textUnselected]
-                                }>
-                                    {item.headline}
-                                </Text>
-                            </TouchableOpacity>
-                            <View style={Style.indicatorContainer}>
-                                {props.selected == item.id ?
-                                    <View style={Style.indicator}></View>
-                                    :
-                                    <View></View>
-                                }
+                                        <View></View>
+                                    }
+                                </View>
                             </View>
-                        </View>
+                        </TouchableWithoutFeedback>
                     }
                     contentContainerStyle={Style.listContainer}
                     horizontal={true}
