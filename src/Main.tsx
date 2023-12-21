@@ -46,8 +46,13 @@ export default function () {
 
     const Color = ColorAuxiliar[theme]
 
+    const restoreThemeLocalyAuxiliar = async () => {
+        await restoreThemeLocaly(setThemeUser);
+        setLoading(false);
+    }
+
     useEffect(() => { //Essa função executa apenas uma vez ao iniciar o aplicativo
-        restoreThemeLocaly(setLoading, setThemeUser);
+        restoreThemeLocalyAuxiliar()
     }, [])
 
     function AjustesAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada

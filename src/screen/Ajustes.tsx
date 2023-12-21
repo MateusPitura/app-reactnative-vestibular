@@ -6,7 +6,7 @@ import StyleAuxiliar from '../style/ScreenAjustes'
 import Typography from '../asset/design/Typography'
 
 //model
-import { saveThemeLocaly, getThemeLocaly } from '../model/ThemeController';
+import { saveThemeLocaly, restoreThemeLocaly } from '../model/ThemeController';
 
 //component
 import RadioButton from '../component/RadioButton';
@@ -17,29 +17,24 @@ export default function (props: any) {
 
     const [userChoice, setUserChoice] = useState("")
 
-    const getThemeLocalyAuxiliar = async () => {
-        const theme = await getThemeLocaly()
-        setUserChoice(theme ?? "light")
-    }
-
     useEffect(() => {
-        getThemeLocalyAuxiliar()
+        restoreThemeLocaly(setUserChoice)
     }, [])
 
     return (
         <SafeAreaView style={Style.container}>
             <Text style={[Typography.bodyMedium, Style.title]}>Aparência</Text>
 
-            <RadioButton text="Modo claro" choice={userChoice} theme={"light"} onPress={(value: any) => {
-                saveThemeLocaly(value, props.setTheme)
+            <RadioButton text="Modo claro" choice={userChoice} theme={"light"} onPress={() => {
+                saveThemeLocaly("light", props.setTheme)
             }} />
 
-            <RadioButton text="Modo escuro" choice={userChoice} theme={"dark"} onPress={(value: any) => {
-                saveThemeLocaly(value, props.setTheme)
+            <RadioButton text="Modo escuro" choice={userChoice} theme={"dark"} onPress={() => {
+                saveThemeLocaly("dark", props.setTheme)
             }} />
 
-            <RadioButton text="Padrão do sistema" choice={userChoice} theme={"default"} onPress={(value: any) => {
-                saveThemeLocaly(value, props.setTheme)
+            <RadioButton text="Padrão do sistema" choice={userChoice} theme={"default"} onPress={() => {
+                saveThemeLocaly("default", props.setTheme)
             }} />
         </SafeAreaView>
     )
