@@ -10,7 +10,7 @@ import EmptyContent from '../component/EmptyContent'
 import Label from '../component/Label'
 import Tabs from '../component/Tabs'
 
-export default function () {
+export default function (props: any) {
 
     const [tabSelected, setTabSelected] = useState(0)
 

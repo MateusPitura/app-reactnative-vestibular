@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Text, Button } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenAjustes'
 import Typography from '../asset/design/Typography'
 
-//model
+//controller
 import { saveThemeLocaly, restoreThemeLocaly } from '../model/ThemeController';
+import { removeAll } from '../model/SalvosController';
 
 //component
 import RadioButton from '../component/RadioButton';
@@ -36,6 +37,11 @@ export default function (props: any) {
             <RadioButton text="Padrão do sistema" choice={userChoice} theme={"default"} onPress={() => {
                 saveThemeLocaly("default", props.setTheme)
             }} />
+
+            <Button
+                title='Remove tudo'
+                onPress={()=>removeAll()}
+            />
         </SafeAreaView>
     )
 } 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
 //style
@@ -11,9 +11,18 @@ import EmptyContent from '../component/EmptyContent';
 import StatusBar from '../component/StatusBar';
 import Tabs from '../component/Tabs';
 
-export default function () {
+//controller
+import { read } from '../model/SalvosController';
+
+export default function (props: any) {
 
     const [tabSelected, setTabSelected] = useState(0)
+
+    const [data, setData] = useState([])
+
+    useEffect(()=>{
+        read(setData)
+    }, [props.update])
 
     const Style = StyleAuxiliar();
 
@@ -136,7 +145,7 @@ export default function () {
 
     return (
         <SafeAreaView style={[Style.container]}>
-            <Tabs data={array} setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs data={data} setSelected={setTabSelected} selected={tabSelected} />
             <StatusBar />
             <FlatList
                 data={array}

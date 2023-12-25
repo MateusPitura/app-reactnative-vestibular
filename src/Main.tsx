@@ -34,6 +34,7 @@ export default function () {
 
     const [themeUser, setThemeUser] = useState("light"); //Tema (light, dark, default) definido pelo usuário
     const [loading, setLoading] = useState(true);
+    const [update, setUpdate] = useState(0)
 
     const bottomTabNavigator = createBottomTabNavigator();
 
@@ -55,9 +56,27 @@ export default function () {
         restoreThemeLocalyAuxiliar()
     }, [])
 
+    function AvisosAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
+        return (
+            <Avisos update={update} />
+        )
+    }
+
+    function DatasAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
+        return (
+            <Datas update={update} />
+        )
+    }
+
+    function SalvosAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
+        return (
+            <Salvos update={update} setUpdate={setUpdate} />
+        )
+    }
+
     function AjustesAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
         return (
-            <Ajustes setTheme={setThemeUser} /> //Passa o setState que define o tema a ser definido pelo usuário
+            <Ajustes setTheme={setThemeUser}/> //Passa o setState que define o tema a ser definido pelo usuário
         )
     }
 
@@ -79,7 +98,7 @@ export default function () {
                 >
                     <bottomTabNavigator.Screen
                         name="Avisos"
-                        component={Avisos}
+                        component={AvisosAuxiliar}
                         options={{
                             headerShown: false, //Não mostra o cabeçalho
                             tabBarIcon: ({ focused }) => (
@@ -103,7 +122,7 @@ export default function () {
                     />
                     <bottomTabNavigator.Screen
                         name="Datas"
-                        component={Datas}
+                        component={DatasAuxiliar}
                         options={{
                             headerShown: false,
                             tabBarIcon: ({ focused }) => (
@@ -127,7 +146,7 @@ export default function () {
                     />
                     <bottomTabNavigator.Screen
                         name="Salvos"
-                        component={Salvos}
+                        component={SalvosAuxiliar}
                         options={{
                             headerShown: false,
                             tabBarIcon: ({ focused }) => (

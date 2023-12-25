@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, FlatList, SafeAreaView } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
@@ -17,7 +17,10 @@ import SearchBar from '../component/SearchBar'
 import Trash from '../asset/icon/delete.svg'
 import Save from '../asset/icon/add-bookmark.svg'
 
-export default function () {
+//controller
+import { add, remove } from '../model/SalvosController'
+
+export default function (props: any) {
 
     const Style = StyleAuxiliar()
 
@@ -74,6 +77,17 @@ export default function () {
 
     // const array = null
 
+    const addNewData = async (item: any) => {
+        const newData = [{
+            id: item.id,
+            header: item.header
+        }]
+
+        await add(newData)
+
+        props.setUpdate(++props.update)
+    }
+
     return (
         <SafeAreaView style={Style.container}>
             <SearchBar text="Pesquise por vestibulares" />
@@ -84,6 +98,7 @@ export default function () {
                     <CardVertical
                         header={item.header}
                         body={item.body}
+                        onPress={() => {addNewData(item)}}
                     >
                         <Trash
                             height={24}
@@ -113,10 +128,10 @@ export default function () {
                                 </CardHorizontal>
                             }
                             contentContainerStyle={
-                                array==null?
-                                Style.containerListHorizontalIfNull
-                                :
-                                Style.containerListHorizontal
+                                array == null ?
+                                    Style.containerListHorizontalIfNull
+                                    :
+                                    Style.containerListHorizontal
                             }
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}

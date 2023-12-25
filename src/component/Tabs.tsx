@@ -29,7 +29,7 @@ export default function (props: any) {
                                             :
                                             [Typography.titleSmall, Style.textUnselected]
                                     }>
-                                        {item.headline}
+                                        {item.header}
                                     </Text>
                                 </View>
                                 <View style={Style.indicatorContainer}>
