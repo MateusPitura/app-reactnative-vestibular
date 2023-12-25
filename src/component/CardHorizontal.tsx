@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 //style
 import Typography from "../asset/design/Typography";
@@ -17,9 +17,12 @@ export default function (props: any) {
                         {props.header}
                     </Text>
                 </View>
-                <View style={Style.icon}>
+                <TouchableOpacity
+                    style={Style.icon}
+                    onPress={() => { props.onPress() }}
+                >
                     {props.children}
-                </View>
+                </TouchableOpacity>
             </View>
             <View style={Style.description}>
                 <Text numberOfLines={4} style={[Typography.bodyMedium, Style.text]}>

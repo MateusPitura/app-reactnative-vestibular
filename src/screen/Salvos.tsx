@@ -88,6 +88,13 @@ export default function (props: any) {
         props.setUpdate(++props.update)
     }
 
+    const removeData = async (id: any) => {
+
+        await remove(id)
+
+        props.setUpdate(++props.update)
+    }
+
     return (
         <SafeAreaView style={Style.container}>
             <SearchBar text="Pesquise por vestibulares" />
@@ -98,7 +105,7 @@ export default function (props: any) {
                     <CardVertical
                         header={item.header}
                         body={item.body}
-                        onPress={() => {addNewData(item)}}
+                        onPress={() => { removeData(item.id) }}
                     >
                         <Trash
                             height={24}
@@ -119,6 +126,7 @@ export default function (props: any) {
                                 <CardHorizontal
                                     header={item.header}
                                     body={item.body}
+                                    onPress={() => { addNewData(item) }}
                                 >
                                     <Save
                                         height={24}
