@@ -14,7 +14,7 @@ export default function (props: any) {
             <View style={Style.header}>
                 <View style={Style.title}>
                     <Text numberOfLines={1} style={[Typography.titleMedium, Style.text]}>
-                        {props.header}
+                        {props.title}
                     </Text>
                 </View>
                 <TouchableOpacity 

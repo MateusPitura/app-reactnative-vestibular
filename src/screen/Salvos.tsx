@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, FlatList, SafeAreaView } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
@@ -18,7 +18,7 @@ import Trash from '../asset/icon/delete.svg'
 import Save from '../asset/icon/add-bookmark.svg'
 
 //controller
-import { add, remove } from '../model/SalvosController'
+import { add, remove, read } from '../model/SalvosController'
 
 export default function (props: any) {
 
@@ -30,68 +30,71 @@ export default function (props: any) {
     const array = [
         {
             id: '1',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
         {
             id: '2',
-            header: 'PSS',
+            title: 'PSS',
             body: 'Proceso Seletivo Seriado',
         },
         {
             id: '3',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
         {
             id: '4',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
         {
             id: '5',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
         {
             id: '6',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
         {
             id: '7',
-            header: 'PSS',
+            title: 'PSS',
             body: 'Proceso Seletivo Seriado',
         },
         {
             id: '8',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
         {
             id: '9',
-            header: 'ENEM',
+            title: 'ENEM',
             body: 'Exame Nacional do Ensino Médio',
         },
     ]
 
     // const array = null
 
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        read(setData)
+    }, [props.update])
+
     const addNewData = async (item: any) => {
         const newData = [{
             id: item.id,
-            header: item.header
+            title: item.title,
+            body: item.body
         }]
-
         await add(newData)
-
         props.setUpdate(++props.update)
     }
 
     const removeData = async (id: any) => {
-
         await remove(id)
-
         props.setUpdate(++props.update)
     }
 
@@ -99,11 +102,11 @@ export default function (props: any) {
         <SafeAreaView style={Style.container}>
             <SearchBar text="Pesquise por vestibulares" />
             <FlatList
-                data={array}
+                data={data}
                 keyExtractor={item => item.id}
-                renderItem={({ item }) =>
+                renderItem={({ item }: any) =>
                     <CardVertical
-                        header={item.header}
+                        title={item.title}
                         body={item.body}
                         onPress={() => { removeData(item.id) }}
                     >
@@ -124,7 +127,7 @@ export default function (props: any) {
                             keyExtractor={item => item.id}
                             renderItem={({ item }) =>
                                 <CardHorizontal
-                                    header={item.header}
+                                    title={item.title}
                                     body={item.body}
                                     onPress={() => { addNewData(item) }}
                                 >

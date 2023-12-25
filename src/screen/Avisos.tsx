@@ -30,113 +30,113 @@ export default function (props: any) {
         {
             id: "1",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "ENEM",
-            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "ENEM",
+            body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "2",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "PSS",
-            support: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "PSS",
+            body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "3",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "UTFPR",
-            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "UTFPR",
+            body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "4",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "ENEM",
-            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "ENEM",
+            body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "5",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "PSS",
-            support: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "PSS",
+            body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "6",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "UTFPR",
-            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "UTFPR",
+            body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "7",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "ENEM",
-            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "ENEM",
+            body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "8",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "PSS",
-            support: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "PSS",
+            body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "9",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "UTFPR",
-            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "UTFPR",
+            body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "10",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "ENEM",
-            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "ENEM",
+            body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "11",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "PSS",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "PSS",
+            body: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "12",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "UTFPR",
-            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "UTFPR",
+            body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "13",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "UTFPR",
-            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "UTFPR",
+            body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
         {
             id: "14",
             imageSource: require('../asset/image/photo1.webp'),
-            headline: "ENEM",
-            support: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "ENEM",
+            body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
         {
             id: "15",
             imageSource: require('../asset/image/photo2.webp'),
-            headline: "PSS",
-            support: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "PSS",
+            body: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
         {
             id: "16",
             imageSource: require('../asset/image/photo3.webp'),
-            headline: "UTFPR",
-            support: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
+            title: "UTFPR",
+            body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
     ]
@@ -153,8 +153,8 @@ export default function (props: any) {
                 renderItem={({ item }) =>
                     <ListItemNews
                         image={item.imageSource}
-                        headline={item.headline}
-                        support={item.support}
+                        title={item.title}
+                        body={item.body}
                         trailing={item.trailing}
                     />
                 }

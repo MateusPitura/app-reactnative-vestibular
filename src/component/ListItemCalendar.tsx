@@ -34,13 +34,13 @@ export default function (props: any) {
                     numberOfLines={1}
                     style={[Typography.titleMedium, Style.headlineText]}
                 >
-                    {props.headline}
+                    {props.title}
                 </Text>
                 <Text
                     numberOfLines={1}
                     style={[Typography.bodyMedium, Style.supportText]}
                 >
-                    {props.support}
+                    {props.body}
                 </Text>
             </View>
         </View>

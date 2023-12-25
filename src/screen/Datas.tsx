@@ -28,85 +28,85 @@ export default function (props: any) {
     const array = [
         {
             id: "1",
-            headline: "ENEM",
-            support: "13h00 às 14h00",
+            title: "ENEM",
+            body: "13h00 às 14h00",
             day: "30",
             month: "jan"
         },
         {
             id: "2",
-            headline: "PSS",
-            support: "Todo o dia",
+            title: "PSS",
+            body: "Todo o dia",
             day: "05",
             month: "fev"
         },
         {
             id: "3",
-            headline: "UTFPR",
-            support: "13h00 às 14h00",
+            title: "UTFPR",
+            body: "13h00 às 14h00",
             day: "06",
             month: "mar"
         },
         {
             id: "4",
-            headline: "ENEM",
-            support: "Todo o dia",
+            title: "ENEM",
+            body: "Todo o dia",
             day: "04",
             month: "abr"
         },
         {
             id: "5",
-            headline: "PSS",
-            support: "13h00 às 14h00",
+            title: "PSS",
+            body: "13h00 às 14h00",
             day: "05",
             month: "mai"
         },
         {
             id: "6",
-            headline: "UTFPR",
-            support: "Todo o dia",
+            title: "UTFPR",
+            body: "Todo o dia",
             day: "06",
             month: "jun"
         },
         {
             id: "7",
-            headline: "ENEM",
-            support: "13h00 às 14h00",
+            title: "ENEM",
+            body: "13h00 às 14h00",
             day: "04",
             month: "jul"
         },
         {
             id: "8",
-            headline: "PSS",
-            support: "Todo o dia",
+            title: "PSS",
+            body: "Todo o dia",
             day: "05",
             month: "ago"
         },
         {
             id: "9",
-            headline: "UTFPR",
-            support: "13h00 às 14h00",
+            title: "UTFPR",
+            body: "13h00 às 14h00",
             day: "06",
             month: "set"
         },
         {
             id: "10",
-            headline: "ENEM",
-            support: "Todo o dia",
+            title: "ENEM",
+            body: "Todo o dia",
             day: "04",
             month: "out"
         },
         {
             id: "11",
-            headline: "PSS",
-            support: "13h00 às 14h00",
+            title: "PSS",
+            body: "13h00 às 14h00",
             day: "05",
             month: "nov"
         },
         {
             id: "12",
-            headline: "UTFPR",
-            support: "Todo o dia",
+            title: "UTFPR",
+            body: "Todo o dia",
             day: "06",
             month: "dez"
         },
@@ -124,8 +124,8 @@ export default function (props: any) {
                     <ListItemCalendar
                         day={item.day}
                         month={item.month}
-                        headline={item.headline}
-                        support={item.support}
+                        title={item.title}
+                        body={item.body}
                     />
                 }
                 contentContainerStyle={Style.listContainer}
