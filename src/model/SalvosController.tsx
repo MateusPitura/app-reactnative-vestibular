@@ -5,6 +5,9 @@ const chave = "@vestibular:salvos"
 export const add = async (newData: any) => {
     const response = await AsyncStorage.getItem(chave)
     const parsed = response ? JSON.parse(response) : []
+    if (parsed.find((item: any) => item.id == newData[0].id) != undefined) {
+        return -1
+    }
     const data = [...parsed, ...newData]
     await AsyncStorage.setItem(chave, JSON.stringify(data))
 }
@@ -12,7 +15,6 @@ export const add = async (newData: any) => {
 export const read = async (setter: any) => {
     const response = await AsyncStorage.getItem(chave)
     const parsed = response ? JSON.parse(response) : []
-    console.log("Olá")
     setter(parsed)
 }
 
@@ -23,7 +25,7 @@ export const remove = async (id: string) => {
     await AsyncStorage.setItem(chave, JSON.stringify(data))
 }
 
-export const removeAll = async() => {
+export const removeAll = async () => {
     await AsyncStorage.removeItem(chave)
 }
 

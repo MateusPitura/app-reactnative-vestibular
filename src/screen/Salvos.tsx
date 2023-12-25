@@ -103,6 +103,7 @@ export default function (props: any) {
             <SearchBar text="Pesquise por vestibulares" />
             <FlatList
                 data={data}
+                // @ts-ignore
                 keyExtractor={item => item.id}
                 renderItem={({ item }: any) =>
                     <CardVertical
