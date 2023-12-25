@@ -10,7 +10,7 @@ export default function () {
     return StyleSheet.create({
         container: {
             height: 47,
-            alignItems: 'center'
+            alignItems: 'flex-start',
         },
         touchable:{
             flex: 1,
