@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, SafeAreaView } from 'react-native'
+import { View, FlatList, SafeAreaView, ToastAndroid } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 //style
@@ -91,11 +91,23 @@ export default function (props: any) {
         }]
         await add(newData)
         props.setUpdate(++props.update)
+        handleCallToast("Vestibular adicionado")
     }
 
     const removeData = async (id: any) => {
         await remove(id)
         props.setUpdate(++props.update)
+        handleCallToast("Vestibular removido")
+    }
+
+    const handleCallToast = (message: string) => {
+        ToastAndroid.showWithGravityAndOffset(
+            message,
+            ToastAndroid.SHORT,
+            ToastAndroid.BOTTOM,
+            0,
+            200
+        )
     }
 
     return (
