@@ -93,7 +93,9 @@ export default function (props: any) {
             title: item.title,
             body: item.body
         }]
-        await add(newData)
+        if(await add(newData) == -1){
+            return
+        }
         props.setUpdate(++props.update)
         handleCallToast("Vestibular adicionado")
     }
