@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, SafeAreaView, ToastAndroid } from 'react-native'
+import { View, FlatList, SafeAreaView, ToastAndroid, ActivityIndicator } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 //style
@@ -78,9 +78,13 @@ export default function (props: any) {
     // const array = null
 
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         read(setData)
+        setTimeout(()=>{
+            setLoading(false)
+        }, 1000)
     }, [props.update])
 
     const addNewData = async (item: any) => {
@@ -167,7 +171,13 @@ export default function (props: any) {
                     </View>
                 }
                 ListEmptyComponent={
-                    <EmptyContent text="Adicione um vestibular ao seus favoritos" />
+                    loading == true ?
+                        <ActivityIndicator
+                            size={"large"}
+                            color={"red"}
+                        />
+                        :
+                        <EmptyContent text="Adicione um vestibular na sua lista" />
                 }
                 columnWrapperStyle={Style.colums}
             />

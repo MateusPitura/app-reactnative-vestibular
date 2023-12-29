@@ -160,7 +160,7 @@ export default function (props: any) {
                 }
                 ItemSeparatorComponent={() => <Divisor />}
                 ListEmptyComponent={ //Renderiza caso a lista esteja vazia
-                    <EmptyContent text="Adicione um vestibular ao seus favoritos" />
+                    <EmptyContent text="Adicione um vestibular na sua lista" />
                 }
                 contentContainerStyle={Style.listContainer} //Define o estilo do container
             />

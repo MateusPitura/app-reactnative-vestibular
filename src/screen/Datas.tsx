@@ -130,7 +130,7 @@ export default function (props: any) {
                 }
                 contentContainerStyle={Style.listContainer}
                 ListEmptyComponent={
-                    <EmptyContent text="Adicione um vestibular ao seus favoritos" />
+                    <EmptyContent text="Adicione um vestibular na sua lista" />
                 }
                 ListHeaderComponent={() => (
                     <Label text="Próximos eventos" />
