@@ -81,7 +81,6 @@ export default function () {
 
     useEffect(() => {
         read(setData) 
-        console.log("Salvos")
     }, [])
 
     const addNewData = async (item: any) => {

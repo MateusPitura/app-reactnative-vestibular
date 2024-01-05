@@ -23,7 +23,6 @@ export default function () {
     useFocusEffect(
         useCallback(()=>{
             read(setData) 
-            console.log("Avisos")
         }, [])
     )
 
