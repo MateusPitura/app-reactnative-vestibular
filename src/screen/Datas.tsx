@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -11,17 +12,17 @@ import Label from '../component/Label'
 import Tabs from '../component/Tabs'
 
 //controller
-import { read } from '../model/SalvosController';
+import { read } from '../model/SalvosController'
 
 export default function (props: any) {
 
     const [tabSelected, setTabSelected] = useState(0)
-
     const [data, setData] = useState([])
 
-    useEffect(() => {
-        read(setData)
-    }, [props.update])
+    useFocusEffect(() => {
+        read(setData) 
+        console.log("Datas")
+    })
 
     const Style = StyleAuxiliar()
 
@@ -116,7 +117,7 @@ export default function (props: any) {
 
     return (
         <SafeAreaView style={Style.container}>
-            <Tabs data={data} setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs data={props.data} setSelected={setTabSelected} selected={tabSelected} />
             <FlatList
                 data={array}
                 keyExtractor={item => item.id}

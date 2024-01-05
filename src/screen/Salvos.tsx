@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, SafeAreaView, ToastAndroid, ActivityIndicator } from 'react-native'
+import { View, FlatList, SafeAreaView, ToastAndroid } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 
 //style
@@ -78,14 +78,11 @@ export default function (props: any) {
     // const array = null
 
     const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        read(setData)
-        setTimeout(()=>{
-            setLoading(false)
-        }, 1000)
-    }, [props.update])
+        read(setData) 
+        console.log("Salvos")
+    }, [])
 
     const addNewData = async (item: any) => {
         const newData = [{
@@ -93,17 +90,17 @@ export default function (props: any) {
             title: item.title,
             body: item.body
         }]
-        if(await add(newData) == -1){
+        if (await add(newData) == -1) {
             return
         }
-        props.setUpdate(++props.update)
         handleCallToast("Vestibular adicionado")
+        read(setData)
     }
 
     const removeData = async (id: any) => {
         await remove(id)
-        props.setUpdate(++props.update)
         handleCallToast("Vestibular removido")
+        read(setData)
     }
 
     const handleCallToast = (message: string) => {
@@ -173,13 +170,7 @@ export default function (props: any) {
                     </View>
                 }
                 ListEmptyComponent={
-                    loading == true ?
-                        <ActivityIndicator
-                            size={"large"}
-                            color={"red"}
-                        />
-                        :
-                        <EmptyContent text="Adicione um vestibular na sua lista" />
+                    <EmptyContent text="Adicione um vestibular na sua lista" />
                 }
                 columnWrapperStyle={Style.colums}
             />
