@@ -37,11 +37,6 @@ export default function (props: any) {
             <RadioButton text="Padrão do sistema" choice={userChoice} theme={"default"} onPress={() => {
                 saveThemeLocaly("default", props.setTheme)
             }} />
-
-            <Button
-                title='Remove tudo'
-                onPress={()=>removeAll()}
-            />
         </SafeAreaView>
     )
 } 

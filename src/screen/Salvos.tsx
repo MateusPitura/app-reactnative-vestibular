@@ -20,7 +20,7 @@ import Save from '../asset/icon/add-bookmark.svg'
 //controller
 import { add, remove, read } from '../model/SalvosController'
 
-export default function (props: any) {
+export default function () {
 
     const Style = StyleAuxiliar()
 
