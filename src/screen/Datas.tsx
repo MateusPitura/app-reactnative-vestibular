@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
@@ -17,11 +17,11 @@ import { read } from '../model/SalvosController'
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
-    const [data, setData] = useState([])
+    const [tabs, setTabs] = useState([])
 
     useFocusEffect(
         useCallback(()=>{
-            read(setData) 
+            read(setTabs) 
         }, [])
     )
 
@@ -31,6 +31,7 @@ export default function () {
         {
             id: "1",
             title: "ENEM",
+            vestibularId: "1",
             body: "13h00 às 14h00",
             day: "30",
             month: "jan"
@@ -38,6 +39,7 @@ export default function () {
         {
             id: "2",
             title: "PSS",
+            vestibularId: "2",
             body: "Todo o dia",
             day: "05",
             month: "fev"
@@ -45,6 +47,7 @@ export default function () {
         {
             id: "3",
             title: "UTFPR",
+            vestibularId: "7",
             body: "13h00 às 14h00",
             day: "06",
             month: "mar"
@@ -52,6 +55,7 @@ export default function () {
         {
             id: "4",
             title: "ENEM",
+            vestibularId: "1",
             body: "Todo o dia",
             day: "04",
             month: "abr"
@@ -59,6 +63,7 @@ export default function () {
         {
             id: "5",
             title: "PSS",
+            vestibularId: "2",
             body: "13h00 às 14h00",
             day: "05",
             month: "mai"
@@ -66,6 +71,7 @@ export default function () {
         {
             id: "6",
             title: "UTFPR",
+            vestibularId: "7",
             body: "Todo o dia",
             day: "06",
             month: "jun"
@@ -73,6 +79,7 @@ export default function () {
         {
             id: "7",
             title: "ENEM",
+            vestibularId: "1",
             body: "13h00 às 14h00",
             day: "04",
             month: "jul"
@@ -80,6 +87,7 @@ export default function () {
         {
             id: "8",
             title: "PSS",
+            vestibularId: "2",
             body: "Todo o dia",
             day: "05",
             month: "ago"
@@ -87,6 +95,7 @@ export default function () {
         {
             id: "9",
             title: "UTFPR",
+            vestibularId: "7",
             body: "13h00 às 14h00",
             day: "06",
             month: "set"
@@ -94,6 +103,7 @@ export default function () {
         {
             id: "10",
             title: "ENEM",
+            vestibularId: "1",
             body: "Todo o dia",
             day: "04",
             month: "out"
@@ -101,6 +111,7 @@ export default function () {
         {
             id: "11",
             title: "PSS",
+            vestibularId: "2",
             body: "13h00 às 14h00",
             day: "05",
             month: "nov"
@@ -108,19 +119,31 @@ export default function () {
         {
             id: "12",
             title: "UTFPR",
+            vestibularId: "7",
             body: "Todo o dia",
             day: "06",
             month: "dez"
         },
     ]
 
+    const [data, setData] = useState(array)
+
+    useEffect(()=>{
+        if(tabSelected != 0){
+            const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
+            setData(newData)
+        } else {
+            setData(array)
+        }
+    }, [tabSelected])
+
     // const array = null
 
     return (
         <SafeAreaView style={Style.container}>
-            <Tabs data={data} setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs data={tabs} setSelected={setTabSelected} selected={tabSelected} />
             <FlatList
-                data={array}
+                data={data}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) =>
                     <ListItemCalendar

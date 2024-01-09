@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
@@ -18,11 +18,11 @@ import { read } from '../model/SalvosController'
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
-    const [data, setData] = useState([])
+    const [tabs, setTabs] = useState([])
 
     useFocusEffect(
         useCallback(()=>{
-            read(setData) 
+            read(setTabs) 
         }, [])
     )
 
@@ -33,6 +33,7 @@ export default function () {
             id: "1",
             imageSource: require('../asset/image/photo1.webp'),
             title: "ENEM",
+            vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
@@ -40,6 +41,7 @@ export default function () {
             id: "2",
             imageSource: require('../asset/image/photo2.webp'),
             title: "PSS",
+            vestibularId: "2",
             body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
@@ -47,6 +49,7 @@ export default function () {
             id: "3",
             imageSource: require('../asset/image/photo3.webp'),
             title: "UTFPR",
+            vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
@@ -54,6 +57,7 @@ export default function () {
             id: "4",
             imageSource: require('../asset/image/photo1.webp'),
             title: "ENEM",
+            vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
@@ -61,6 +65,7 @@ export default function () {
             id: "5",
             imageSource: require('../asset/image/photo2.webp'),
             title: "PSS",
+            vestibularId: "2",
             body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
@@ -68,6 +73,7 @@ export default function () {
             id: "6",
             imageSource: require('../asset/image/photo3.webp'),
             title: "UTFPR",
+            vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
@@ -75,6 +81,7 @@ export default function () {
             id: "7",
             imageSource: require('../asset/image/photo1.webp'),
             title: "ENEM",
+            vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
@@ -82,6 +89,7 @@ export default function () {
             id: "8",
             imageSource: require('../asset/image/photo2.webp'),
             title: "PSS",
+            vestibularId: "2",
             body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
@@ -89,6 +97,7 @@ export default function () {
             id: "9",
             imageSource: require('../asset/image/photo3.webp'),
             title: "UTFPR",
+            vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
@@ -96,6 +105,7 @@ export default function () {
             id: "10",
             imageSource: require('../asset/image/photo1.webp'),
             title: "ENEM",
+            vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
@@ -103,6 +113,7 @@ export default function () {
             id: "11",
             imageSource: require('../asset/image/photo2.webp'),
             title: "PSS",
+            vestibularId: "2",
             body: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
@@ -110,6 +121,7 @@ export default function () {
             id: "12",
             imageSource: require('../asset/image/photo3.webp'),
             title: "UTFPR",
+            vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
@@ -117,6 +129,7 @@ export default function () {
             id: "13",
             imageSource: require('../asset/image/photo3.webp'),
             title: "UTFPR",
+            vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
@@ -124,6 +137,7 @@ export default function () {
             id: "14",
             imageSource: require('../asset/image/photo1.webp'),
             title: "ENEM",
+            vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "04 nov"
         },
@@ -131,6 +145,7 @@ export default function () {
             id: "15",
             imageSource: require('../asset/image/photo2.webp'),
             title: "PSS",
+            vestibularId: "2",
             body: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "05 nov"
         },
@@ -138,19 +153,31 @@ export default function () {
             id: "16",
             imageSource: require('../asset/image/photo3.webp'),
             title: "UTFPR",
+            vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
             trailing: "06 nov"
         },
     ]
 
+    const [data, setData] = useState(array)
+
+    useEffect(()=>{
+        if(tabSelected != 0){
+            const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
+            setData(newData)
+        } else {
+            setData(array)
+        }
+    }, [tabSelected])
+
     // const array = null
 
     return (
         <SafeAreaView style={[Style.container]}>
-            <Tabs data={data} setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs data={tabs} setSelected={setTabSelected} selected={tabSelected} />
             <StatusBar />
             <FlatList
-                data={array}
+                data={data}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) =>
                     <ListItemNews

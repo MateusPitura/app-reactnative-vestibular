@@ -36,42 +36,42 @@ export default function () {
         {
             id: '2',
             title: 'PSS',
-            body: 'Proceso Seletivo Seriado',
+            body: 'Processo Seletivo Seriado',
         },
         {
             id: '3',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
+            title: 'UFPR',
+            body: 'Universidade Federal do Paraná',
         },
         {
             id: '4',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
+            title: 'UEL',
+            body: 'Universidade Estadual de Londrina',
         },
         {
             id: '5',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
+            title: 'UEM',
+            body: 'Universidade Estadual de Maringá',
         },
         {
             id: '6',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
+            title: 'PUCPR',
+            body: 'Pontifícia Universidade Católica do Paraná',
         },
         {
             id: '7',
-            title: 'PSS',
-            body: 'Proceso Seletivo Seriado',
+            title: 'UTFPR',
+            body: 'Universidade Tecnológica Federal do Paraná',
         },
         {
             id: '8',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
+            title: 'UP',
+            body: 'Universidade Positivo',
         },
         {
             id: '9',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
+            title: 'UNOPAR',
+            body: 'Universidade Norte do Paraná',
         },
     ]
 

@@ -9,11 +9,20 @@ export default function (props: any) {
 
     const Style = StyleAuxiliar();
 
+    const newData = [
+        {
+            id: '0',
+            title: 'All',
+            body: '',
+        },
+        ...props.data
+    ]
+
     return (
         <View>
             <View style={Style.container}>
                 <FlatList
-                    data={props.data}
+                    data={newData}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableWithoutFeedback
