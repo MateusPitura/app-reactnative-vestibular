@@ -32,6 +32,30 @@ export default function () {
         },
         iconContainer: {
             paddingHorizontal: 16
+        },
+        modal:{
+            flex: 1,
+            backgroundColor: Color.surfaceContainerHigh,
+        },
+        searchArea:{
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: 72,
+            backgroundColor: Color.surfaceContainerHigh,
+            flexDirection: 'row',
+        },
+        textSearchContainer:{
+            flex: 1,
+        },
+        textSearch:{
+            color: Color.onSurfaceVariant
+        },
+        divisor:{
+            borderBottomWidth: 1,
+            borderColor: Color.outline,
+        },
+        content:{
+            marginHorizontal: 16,
         }
     })
 }
