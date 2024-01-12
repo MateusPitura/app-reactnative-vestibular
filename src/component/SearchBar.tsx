@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal } from 'react-native'
+import { View, Text, TouchableOpacity, Modal, StatusBar } from 'react-native'
 import { useTheme } from "@react-navigation/native";
+
+//component
+import StatusBarDefault from "./StatusBar";
 
 //style
 import Typography from "../asset/design/Typography";
@@ -11,6 +14,7 @@ import ColorAuxiliar from "../asset/design/Color";
 import SearchIcon from '../asset/icon/search.svg'
 import ArrowBackIcon from '../asset/icon/arrow-back.svg'
 import DeleteIcon from '../asset/icon/delete.svg'
+import CloseIcon from '../asset/icon/close.svg'
 
 export default function (props: any) {
 
@@ -23,6 +27,7 @@ export default function (props: any) {
 
     return (
         <View style={Style.box}>
+            <StatusBarDefault />
             <TouchableOpacity
                 style={Style.container}
                 onPress={() => {
@@ -42,13 +47,17 @@ export default function (props: any) {
             </TouchableOpacity>
             <Modal
                 visible={isVisible}
-                animationType="slide"
+                animationType="none"
             >
                 <View style={Style.modal}>
+                    <StatusBar
+                        backgroundColor={Color.surfaceContainerHigh}
+                        barStyle={dark == true ? 'light-content' : 'dark-content'}
+                    />
                     <View style={Style.searchArea}>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             style={[Style.iconContainer]}
-                            onPress={()=>setIsVisible(false)}
+                            onPress={() => setIsVisible(false)}
                         >
                             <ArrowBackIcon
                                 fill={Color.onSurface}
@@ -57,13 +66,16 @@ export default function (props: any) {
                             />
                         </TouchableOpacity>
                         <View style={Style.textSearchContainer}>
-                            <Text style={[Typography.bodyLarge, Style.textSearch]}>
-                                Digite para pesquisar
+                            <Text 
+                                style={[Typography.bodyLarge, Style.text]}
+                                numberOfLines={1}
+                            >
+                                {props.text}
                             </Text>
                         </View>
                         <View style={[Style.iconContainer]}>
-                            <DeleteIcon
-                                fill={Color.onSurface}
+                            <CloseIcon
+                                fill={Color.onSurfaceVariant}
                                 width={24}
                                 height={24}
                             />

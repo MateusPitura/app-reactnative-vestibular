@@ -15,7 +15,7 @@ export default function () {
         },
         container: {
             backgroundColor: Color.surfaceContainerHigh,
-            height: 48,
+            height: 56,
             width: '100%',
             maxWidth: 720,
             marginVertical: 16,
@@ -31,7 +31,7 @@ export default function () {
             color: Color.onSurfaceVariant
         },
         iconContainer: {
-            paddingHorizontal: 16
+            marginHorizontal: 16
         },
         modal:{
             flex: 1,
@@ -39,16 +39,13 @@ export default function () {
         },
         searchArea:{
             alignItems: 'center',
-            justifyContent: 'center',
             height: 72,
+            paddingTop: 16,
             backgroundColor: Color.surfaceContainerHigh,
             flexDirection: 'row',
         },
         textSearchContainer:{
             flex: 1,
-        },
-        textSearch:{
-            color: Color.onSurfaceVariant
         },
         divisor:{
             borderBottomWidth: 1,
