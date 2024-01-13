@@ -24,7 +24,7 @@ export default function () {
             justifyContent: 'flex-start',
             flexDirection: 'row',
         },
-        textContainer:{
+        textContainer: {
             paddingRight: 16
         },
         text: {
@@ -33,26 +33,34 @@ export default function () {
         iconContainer: {
             marginHorizontal: 16
         },
-        modal:{
+        modal: {
             flex: 1,
             backgroundColor: Color.surfaceContainerHigh,
         },
-        searchArea:{
+        searchArea: {
             alignItems: 'center',
             height: 72,
             paddingTop: 16,
             backgroundColor: Color.surfaceContainerHigh,
             flexDirection: 'row',
         },
-        textSearchContainer:{
+        textSearchContainer: {
             flex: 1,
         },
-        divisor:{
+        divisor: {
             borderBottomWidth: 1,
             borderColor: Color.outline,
         },
-        content:{
-            marginHorizontal: 16,
+        content: {
+            //marginHorizontal: 16,
+            flex: 1,
+        },
+        containerListVertical: {
+            paddingTop: 12,
+            paddingBottom: 200
+        },
+        colums: {
+            paddingHorizontal: 12
         }
     })
 }

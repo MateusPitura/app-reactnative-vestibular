@@ -1,9 +1,18 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal, StatusBar, TextInput } from 'react-native'
+import React, { useState, useEffect } from "react";
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    Modal,
+    StatusBar,
+    TextInput,
+    FlatList
+} from 'react-native'
 import { useTheme } from "@react-navigation/native";
 
 //component
 import StatusBarDefault from "./StatusBar";
+import CardVertical from "./CardVertical";
 
 //style
 import Typography from "../asset/design/Typography";
@@ -14,6 +23,7 @@ import ColorAuxiliar from "../asset/design/Color";
 import SearchIcon from '../asset/icon/search.svg'
 import ArrowBackIcon from '../asset/icon/arrow-back.svg'
 import CloseIcon from '../asset/icon/close.svg'
+import Save from '../asset/icon/add-bookmark.svg'
 
 export default function (props: any) {
 
@@ -24,6 +34,58 @@ export default function (props: any) {
 
     const [isVisible, setIsVisible] = useState(false)
     const [textInput, setTextInput] = useState("")
+
+    useEffect(() => {
+        console.log("Texto alterado")
+    }, [textInput])
+
+    const array = [
+        {
+            id: '1',
+            title: 'ENEM',
+            body: 'Exame Nacional do Ensino Médio',
+        },
+        {
+            id: '2',
+            title: 'PSS',
+            body: 'Processo Seletivo Seriado',
+        },
+        {
+            id: '3',
+            title: 'UFPR',
+            body: 'Universidade Federal do Paraná',
+        },
+        {
+            id: '4',
+            title: 'UEL',
+            body: 'Universidade Estadual de Londrina',
+        },
+        {
+            id: '5',
+            title: 'UEM',
+            body: 'Universidade Estadual de Maringá',
+        },
+        {
+            id: '6',
+            title: 'PUCPR',
+            body: 'Pontifícia Universidade Católica do Paraná',
+        },
+        {
+            id: '7',
+            title: 'UTFPR',
+            body: 'Universidade Tecnológica Federal do Paraná',
+        },
+        {
+            id: '8',
+            title: 'UP',
+            body: 'Universidade Positivo',
+        },
+        {
+            id: '9',
+            title: 'UNOPAR',
+            body: 'Universidade Norte do Paraná',
+        },
+    ]
 
     return (
         <View style={Style.box}>
@@ -68,7 +130,7 @@ export default function (props: any) {
                         <View style={Style.textSearchContainer}>
                             <TextInput
                                 value={textInput}
-                                onChangeText={a=>setTextInput(a)}
+                                onChangeText={a => setTextInput(a)}
                                 style={[Typography.bodyLarge, Style.text]}
                                 placeholder={props.text}
                                 placeholderTextColor={Color.onSurface}
@@ -76,9 +138,9 @@ export default function (props: any) {
                                 inputMode={'search'}
                             />
                         </View>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             style={[Style.iconContainer]}
-                            onPress={()=>setTextInput("")}
+                            onPress={() => setTextInput("")}
                         >
                             <CloseIcon
                                 fill={Color.onSurfaceVariant}
@@ -89,7 +151,26 @@ export default function (props: any) {
                     </View>
                     <View style={Style.divisor}></View>
                     <View style={Style.content}>
-
+                        <FlatList
+                            data={array}
+                            keyExtractor={item => item.id}
+                            renderItem={({ item }: any) =>
+                                <CardVertical
+                                    title={item.title}
+                                    body={item.body}
+                                    onPress={() => { }}
+                                >
+                                    <Save
+                                        height={24}
+                                        width={24}
+                                        fill={Color.onTertiary}
+                                    />
+                                </CardVertical>
+                            }
+                            numColumns={2}
+                            contentContainerStyle={Style.containerListVertical}
+                            columnWrapperStyle={Style.colums}
+                        />
                     </View>
                 </View>
             </Modal>
