@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal, StatusBar } from 'react-native'
+import { View, Text, TouchableOpacity, Modal, StatusBar, TextInput } from 'react-native'
 import { useTheme } from "@react-navigation/native";
 
 //component
@@ -13,7 +13,6 @@ import ColorAuxiliar from "../asset/design/Color";
 //icones
 import SearchIcon from '../asset/icon/search.svg'
 import ArrowBackIcon from '../asset/icon/arrow-back.svg'
-import DeleteIcon from '../asset/icon/delete.svg'
 import CloseIcon from '../asset/icon/close.svg'
 
 export default function (props: any) {
@@ -24,6 +23,7 @@ export default function (props: any) {
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     const [isVisible, setIsVisible] = useState(false)
+    const [textInput, setTextInput] = useState("")
 
     return (
         <View style={Style.box}>
@@ -66,20 +66,26 @@ export default function (props: any) {
                             />
                         </TouchableOpacity>
                         <View style={Style.textSearchContainer}>
-                            <Text 
+                            <TextInput
+                                value={textInput}
+                                onChangeText={a=>setTextInput(a)}
                                 style={[Typography.bodyLarge, Style.text]}
-                                numberOfLines={1}
-                            >
-                                {props.text}
-                            </Text>
+                                placeholder={props.text}
+                                placeholderTextColor={Color.onSurface}
+                                cursorColor={Color.primary}
+                                inputMode={'search'}
+                            />
                         </View>
-                        <View style={[Style.iconContainer]}>
+                        <TouchableOpacity 
+                            style={[Style.iconContainer]}
+                            onPress={()=>setTextInput("")}
+                        >
                             <CloseIcon
                                 fill={Color.onSurfaceVariant}
                                 width={24}
                                 height={24}
                             />
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style={Style.divisor}></View>
                     <View style={Style.content}>
