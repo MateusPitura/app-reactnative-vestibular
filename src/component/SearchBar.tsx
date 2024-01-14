@@ -6,7 +6,8 @@ import {
     Modal,
     StatusBar,
     TextInput,
-    FlatList
+    FlatList,
+    Keyboard
 } from 'react-native'
 import { useTheme } from "@react-navigation/native";
 
@@ -35,9 +36,19 @@ export default function (props: any) {
     const [isVisible, setIsVisible] = useState(false)
     const [textInput, setTextInput] = useState("")
 
+    const inputRef = React.useRef(null)
+
     useEffect(() => {
         console.log("Texto alterado")
     }, [textInput])
+
+    const openKeyboard = () => {
+        if (inputRef.current) {
+            setTimeout(() => {
+                inputRef.current.focus()
+            }, 100)
+        }
+    }
 
     const array = [
         {
@@ -136,6 +147,10 @@ export default function (props: any) {
                                 placeholderTextColor={Color.onSurface}
                                 cursorColor={Color.primary}
                                 inputMode={'search'}
+                                returnKeyType="search"
+                                onLayout={()=>openKeyboard()}
+                                ref={inputRef}
+                                blurOnSubmit={false}
                             />
                         </View>
                         <TouchableOpacity
