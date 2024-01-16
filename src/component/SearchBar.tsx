@@ -7,7 +7,6 @@ import {
     StatusBar,
     TextInput,
     FlatList,
-    Keyboard
 } from 'react-native'
 import { useTheme } from "@react-navigation/native";
 
@@ -98,6 +97,8 @@ export default function (props: any) {
         },
     ]
 
+    //const array = null
+
     return (
         <View style={Style.box}>
             <StatusBarDefault />
@@ -121,6 +122,7 @@ export default function (props: any) {
             <Modal
                 visible={isVisible}
                 animationType="none"
+                statusBarTranslucent={true}
             >
                 <View style={Style.modal}>
                     <StatusBar

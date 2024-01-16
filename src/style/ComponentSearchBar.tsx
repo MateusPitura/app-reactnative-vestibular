@@ -39,9 +39,9 @@ export default function () {
         },
         searchArea: {
             alignItems: 'center',
+            marginTop: 22,
             height: 72,
             paddingTop: 16,
-            backgroundColor: Color.surfaceContainerHigh,
             flexDirection: 'row',
         },
         textSearchContainer: {
@@ -52,7 +52,6 @@ export default function () {
             borderColor: Color.outline,
         },
         content: {
-            //marginHorizontal: 16,
             flex: 1,
         },
         containerListVertical: {
