@@ -34,20 +34,8 @@ export default function (props: any) {
 
     const [isVisible, setIsVisible] = useState(false)
     const [textInput, setTextInput] = useState("")
-
+    
     const inputRef = React.useRef(null)
-
-    useEffect(() => {
-        console.log("Texto alterado")
-    }, [textInput])
-
-    const openKeyboard = () => {
-        if (inputRef.current) {
-            setTimeout(() => {
-                inputRef.current.focus()
-            }, 100)
-        }
-    }
 
     const array = [
         {
@@ -97,7 +85,29 @@ export default function (props: any) {
         },
     ]
 
-    //const array = null
+    // const array = null
+
+    const [data, setData] = useState(array)
+
+    useEffect(() => {
+        if(textInput!=""){
+            const newData = array.filter(item => 
+                item.title.toLowerCase().indexOf(textInput.toLowerCase()) > -1    
+            )
+            setData(newData)
+        } else {
+            setData([])
+        }
+
+    }, [textInput])
+
+    const openKeyboard = () => {
+        if (inputRef.current) {
+            setTimeout(() => {
+                inputRef.current.focus()
+            }, 100)
+        }
+    }
 
     return (
         <View style={Style.box}>
@@ -144,9 +154,9 @@ export default function (props: any) {
                             <TextInput
                                 value={textInput}
                                 onChangeText={a => setTextInput(a)}
-                                style={[Typography.bodyLarge, Style.text]}
+                                style={[Typography.bodyLarge, Style.textSelected]}
                                 placeholder={props.text}
-                                placeholderTextColor={Color.onSurface}
+                                placeholderTextColor={Color.onSurfaceVariant}
                                 cursorColor={Color.primary}
                                 inputMode={'search'}
                                 returnKeyType="search"
@@ -169,7 +179,7 @@ export default function (props: any) {
                     <View style={Style.divisor}></View>
                     <View style={Style.content}>
                         <FlatList
-                            data={array}
+                            data={data}
                             keyExtractor={item => item.id}
                             renderItem={({ item }: any) =>
                                 <CardVertical

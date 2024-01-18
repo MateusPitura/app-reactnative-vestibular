@@ -159,6 +159,8 @@ export default function () {
         },
     ]
 
+    // const array = null
+
     const [data, setData] = useState(array)
 
     useEffect(()=>{
@@ -169,8 +171,6 @@ export default function () {
             setData(array)
         }
     }, [tabSelected])
-
-    // const array = null
 
     return (
         <SafeAreaView style={[Style.container]}>

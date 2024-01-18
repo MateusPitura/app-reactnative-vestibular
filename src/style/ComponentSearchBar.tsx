@@ -30,6 +30,9 @@ export default function () {
         text: {
             color: Color.onSurfaceVariant
         },
+        textSelected:{
+            color: Color.onSurface
+        },
         iconContainer: {
             marginHorizontal: 16
         },
@@ -39,7 +42,7 @@ export default function () {
         },
         searchArea: {
             alignItems: 'center',
-            marginTop: 22,
+            marginTop: 24,
             height: 72,
             paddingTop: 16,
             flexDirection: 'row',
@@ -56,7 +59,7 @@ export default function () {
         },
         containerListVertical: {
             paddingTop: 12,
-            paddingBottom: 200
+            paddingBottom: 300
         },
         colums: {
             paddingHorizontal: 12
