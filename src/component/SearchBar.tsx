@@ -104,7 +104,7 @@ export default function (props: any) {
     const openKeyboard = () => {
         if (inputRef.current) {
             setTimeout(() => {
-                inputRef.current.focus()
+                (inputRef.current as any).focus()
             }, 100)
         }
     }

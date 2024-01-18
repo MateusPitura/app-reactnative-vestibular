@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { SafeAreaView, FlatList } from 'react-native'
+import { SafeAreaView, FlatList, View, Text } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
+import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -18,10 +19,11 @@ export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
     const [tabs, setTabs] = useState([])
+    const [selected, setSelected] = useState('');
 
     useFocusEffect(
-        useCallback(()=>{
-            read(setTabs) 
+        useCallback(() => {
+            read(setTabs)
         }, [])
     )
 
@@ -128,8 +130,8 @@ export default function () {
 
     const [data, setData] = useState(array)
 
-    useEffect(()=>{
-        if(tabSelected != 0){
+    useEffect(() => {
+        if (tabSelected != 0) {
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
             setData(newData)
         } else {
@@ -139,28 +141,67 @@ export default function () {
 
     // const array = null
 
+    LocaleConfig.locales['br'] = {
+        monthNames: [
+            'Janeiro',
+            'Fevereiro',
+            'Março',
+            'Abril',
+            'Maio',
+            'Junho',
+            'Julho',
+            'Agosto',
+            'Setembro',
+            'Outubro',
+            'Novembro',
+            'Dezembro'
+        ],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dec'],
+        dayNames: ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'],
+        dayNamesShort: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+        today: "Hoje"
+    };
+
+    LocaleConfig.defaultLocale = 'br';
+
     return (
         <SafeAreaView style={Style.container}>
             <Tabs data={tabs} setSelected={setTabSelected} selected={tabSelected} />
-            <FlatList
-                data={data}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) =>
-                    <ListItemCalendar
-                        day={item.day}
-                        month={item.month}
-                        title={item.title}
-                        body={item.body}
-                    />
-                }
-                contentContainerStyle={Style.listContainer}
-                ListEmptyComponent={
-                    <EmptyContent text="Adicione um vestibular na sua lista" />
-                }
-                ListHeaderComponent={() => (
-                    <Label text="Próximos eventos" />
-                )}
-            />
+            <View style={Style.calendarContainer}>
+                <Calendar
+                    style={Style.calendar}
+                    onDayPress={day => {
+                        setSelected(day.dateString);
+                    }}
+                    markedDates={{
+                        [selected]: { selected: true, disableTouchEvent: true }
+                    }}
+                    theme={Style.themeCalendar}
+                    showSixWeeks={true}
+                    hideExtraDays={false}
+                />
+            </View>
+            <View style={{ flex: 1, }}>
+                <FlatList
+                    data={data}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) =>
+                        <ListItemCalendar
+                            day={item.day}
+                            month={item.month}
+                            title={item.title}
+                            body={item.body}
+                        />
+                    }
+                    contentContainerStyle={Style.listContainer}
+                    ListEmptyComponent={
+                        <EmptyContent text="Adicione um vestibular na sua lista" />
+                    }
+                    ListHeaderComponent={() => (
+                        <Label text="Próximos eventos" />
+                    )}
+                />
+            </View>
         </SafeAreaView>
     )
 } 
