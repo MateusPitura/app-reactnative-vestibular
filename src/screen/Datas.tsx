@@ -2,6 +2,8 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { SafeAreaView, FlatList, View, Text } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { useTheme } from "@react-navigation/native";
+import ColorAuxiliar from "../asset/design/Color";
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -15,6 +17,10 @@ import Tabs from '../component/Tabs'
 //controller
 import { read } from '../model/SalvosController'
 
+//icon
+import ArrowLeft from '../asset/icon/arrow-left.svg'
+import ArrowRight from '../asset/icon/arrow-right.svg'
+
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
@@ -26,6 +32,9 @@ export default function () {
             read(setTabs)
         }, [])
     )
+
+    const { dark } = useTheme();
+    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     const Style = StyleAuxiliar()
 
@@ -179,6 +188,20 @@ export default function () {
                     theme={Style.themeCalendar}
                     showSixWeeks={true}
                     hideExtraDays={false}
+                    renderArrow={direction =>
+                        direction == "left" ?
+                            <ArrowLeft
+                                height={24}
+                                width={24}
+                                fill={Color.onSurfaceVariant}
+                            />
+                            :
+                            <ArrowRight
+                                height={24}
+                                width={24}
+                                fill={Color.onSurfaceVariant}
+                            />
+                    }
                 />
             </View>
             <View style={{ flex: 1, }}>

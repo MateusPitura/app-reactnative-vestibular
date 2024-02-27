@@ -28,5 +28,3 @@ export const remove = async (id: string) => {
 export const removeAll = async () => {
     await AsyncStorage.removeItem(chave)
 }
-
-export default { add, read, remove, removeAll }

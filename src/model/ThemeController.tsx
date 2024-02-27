@@ -16,5 +16,3 @@ export const saveThemeLocaly = async (theme: string, setTheme: any) => {
     setTheme(theme) //Define o tema em um state para mudar rapidamente
     await AsyncStorage.setItem(chave, theme) //Salva o tema localmente
 }
-
-export default { restoreThemeLocaly, saveThemeLocaly }
