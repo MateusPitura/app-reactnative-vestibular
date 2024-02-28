@@ -42,6 +42,7 @@ export default function () {
             textMonthFontSize: 14,
             textDayHeaderFontFamily: 'Ubuntu',
             textDayHeaderFontSize: 16,
+            dotColor: Color.primary
         },
     })
 }

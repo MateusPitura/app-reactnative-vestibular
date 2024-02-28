@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { SafeAreaView, FlatList, View, Text } from 'react-native'
+import { SafeAreaView, FlatList, View, Text, Button } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { useTheme } from "@react-navigation/native";
@@ -7,7 +7,6 @@ import ColorAuxiliar from "../asset/design/Color";
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
-import Typography from '../asset/design/Typography';
 
 //component
 import ListItemCalendar from '../component/ListItemCalendar'
@@ -26,13 +25,13 @@ export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
     const [tabs, setTabs] = useState([])
-    const [selected, setSelected] = useState('');
+    const [daySelected, setDaySelected] = useState('');
     const [controlCalendarView, setControlCalendarView] = useState(0)
 
     const { dark } = useTheme();
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
-    useEffect(()=>{
+    useEffect(() => { // As cores do calendário não atualizavam, foi necessário fazer isso para mudar
         setControlCalendarView(prev => prev + 1)
     }, [dark])
 
@@ -51,7 +50,8 @@ export default function () {
             vestibularId: "1",
             body: "13h00 às 14h00",
             day: "30",
-            month: "jan"
+            month: "jan",
+            date: '2024-02-05'
         },
         {
             id: "2",
@@ -59,7 +59,8 @@ export default function () {
             vestibularId: "2",
             body: "Todo o dia",
             day: "05",
-            month: "fev"
+            month: "fev",
+            date: '2024-02-05'
         },
         {
             id: "3",
@@ -67,7 +68,8 @@ export default function () {
             vestibularId: "7",
             body: "13h00 às 14h00",
             day: "06",
-            month: "mar"
+            month: "mar",
+            date: '2024-03-06'
         },
         {
             id: "4",
@@ -75,7 +77,8 @@ export default function () {
             vestibularId: "1",
             body: "Todo o dia",
             day: "04",
-            month: "abr"
+            month: "abr",
+            date: '2024-04-04'
         },
         {
             id: "5",
@@ -83,7 +86,8 @@ export default function () {
             vestibularId: "2",
             body: "13h00 às 14h00",
             day: "05",
-            month: "mai"
+            month: "mai",
+            date: '2024-05-05'
         },
         {
             id: "6",
@@ -91,7 +95,8 @@ export default function () {
             vestibularId: "7",
             body: "Todo o dia",
             day: "06",
-            month: "jun"
+            month: "jun",
+            date: '2024-06-06'
         },
         {
             id: "7",
@@ -99,7 +104,8 @@ export default function () {
             vestibularId: "1",
             body: "13h00 às 14h00",
             day: "04",
-            month: "jul"
+            month: "jul",
+            date: '2024-07-04'
         },
         {
             id: "8",
@@ -107,7 +113,8 @@ export default function () {
             vestibularId: "2",
             body: "Todo o dia",
             day: "05",
-            month: "ago"
+            month: "ago",
+            date: '2024-08-05'
         },
         {
             id: "9",
@@ -115,7 +122,8 @@ export default function () {
             vestibularId: "7",
             body: "13h00 às 14h00",
             day: "06",
-            month: "set"
+            month: "set",
+            date: '2024-09-06'
         },
         {
             id: "10",
@@ -123,7 +131,8 @@ export default function () {
             vestibularId: "1",
             body: "Todo o dia",
             day: "04",
-            month: "out"
+            month: "out",
+            date: '2024-10-04'
         },
         {
             id: "11",
@@ -131,7 +140,8 @@ export default function () {
             vestibularId: "2",
             body: "13h00 às 14h00",
             day: "05",
-            month: "nov"
+            month: "nov",
+            date: '2024-11-05'
         },
         {
             id: "12",
@@ -139,20 +149,43 @@ export default function () {
             vestibularId: "7",
             body: "Todo o dia",
             day: "06",
-            month: "dez"
+            month: "dez",
+            date: '2024-12-06'
         },
     ]
+
+    const markedDays = () => {
+        const days = { //Cria um array com um dia por default que será responsável por marcar os dias selecionados
+            [daySelected]: {
+                selected: true,
+                marked: false,
+            },
+        }
+        array.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
+            days[item.date] = {
+                selected: item.date == daySelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
+                marked: true, //Propriedade da bolinha
+            }
+        })
+        return days
+    }
 
     const [data, setData] = useState(array)
 
     useEffect(() => {
-        if (tabSelected != 0) {
+        if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se um dia estiver selecionado
+            const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected && item.date == daySelected);
+            setData(newData)
+        } else if (tabSelected != 0) { //Se não for a tab 'all'
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
             setData(newData)
-        } else {
+        } else if (daySelected != '') { // Se um dia estiver selecionado
+            const newData = array.filter(item => item.date == daySelected);
+            setData(newData)
+        } else { //No caso quando nenhum filtro é aplicado
             setData(array)
         }
-    }, [tabSelected])
+    }, [tabSelected, daySelected])
 
     // const array = null
 
@@ -182,36 +215,7 @@ export default function () {
     return (
         <SafeAreaView style={Style.container}>
             <Tabs data={tabs} setSelected={setTabSelected} selected={tabSelected} />
-            <View style={Style.calendarContainer} key={controlCalendarView}>
-                <Calendar
-                    style={Style.calendar}
-                    onDayPress={day => {
-                        setSelected(day.dateString);
-                    }}
-                    markedDates={{
-                        [selected]: { selected: true, disableTouchEvent: true }
-                    }}
-                    theme={Style.themeCalendar}
-                    showSixWeeks={true}
-                    hideExtraDays={false}
-                    renderArrow={direction =>
-                        direction == "left" ?
-                            <ArrowLeft
-                                height={24}
-                                width={24}
-                                fill={Color.onSurfaceVariant}
-                            />
-                            :
-                            <ArrowRight
-                                height={24}
-                                width={24}
-                                fill={Color.onSurfaceVariant}
-                            />
-                    }
-                    headerStyle={Style.headerCalendar}
-                />
-            </View>
-            <View style={{ flex: 1, }}>
+            <View>
                 <FlatList
                     data={data}
                     keyExtractor={item => item.id}
@@ -228,7 +232,40 @@ export default function () {
                         <EmptyContent text="Adicione um vestibular na sua lista" />
                     }
                     ListHeaderComponent={() => (
-                        <Label text="Próximos eventos" />
+                        <View>
+                            <View style={Style.calendarContainer} key={controlCalendarView}>
+                                <Calendar
+                                    style={Style.calendar}
+                                    onDayPress={day => {
+                                        setDaySelected(day.dateString);
+                                    }}
+                                    theme={Style.themeCalendar}
+                                    showSixWeeks={true}
+                                    hideExtraDays={false}
+                                    renderArrow={direction =>
+                                        direction == "left" ?
+                                            <ArrowLeft
+                                                height={24}
+                                                width={24}
+                                                fill={Color.onSurfaceVariant}
+                                            />
+                                            :
+                                            <ArrowRight
+                                                height={24}
+                                                width={24}
+                                                fill={Color.onSurfaceVariant}
+                                            />
+                                    }
+                                    headerStyle={Style.headerCalendar}
+                                    markedDates={markedDays()}
+                                />
+                            </View>
+                            <Button
+                                onPress={() => setDaySelected('')}
+                                title='Limpar'
+                            />
+                            <Label text="Próximos eventos" />
+                        </View>
                     )}
                 />
             </View>
