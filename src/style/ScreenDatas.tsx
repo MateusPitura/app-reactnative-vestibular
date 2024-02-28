@@ -15,21 +15,18 @@ export default function () {
         },
         listContainer: {
             paddingBottom: 200,
-            paddingTop: 16
         },
-        calendarContainer:{
-            height: 375,
-            minWidth: '100%',
+        calendarContainer: {
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: Color.surface,
         },
         calendar: {
-            height: 375,
             minWidth: '100%',
-            backgroundColor: Color.surface,
         },
-        themeCalendar:{
+        headerCalendar:{
+            paddingBottom: 16,
+        },
+        themeCalendar: {
             backgroundColor: Color.surface,
             calendarBackground: Color.surface,
             textSectionTitleColor: Color.onSurface,
@@ -37,7 +34,14 @@ export default function () {
             selectedDayTextColor: Color.onPrimary,
             todayTextColor: Color.primary,
             dayTextColor: Color.onSurface,
-            textDisabledColor: Color.onSurfaceVariant
-        }
+            textDisabledColor: Color.onSurfaceVariant,            
+            monthTextColor: Color.onSurface,
+            textDayFontFamily: 'Ubuntu',
+            textDayFontSize: 16,
+            textMonthFontFamily: 'Ubuntu-Bold',
+            textMonthFontSize: 14,
+            textDayHeaderFontFamily: 'Ubuntu',
+            textDayHeaderFontSize: 16,
+        },
     })
 }

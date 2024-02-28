@@ -7,6 +7,7 @@ import ColorAuxiliar from "../asset/design/Color";
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
+import Typography from '../asset/design/Typography';
 
 //component
 import ListItemCalendar from '../component/ListItemCalendar'
@@ -26,15 +27,20 @@ export default function () {
     const [tabSelected, setTabSelected] = useState(0)
     const [tabs, setTabs] = useState([])
     const [selected, setSelected] = useState('');
+    const [controlCalendarView, setControlCalendarView] = useState(0)
+
+    const { dark } = useTheme();
+    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+
+    useEffect(()=>{
+        setControlCalendarView(prev => prev + 1)
+    }, [dark])
 
     useFocusEffect(
         useCallback(() => {
             read(setTabs)
         }, [])
     )
-
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
     const Style = StyleAuxiliar()
 
@@ -176,7 +182,7 @@ export default function () {
     return (
         <SafeAreaView style={Style.container}>
             <Tabs data={tabs} setSelected={setTabSelected} selected={tabSelected} />
-            <View style={Style.calendarContainer}>
+            <View style={Style.calendarContainer} key={controlCalendarView}>
                 <Calendar
                     style={Style.calendar}
                     onDayPress={day => {
@@ -202,6 +208,7 @@ export default function () {
                                 fill={Color.onSurfaceVariant}
                             />
                     }
+                    headerStyle={Style.headerCalendar}
                 />
             </View>
             <View style={{ flex: 1, }}>
