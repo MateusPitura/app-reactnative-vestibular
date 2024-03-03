@@ -27,14 +27,10 @@ export default function () {
     const [tabSelected, setTabSelected] = useState(0)
     const [tabs, setTabs] = useState([])
     const [daySelected, setDaySelected] = useState('');
-    // const [controlCalendarView, setControlCalendarView] = useState(0)
+    const [firstDay, setFirstDay] = useState('');
 
     const { dark } = useTheme();
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
-
-    // useEffect(() => { // As cores do calendário não atualizavam, foi necessário fazer isso para mudar
-    //     // setControlCalendarView(prev => prev + 1)
-    // }, [dark])
 
     useFocusEffect(
         useCallback(() => {
@@ -237,17 +233,16 @@ export default function () {
                     }
                     ListHeaderComponent={() => (
                         <View>
-                            <View
-                                style={Style.calendarContainer}
-                            // key={controlCalendarView}
-                            >
+                            <View style={Style.calendarContainer}>
                                 <Calendar
                                     style={Style.calendar}
                                     onDayPress={day => {
                                         setDaySelected(day.dateString);
+                                        setFirstDay(day.dateString)
                                     }}
                                     theme={Style.themeCalendar}
                                     showSixWeeks={true}
+                                    initialDate={firstDay} //Caso seja '' usa a data atual, quando é selecionado uma data ao renderizar o componente voltaria para a data atual caso não tivesse esse argumento
                                     hideExtraDays={false}
                                     renderArrow={direction =>
                                         direction == "left" ?
