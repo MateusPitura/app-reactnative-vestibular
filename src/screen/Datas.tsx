@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { SafeAreaView, FlatList, View, Text, Button } from 'react-native'
+import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { useTheme } from "@react-navigation/native";
@@ -7,6 +7,7 @@ import ColorAuxiliar from "../asset/design/Color";
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
+import Typography from '../asset/design/Typography';
 
 //component
 import ListItemCalendar from '../component/ListItemCalendar'
@@ -26,14 +27,14 @@ export default function () {
     const [tabSelected, setTabSelected] = useState(0)
     const [tabs, setTabs] = useState([])
     const [daySelected, setDaySelected] = useState('');
-    const [controlCalendarView, setControlCalendarView] = useState(0)
+    // const [controlCalendarView, setControlCalendarView] = useState(0)
 
     const { dark } = useTheme();
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
 
-    useEffect(() => { // As cores do calendário não atualizavam, foi necessário fazer isso para mudar
-        setControlCalendarView(prev => prev + 1)
-    }, [dark])
+    // useEffect(() => { // As cores do calendário não atualizavam, foi necessário fazer isso para mudar
+    //     // setControlCalendarView(prev => prev + 1)
+    // }, [dark])
 
     useFocusEffect(
         useCallback(() => {
@@ -159,12 +160,15 @@ export default function () {
             [daySelected]: {
                 selected: true,
                 marked: false,
+                disableTouchEvent: true
             },
         }
         array.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
+            const isSelected = item.date == daySelected
             days[item.date] = {
-                selected: item.date == daySelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
+                selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
                 marked: true, //Propriedade da bolinha
+                disableTouchEvent: isSelected
             }
         })
         return days
@@ -229,11 +233,14 @@ export default function () {
                     }
                     contentContainerStyle={Style.listContainer}
                     ListEmptyComponent={
-                        <EmptyContent text="Adicione um vestibular na sua lista" />
+                        <EmptyContent text="Nenhum evento encontrado" />
                     }
                     ListHeaderComponent={() => (
                         <View>
-                            <View style={Style.calendarContainer} key={controlCalendarView}>
+                            <View
+                                style={Style.calendarContainer}
+                            // key={controlCalendarView}
+                            >
                                 <Calendar
                                     style={Style.calendar}
                                     onDayPress={day => {
@@ -260,10 +267,13 @@ export default function () {
                                     markedDates={markedDays()}
                                 />
                             </View>
-                            <Button
-                                onPress={() => setDaySelected('')}
-                                title='Limpar'
-                            />
+                            <View style={Style.buttonContainer}>
+                                <TouchableOpacity
+                                    onPress={() => setDaySelected('')}
+                                >
+                                    <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>
+                                </TouchableOpacity>
+                            </View>
                             <Label text="Próximos eventos" />
                         </View>
                     )}

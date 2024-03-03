@@ -11,7 +11,7 @@ export default function () {
         container: {
             backgroundColor: Color.surface,
             flex: 1,
-            paddingTop: 16
+            paddingTop: 16,
         },
         listContainer: {
             paddingBottom: 200,
@@ -22,8 +22,10 @@ export default function () {
         },
         calendar: {
             minWidth: '100%',
+            marginBottom: 8,
+            marginHorizontal: 16
         },
-        headerCalendar:{
+        headerCalendar: {
             paddingBottom: 16,
         },
         themeCalendar: {
@@ -34,7 +36,7 @@ export default function () {
             selectedDayTextColor: Color.onPrimary,
             todayTextColor: Color.primary,
             dayTextColor: Color.onSurface,
-            textDisabledColor: Color.onSurfaceVariant,            
+            textDisabledColor: Color.onSurfaceVariant,
             monthTextColor: Color.onSurface,
             textDayFontFamily: 'Ubuntu',
             textDayFontSize: 16,
@@ -44,5 +46,16 @@ export default function () {
             textDayHeaderFontSize: 16,
             dotColor: Color.primary
         },
+        buttonContainer:{
+            minHeight: 16,
+            flex: 1,
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            paddingRight: 16,
+            paddingBottom: 12
+        },
+        button: {
+            color: Color.primary,
+        }
     })
 }
