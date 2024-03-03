@@ -90,10 +90,12 @@ export default () => {
             body: item.body
         }]
         if (await add(newData) == -1) {
-            return
+            handleCallToast("Vestibular já escolhido")
+            return -1
         }
         handleCallToast("Vestibular adicionado")
         read(setData)
+        return 0
     }
 
     const removeData = async (id: any) => {
@@ -114,7 +116,7 @@ export default () => {
 
     return (
         <SafeAreaView style={Style.container}>
-            <SearchBar text="Pesquise por vestibulares" />
+            <SearchBar add={addNewData} text="Pesquise por vestibulares" />
             <FlatList
                 data={data}
                 // @ts-ignore

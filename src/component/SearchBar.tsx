@@ -7,6 +7,7 @@ import {
     StatusBar,
     TextInput,
     FlatList,
+    Keyboard,
 } from 'react-native'
 import { useTheme } from "@react-navigation/native";
 
@@ -34,7 +35,7 @@ export default function (props: any) {
 
     const [isVisible, setIsVisible] = useState(false)
     const [textInput, setTextInput] = useState("")
-    
+
     const inputRef = React.useRef(null)
 
     const array = [
@@ -90,9 +91,9 @@ export default function (props: any) {
     const [data, setData] = useState(array)
 
     useEffect(() => {
-        if(textInput!=""){
-            const newData = array.filter(item => 
-                item.title.toLowerCase().indexOf(textInput.toLowerCase()) > -1    
+        if (textInput != "") {
+            const newData = array.filter(item =>
+                item.title.toLowerCase().indexOf(textInput.toLowerCase()) > -1
             )
             setData(newData)
         } else {
@@ -160,7 +161,7 @@ export default function (props: any) {
                                 cursorColor={Color.primary}
                                 inputMode={'search'}
                                 returnKeyType="search"
-                                onLayout={()=>openKeyboard()}
+                                onLayout={() => openKeyboard()}
                                 ref={inputRef}
                                 blurOnSubmit={false}
                             />
@@ -181,11 +182,19 @@ export default function (props: any) {
                         <FlatList
                             data={data}
                             keyExtractor={item => item.id}
+                            keyboardShouldPersistTaps='handled'
                             renderItem={({ item }: any) =>
                                 <CardVertical
                                     title={item.title}
                                     body={item.body}
-                                    onPress={() => { }}
+                                    onPress={async () => {
+                                        if(await props.add(item) != -1){
+                                            Keyboard.dismiss()
+                                            setTimeout(()=>{
+                                                setIsVisible(false)
+                                            }, 50)
+                                        }
+                                    }}
                                 >
                                     <Save
                                         height={24}
