@@ -10,7 +10,7 @@ export default function () {
     return StyleSheet.create({
         listContainer: {
             flexDirection: 'row',
-            height: 88,
+            minHeight: 88,
             paddingVertical: 12,
             paddingHorizontal: 16,
         },

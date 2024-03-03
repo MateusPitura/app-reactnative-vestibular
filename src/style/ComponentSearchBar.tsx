@@ -25,7 +25,8 @@ export default function () {
             flexDirection: 'row',
         },
         textContainer: {
-            paddingRight: 16
+            paddingRight: 16,
+            flex: 1,
         },
         text: {
             color: Color.onSurfaceVariant

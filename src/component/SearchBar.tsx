@@ -126,7 +126,7 @@ export default function (props: any) {
                     />
                 </View>
                 <View style={Style.textContainer}>
-                    <Text style={[Typography.bodyLarge, Style.text]}>{props.text}</Text>
+                    <Text style={[Typography.bodyLarge, Style.text]} numberOfLines={1}>{props.text}</Text>
                 </View>
             </TouchableOpacity>
             <Modal
