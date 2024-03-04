@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useRef } from "react";
 import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 
 //style
 import StyleAuxiliar from '../style/ComponentTabs'
 import Typography from "../asset/design/Typography";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function (props: any) {
 
     const Style = StyleAuxiliar();
 
+    const ref = useRef<FlatList>(null)
+
     const newData = [
         {
             id: '0',
             title: 'All',
-            body: '',
         },
         ...props.data
     ]
@@ -22,12 +24,16 @@ export default function (props: any) {
         <View>
             <View style={Style.container}>
                 <FlatList
+                    ref={ref}
                     data={newData}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <TouchableWithoutFeedback
                             style={Style.touchable}
                             onPress={() => {
+                                ref.current?.scrollToIndex({
+                                    index: props.data.indexOf(item) + 1
+                                })
                                 props.setSelected(item.id)
                             }}>
                             <View>
