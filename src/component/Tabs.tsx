@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef,  } from "react";
 import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 
 //style
 import StyleAuxiliar from '../style/ComponentTabs'
 import Typography from "../asset/design/Typography";
-import { useFocusEffect } from "@react-navigation/native";
+import { TabsContext } from "../contexts/tabs";
+
 
 export default function (props: any) {
 
@@ -12,12 +13,15 @@ export default function (props: any) {
 
     const ref = useRef<FlatList>(null)
 
+    const { tabs, setTabs } = useContext<any>(TabsContext)
+
     const newData = [
         {
             id: '0',
             title: 'All',
+            body: '',
         },
-        ...props.data
+        ...tabs
     ]
 
     return (
@@ -32,7 +36,7 @@ export default function (props: any) {
                             style={Style.touchable}
                             onPress={() => {
                                 ref.current?.scrollToIndex({
-                                    index: props.data.indexOf(item) + 1
+                                    index: tabs.indexOf(item) + 1
                                 })
                                 props.setSelected(item.id)
                             }}>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { View, FlatList, SafeAreaView, ToastAndroid } from 'react-native'
 import { useTheme } from '@react-navigation/native'
+import { TabsContext } from "../contexts/tabs";
 
 //style
 import StyleAuxiliar from '../style/ScreenSalvos'
@@ -26,6 +27,8 @@ export default () => {
 
     const { dark } = useTheme()
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+
+    const { tabs, setTabs } = useContext<any>(TabsContext)
 
     const array = [
         {
@@ -77,12 +80,6 @@ export default () => {
 
     // const array = null
 
-    const [data, setData] = useState([])
-
-    useEffect(() => {
-        read(setData) 
-    }, [])
-
     const addNewData = async (item: any) => {
         const newData = [{
             id: item.id,
@@ -94,14 +91,14 @@ export default () => {
             return -1
         }
         handleCallToast("Vestibular adicionado")
-        read(setData)
+        read(setTabs)
         return 0
     }
 
     const removeData = async (id: any) => {
         await remove(id)
         handleCallToast("Vestibular removido")
-        read(setData)
+        read(setTabs)
     }
 
     const handleCallToast = (message: string) => {
@@ -118,7 +115,7 @@ export default () => {
         <SafeAreaView style={Style.container}>
             <SearchBar add={addNewData} text="Pesquise por vestibulares" />
             <FlatList
-                data={data}
+                data={tabs}
                 // @ts-ignore
                 keyExtractor={item => item.id}
                 renderItem={({ item }: any) =>

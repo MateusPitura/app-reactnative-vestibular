@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { useTheme } from "@react-navigation/native";
 import ColorAuxiliar from "../asset/design/Color";
@@ -15,9 +14,6 @@ import EmptyContent from '../component/EmptyContent'
 import Label from '../component/Label'
 import Tabs from '../component/Tabs'
 
-//controller
-import { read } from '../model/SalvosController'
-
 //icon
 import ArrowLeft from '../asset/icon/arrow-left.svg'
 import ArrowRight from '../asset/icon/arrow-right.svg'
@@ -25,18 +21,11 @@ import ArrowRight from '../asset/icon/arrow-right.svg'
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
-    const [tabs, setTabs] = useState([])
     const [daySelected, setDaySelected] = useState('');
     const [firstDay, setFirstDay] = useState('');
 
     const { dark } = useTheme();
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
-
-    useFocusEffect(
-        useCallback(() => {
-            read(setTabs)
-        }, [])
-    )
 
     const Style = StyleAuxiliar()
 
@@ -214,7 +203,7 @@ export default function () {
 
     return (
         <SafeAreaView style={Style.container}>
-            <Tabs data={tabs} setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs setSelected={setTabSelected} selected={tabSelected} />
             <View>
                 <FlatList
                     data={data}

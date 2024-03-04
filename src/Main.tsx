@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useColorScheme } from 'react-native';
+import TabsProvider from './contexts/tabs';
 
 //component
 import IconNavigation from './component/IconNavigation';
@@ -57,7 +58,7 @@ export default function () {
 
     function AjustesAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada
         return (
-            <Ajustes setTheme={setThemeUser}/> //Passa o setState que define o tema a ser definido pelo usuário
+            <Ajustes setTheme={setThemeUser} /> //Passa o setState que define o tema a ser definido pelo usuário
         )
     }
 
@@ -66,114 +67,116 @@ export default function () {
             <SplashLoading />
             :
             <NavigationContainer theme={ThemeAuxiliar[theme]}>
-                <bottomTabNavigator.Navigator
-                    initialRouteName='Avisos' //Tela inicial
-                    screenOptions={{
-                        tabBarStyle: {
-                            height: 80, //Altura do container
-                            backgroundColor: Color.surfaceContainer, //Cor do container
-                            borderTopWidth: 0,
-                        },
-                        tabBarShowLabel: false, //Não exibe a label de cada tela, pois eu mesmo implemento a label
-                    }}
-                >
-                    <bottomTabNavigator.Screen
-                        name="Avisos"
-                        component={Avisos}
-                        options={{
-                            headerShown: false, //Não mostra o cabeçalho
-                            tabBarIcon: ({ focused }) => (
-                                <IconNavigation focused={focused} label="Avisos">
-                                    {focused ?
-                                        <AvisosIconChecked //Icone da label
-                                            fill={Color.onSurface}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                        :
-                                        <AvisosIconUnchecked //Icone da label
-                                            fill={Color.onSurfaceVariant}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                    }
-                                </IconNavigation>
-                            )
+                <TabsProvider>
+                    <bottomTabNavigator.Navigator
+                        initialRouteName='Avisos' //Tela inicial
+                        screenOptions={{
+                            tabBarStyle: {
+                                height: 80, //Altura do container
+                                backgroundColor: Color.surfaceContainer, //Cor do container
+                                borderTopWidth: 0,
+                            },
+                            tabBarShowLabel: false, //Não exibe a label de cada tela, pois eu mesmo implemento a label
                         }}
-                    />
-                    <bottomTabNavigator.Screen
-                        name="Datas"
-                        component={Datas}
-                        options={{
-                            headerShown: false,
-                            tabBarIcon: ({ focused }) => (
-                                <IconNavigation focused={focused} label="Datas">
-                                    {focused ?
-                                        <DatasIconChecked //Icone da label
-                                            fill={Color.onSurface}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                        :
-                                        <DatasIconUnchecked //Icone da label
-                                            fill={Color.onSurfaceVariant}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                    }
-                                </IconNavigation>
-                            )
-                        }}
-                    />
-                    <bottomTabNavigator.Screen
-                        name="Salvos"
-                        component={Salvos}
-                        options={{
-                            headerShown: false,
-                            tabBarIcon: ({ focused }) => (
-                                <IconNavigation focused={focused} label="Salvos">
-                                    {focused ?
-                                        <SalvosIconChecked //Icone da label
-                                            fill={Color.onSurface}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                        :
-                                        <SalvosIconUnchecked //Icone da label
-                                            fill={Color.onSurfaceVariant}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                    }
-                                </IconNavigation>
-                            )
-                        }}
-                    />
-                    <bottomTabNavigator.Screen
-                        name="Ajustes"
-                        component={AjustesAuxiliar}
-                        options={{
-                            headerShown: false,
-                            tabBarIcon: ({ focused }) => (
-                                <IconNavigation focused={focused} label="Ajustes">
-                                    {focused ?
-                                        <AjustesIconChecked //Icone da label
-                                            fill={Color.onSurface}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                        :
-                                        <AjustesIconUnchecked //Icone da label
-                                            fill={Color.onSurfaceVariant}
-                                            height={24} //Altura
-                                            width={24} //Largura
-                                        />
-                                    }
-                                </IconNavigation>
-                            )
-                        }}
-                    />
-                </bottomTabNavigator.Navigator>
+                    >
+                        <bottomTabNavigator.Screen
+                            name="Avisos"
+                            component={Avisos}
+                            options={{
+                                headerShown: false, //Não mostra o cabeçalho
+                                tabBarIcon: ({ focused }) => (
+                                    <IconNavigation focused={focused} label="Avisos">
+                                        {focused ?
+                                            <AvisosIconChecked //Icone da label
+                                                fill={Color.onSurface}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                            :
+                                            <AvisosIconUnchecked //Icone da label
+                                                fill={Color.onSurfaceVariant}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                        }
+                                    </IconNavigation>
+                                )
+                            }}
+                        />
+                        <bottomTabNavigator.Screen
+                            name="Datas"
+                            component={Datas}
+                            options={{
+                                headerShown: false,
+                                tabBarIcon: ({ focused }) => (
+                                    <IconNavigation focused={focused} label="Datas">
+                                        {focused ?
+                                            <DatasIconChecked //Icone da label
+                                                fill={Color.onSurface}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                            :
+                                            <DatasIconUnchecked //Icone da label
+                                                fill={Color.onSurfaceVariant}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                        }
+                                    </IconNavigation>
+                                )
+                            }}
+                        />
+                        <bottomTabNavigator.Screen
+                            name="Salvos"
+                            component={Salvos}
+                            options={{
+                                headerShown: false,
+                                tabBarIcon: ({ focused }) => (
+                                    <IconNavigation focused={focused} label="Salvos">
+                                        {focused ?
+                                            <SalvosIconChecked //Icone da label
+                                                fill={Color.onSurface}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                            :
+                                            <SalvosIconUnchecked //Icone da label
+                                                fill={Color.onSurfaceVariant}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                        }
+                                    </IconNavigation>
+                                )
+                            }}
+                        />
+                        <bottomTabNavigator.Screen
+                            name="Ajustes"
+                            component={AjustesAuxiliar}
+                            options={{
+                                headerShown: false,
+                                tabBarIcon: ({ focused }) => (
+                                    <IconNavigation focused={focused} label="Ajustes">
+                                        {focused ?
+                                            <AjustesIconChecked //Icone da label
+                                                fill={Color.onSurface}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                            :
+                                            <AjustesIconUnchecked //Icone da label
+                                                fill={Color.onSurfaceVariant}
+                                                height={24} //Altura
+                                                width={24} //Largura
+                                            />
+                                        }
+                                    </IconNavigation>
+                                )
+                            }}
+                        />
+                    </bottomTabNavigator.Navigator>
+                </TabsProvider>
             </NavigationContainer>
     );
 }; 
