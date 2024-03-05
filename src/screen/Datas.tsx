@@ -249,10 +249,12 @@ export default function () {
                                     }
                                     headerStyle={Style.headerCalendar}
                                     markedDates={markedDays()}
+                                    
                                 />
                             </View>
-                            <View style={Style.buttonContainer}>
+                            <View style={Style.buttonContainerHigh}>
                                 <TouchableOpacity
+                                    style={Style.buttonContainer}
                                     onPress={() => setDaySelected('')}
                                 >
                                     <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>

@@ -21,7 +21,7 @@ export default function () {
             alignItems: 'center',
         },
         calendar: {
-            minWidth: '100%',
+            width: 328,
             marginBottom: 8,
             marginHorizontal: 16
         },
@@ -44,13 +44,17 @@ export default function () {
             textMonthFontSize: 14,
             textDayHeaderFontFamily: 'Ubuntu',
             textDayHeaderFontSize: 16,
-            dotColor: Color.primary
+            dotColor: Color.primary,
+        },
+        buttonContainerHigh:{
+            alignItems: 'center',
+            justifyContent: 'center',
         },
         buttonContainer:{
+            width: 328,
             minHeight: 16,
-            flex: 1,
             alignItems: 'flex-end',
-            justifyContent: 'center',
+            flex: 1,
             paddingRight: 16,
             paddingBottom: 12
         },
