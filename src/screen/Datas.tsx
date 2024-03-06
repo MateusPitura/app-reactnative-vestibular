@@ -141,7 +141,11 @@ export default function () {
         },
     ]
 
-    useEffect(() => {
+    const [filterByData, setFilterByData] = useState(false)
+    const [data, setData] = useState(array)
+
+    const markData = () => {
+        console.log('B')
         const days = { //Cria um array com um dia por default que será responsável por marcar os dias selecionados
             [daySelected]: {
                 selected: true,
@@ -149,30 +153,49 @@ export default function () {
                 disableTouchEvent: true
             },
         }
-        array.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
-            const isSelected = item.date == daySelected
-            days[item.date] = {
-                selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
-                marked: true, //Propriedade da bolinha
-                disableTouchEvent: isSelected
-            }
-        })
+        {
+            filterByData ?
+                data.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
+                    const isSelected = item.date == daySelected
+                    days[item.date] = {
+                        selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
+                        marked: true, //Propriedade da bolinha
+                        disableTouchEvent: isSelected
+                    }
+                })
+                :
+                array.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
+                    const isSelected = item.date == daySelected
+                    days[item.date] = {
+                        selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
+                        marked: true, //Propriedade da bolinha
+                        disableTouchEvent: isSelected
+                    }
+                })
+        }
         setMarkedDates(days)
-    }, [daySelected])
-
-    const [data, setData] = useState(array)
+    }
 
     useEffect(() => {
+        markData()
+    }, [data])
+
+    useEffect(() => {
+        console.log('A')
         if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se um dia estiver selecionado
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected && item.date == daySelected);
+            setFilterByData(true)
             setData(newData)
         } else if (tabSelected != 0) { //Se não for a tab 'all'
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
+            setFilterByData(true)
             setData(newData)
         } else if (daySelected != '') { // Se um dia estiver selecionado
             const newData = array.filter(item => item.date == daySelected);
+            setFilterByData(false)
             setData(newData)
         } else { //No caso quando nenhum filtro é aplicado
+            setFilterByData(false)
             setData(array)
         }
     }, [tabSelected, daySelected])
@@ -227,9 +250,10 @@ export default function () {
                                 <Calendar
                                     style={Style.calendar}
                                     onDayPress={day => {
-                                        const currentDateString = day.dateString
-                                        setDaySelected(currentDateString);
-                                        setFirstDay(currentDateString)
+                                        setDaySelected(day.dateString);
+                                    }}
+                                    onMonthChange={day=>{
+                                        setFirstDay(day.dateString)
                                     }}
                                     theme={Style.themeCalendar}
                                     showSixWeeks={true}
