@@ -23,6 +23,7 @@ export default function () {
     const [tabSelected, setTabSelected] = useState(0)
     const [daySelected, setDaySelected] = useState('');
     const [firstDay, setFirstDay] = useState('');
+    const [markedDates, setMarkedDates] = useState({})
 
     const { dark } = useTheme();
     const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
@@ -140,7 +141,7 @@ export default function () {
         },
     ]
 
-    const markedDays = () => {
+    useEffect(() => {
         const days = { //Cria um array com um dia por default que será responsável por marcar os dias selecionados
             [daySelected]: {
                 selected: true,
@@ -156,8 +157,8 @@ export default function () {
                 disableTouchEvent: isSelected
             }
         })
-        return days
-    }
+        setMarkedDates(days)
+    }, [daySelected])
 
     const [data, setData] = useState(array)
 
@@ -226,8 +227,9 @@ export default function () {
                                 <Calendar
                                     style={Style.calendar}
                                     onDayPress={day => {
-                                        setDaySelected(day.dateString);
-                                        setFirstDay(day.dateString)
+                                        const currentDateString = day.dateString
+                                        setDaySelected(currentDateString);
+                                        setFirstDay(currentDateString)
                                     }}
                                     theme={Style.themeCalendar}
                                     showSixWeeks={true}
@@ -248,14 +250,14 @@ export default function () {
                                             />
                                     }
                                     headerStyle={Style.headerCalendar}
-                                    markedDates={markedDays()}
-                                    
+                                    markedDates={markedDates}
+
                                 />
                             </View>
                             <View style={Style.buttonContainerHigh}>
                                 <TouchableOpacity
                                     style={Style.buttonContainer}
-                                    onPress={() => setDaySelected('')}
+                                    onPress={() => { setDaySelected('') }}
                                 >
                                     <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>
                                 </TouchableOpacity>
