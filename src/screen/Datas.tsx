@@ -21,6 +21,7 @@ import ArrowRight from '../asset/icon/arrow-right.svg'
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
+    const [tabSelectedName, setTabSelectedName] = useState('')
     const [daySelected, setDaySelected] = useState('');
     const [firstDay, setFirstDay] = useState('');
     const [markedDates, setMarkedDates] = useState({})
@@ -141,7 +142,6 @@ export default function () {
         },
     ]
 
-    const [filterByData, setFilterByData] = useState(false)
     const [data, setData] = useState(array)
 
     const markData = () => {
@@ -153,51 +153,32 @@ export default function () {
                 disableTouchEvent: true
             },
         }
-        {
-            filterByData ?
-                data.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
-                    const isSelected = item.date == daySelected
-                    days[item.date] = {
-                        selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
-                        marked: true, //Propriedade da bolinha
-                        disableTouchEvent: isSelected
-                    }
-                })
-                :
-                array.map(item => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
-                    const isSelected = item.date == daySelected
-                    days[item.date] = {
-                        selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
-                        marked: true, //Propriedade da bolinha
-                        disableTouchEvent: isSelected
-                    }
-                })
-        }
+        array.map((item: any) => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
+            const isSelected = item.date == daySelected
+            days[item.date] = {
+                selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
+                marked: tabSelected==0?true:item.title == tabSelectedName, //Propriedade da bolinha
+                disableTouchEvent: isSelected
+            }
+        })
         setMarkedDates(days)
     }
-
-    useEffect(() => {
-        markData()
-    }, [data])
 
     useEffect(() => {
         console.log('A')
         if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se um dia estiver selecionado
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected && item.date == daySelected);
-            setFilterByData(true)
             setData(newData)
         } else if (tabSelected != 0) { //Se não for a tab 'all'
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
-            setFilterByData(true)
             setData(newData)
         } else if (daySelected != '') { // Se um dia estiver selecionado
             const newData = array.filter(item => item.date == daySelected);
-            setFilterByData(false)
             setData(newData)
         } else { //No caso quando nenhum filtro é aplicado
-            setFilterByData(false)
             setData(array)
         }
+        markData()
     }, [tabSelected, daySelected])
 
     // const array = null
@@ -227,7 +208,7 @@ export default function () {
 
     return (
         <SafeAreaView style={Style.container}>
-            <Tabs setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs setSelected={setTabSelected} selected={tabSelected} tabName={setTabSelectedName}/>
             <View>
                 <FlatList
                     data={data}
@@ -252,7 +233,7 @@ export default function () {
                                     onDayPress={day => {
                                         setDaySelected(day.dateString);
                                     }}
-                                    onMonthChange={day=>{
+                                    onMonthChange={day => {
                                         setFirstDay(day.dateString)
                                     }}
                                     theme={Style.themeCalendar}

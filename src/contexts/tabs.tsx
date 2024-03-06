@@ -14,7 +14,7 @@ const TabsProvider = ({ children }: any) => {
     }, [])
 
     return (
-        <TabsContext.Provider value={{ nome: 'Mateus', tabs, setTabs }}>
+        <TabsContext.Provider value={{ tabs, setTabs }}>
             {children}
         </TabsContext.Provider>
     )

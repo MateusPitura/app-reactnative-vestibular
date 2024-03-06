@@ -90,8 +90,8 @@ export default () => {
             handleCallToast("Vestibular já escolhido")
             return -1
         }
-        handleCallToast("Vestibular adicionado")
         read(setTabs)
+        handleCallToast("Vestibular adicionado")
         return 0
     }
 

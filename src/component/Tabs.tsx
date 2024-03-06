@@ -1,10 +1,10 @@
 import React, { useContext, useRef,  } from "react";
 import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
+import { TabsContext } from "../contexts/tabs";
 
 //style
 import StyleAuxiliar from '../style/ComponentTabs'
 import Typography from "../asset/design/Typography";
-import { TabsContext } from "../contexts/tabs";
 
 
 export default function (props: any) {
@@ -13,7 +13,7 @@ export default function (props: any) {
 
     const ref = useRef<FlatList>(null)
 
-    const { tabs, setTabs } = useContext<any>(TabsContext)
+    const { tabs } = useContext<any>(TabsContext)
 
     const newData = [
         {
@@ -39,6 +39,7 @@ export default function (props: any) {
                                     index: tabs.indexOf(item) + 1
                                 })
                                 props.setSelected(item.id)
+                                props.tabName(item.title)
                             }}>
                             <View>
                                 <View style={Style.box}>
