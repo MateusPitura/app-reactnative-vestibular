@@ -60,7 +60,7 @@ export default function () {
         },
         containerListVertical: {
             paddingTop: 12,
-            paddingBottom: 300
+            paddingBottom: '75%'
         },
         colums: {
             paddingHorizontal: 12

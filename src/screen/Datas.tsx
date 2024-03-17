@@ -145,7 +145,6 @@ export default function () {
     const [data, setData] = useState(array)
 
     const markData = () => {
-        console.log('B')
         const days = { //Cria um array com um dia por default que será responsável por marcar os dias selecionados
             [daySelected]: {
                 selected: true,
@@ -165,7 +164,6 @@ export default function () {
     }
 
     useEffect(() => {
-        console.log('A')
         if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se um dia estiver selecionado
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected && item.date == daySelected);
             setData(newData)

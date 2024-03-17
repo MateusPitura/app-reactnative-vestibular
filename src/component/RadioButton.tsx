@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import { TabsContext } from "../contexts/tabs";
 
 //style
 import StyleAuxiliar from '../style/ComponentsRadioButton'
 import Typography from '../asset/design/Typography'
-import ColorAuxiliar from '../asset/design/Color';
 
 //icon
 import RadioButtonCheckedIcon from '../asset/icon/radio-button-checked.svg'
@@ -13,8 +12,7 @@ import RadioButtonUncheckedIcon from '../asset/icon/radio-button-unchecked.svg'
 
 export default function (props: any) {
 
-    const { dark } = useTheme(); //Variável booleana que pega se é dark ou light de acordo com a paleta de cores falsa
-    const Color = dark == true ? ColorAuxiliar["dark"] : ColorAuxiliar["light"]; //Define a paleta de cores real a ser usada com base no parâmetro recebido
+    const { Color } = useContext<any>(TabsContext)
     const Style = StyleAuxiliar();
 
     return (

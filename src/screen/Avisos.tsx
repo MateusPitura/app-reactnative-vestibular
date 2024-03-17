@@ -11,12 +11,11 @@ import EmptyContent from '../component/EmptyContent';
 import StatusBar from '../component/StatusBar';
 import Tabs from '../component/Tabs';
 
-//controller
-import { read } from '../model/SalvosController'
-
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
+    const [tabSelectedName, setTabSelectedName] = useState('')
+    
     const Style = StyleAuxiliar();
 
     const array = [
@@ -154,8 +153,8 @@ export default function () {
 
     const [data, setData] = useState(array)
 
-    useEffect(()=>{
-        if(tabSelected != 0){
+    useEffect(() => {
+        if (tabSelected != 0) {
             const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
             setData(newData)
         } else {
@@ -165,7 +164,7 @@ export default function () {
 
     return (
         <SafeAreaView style={[Style.container]}>
-            <Tabs setSelected={setTabSelected} selected={tabSelected} />
+            <Tabs setSelected={setTabSelected} selected={tabSelected} tabName={setTabSelectedName} />
             <StatusBar />
             <FlatList
                 data={data}

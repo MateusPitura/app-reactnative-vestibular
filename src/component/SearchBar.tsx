@@ -134,6 +134,7 @@ export default function (props: any) {
                 visible={isVisible}
                 animationType="none"
                 statusBarTranslucent={true}
+                onRequestClose={()=>setIsVisible(false)}
             >
                 <View style={Style.modal}>
                     <StatusBar
@@ -164,6 +165,7 @@ export default function (props: any) {
                                 onLayout={() => openKeyboard()}
                                 ref={inputRef}
                                 blurOnSubmit={false}
+                                onSubmitEditing={()=>Keyboard.dismiss()}
                             />
                         </View>
                         <TouchableOpacity
