@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
 import { Calendar, LocaleConfig } from 'react-native-calendars';
-import { useTheme } from "@react-navigation/native";
-import ColorAuxiliar from "../asset/design/Color";
+
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -17,6 +16,7 @@ import Tabs from '../component/Tabs'
 //icon
 import ArrowLeft from '../asset/icon/arrow-left.svg'
 import ArrowRight from '../asset/icon/arrow-right.svg'
+import { TabsContext } from '../contexts/tabs';
 
 export default function () {
 
@@ -26,8 +26,7 @@ export default function () {
     const [firstDay, setFirstDay] = useState('');
     const [markedDates, setMarkedDates] = useState({})
 
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color } = useContext<any>(TabsContext)
 
     const Style = StyleAuxiliar()
 

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTheme } from "@react-navigation/native";
 import ColorAuxiliar from "../asset/design/Color";
 import { StatusBar } from "react-native";
+import { TabsContext } from "../contexts/tabs";
 
 export default function () {
 
-    const { dark } = useTheme()
-    const Color = dark==true?ColorAuxiliar['dark']:ColorAuxiliar['light']
+    const { Color, dark } = useContext<any>(TabsContext)
 
     return (
         <StatusBar

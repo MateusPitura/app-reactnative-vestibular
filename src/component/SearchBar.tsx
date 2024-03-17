@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
     View,
     Text,
@@ -9,7 +9,7 @@ import {
     FlatList,
     Keyboard,
 } from 'react-native'
-import { useTheme } from "@react-navigation/native";
+import { TabsContext } from "../contexts/tabs";
 
 //component
 import StatusBarDefault from "./StatusBar";
@@ -18,7 +18,6 @@ import CardVertical from "./CardVertical";
 //style
 import Typography from "../asset/design/Typography";
 import StyleAuxiliar from '../style/ComponentSearchBar'
-import ColorAuxiliar from "../asset/design/Color";
 
 //icones
 import SearchIcon from '../asset/icon/search.svg'
@@ -30,8 +29,7 @@ export default function (props: any) {
 
     const Style = StyleAuxiliar()
 
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color, dark } = useContext<any>(TabsContext)
 
     const [isVisible, setIsVisible] = useState(false)
     const [textInput, setTextInput] = useState("")

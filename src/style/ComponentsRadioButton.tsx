@@ -1,14 +1,13 @@
+import { useContext } from "react";
 import { StyleSheet } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import ColorAuxiliar from "../asset/design/Color";
+import { TabsContext } from "../contexts/tabs";
 
 export default function () {
 
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color } = useContext<any>(TabsContext)
 
     return StyleSheet.create({
-        container:{
+        container: {
             flexDirection: 'row'
         },
         label: {
@@ -20,7 +19,7 @@ export default function () {
             alignItems: 'center',
             justifyContent: 'center'
         },
-        text:{
+        text: {
             alignItems: 'center',
             justifyContent: 'center'
         }

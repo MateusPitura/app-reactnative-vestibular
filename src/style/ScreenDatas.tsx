@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import ColorAuxiliar from "../asset/design/Color";
+import { useContext } from "react";
+import { TabsContext } from "../contexts/tabs";
 
 export default function () {
 
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color } = useContext<any>(TabsContext)
 
     return StyleSheet.create({
         container: {

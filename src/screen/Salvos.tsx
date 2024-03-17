@@ -1,11 +1,9 @@
 import React, { useContext } from 'react'
 import { View, FlatList, SafeAreaView, ToastAndroid } from 'react-native'
-import { useTheme } from '@react-navigation/native'
 import { TabsContext } from "../contexts/tabs";
 
 //style
 import StyleAuxiliar from '../style/ScreenSalvos'
-import ColorAuxiliar from '../asset/design/Color'
 
 //component
 import CardVertical from '../component/CardVertical'
@@ -25,8 +23,7 @@ export default () => {
 
     const Style = StyleAuxiliar()
 
-    const { dark } = useTheme()
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color } = useContext<any>(TabsContext)
 
     const { tabs, setTabs } = useContext<any>(TabsContext)
 

@@ -12,7 +12,7 @@ const TabsProvider = ({ children }: any) => {
 
     const [tabs, setTabs] = useState([])
     
-    const { dark } = useTheme();
+    const { dark} = useTheme()
     const Color = dark==true?ColorAuxiliar['dark']:ColorAuxiliar['light']
 
     useEffect(() => {
@@ -27,7 +27,7 @@ const TabsProvider = ({ children }: any) => {
     }, [Color])
 
     return (
-        <TabsContext.Provider value={{ tabs, setTabs, Color }}>
+        <TabsContext.Provider value={{ tabs, setTabs, Color, dark }}>
             {children}
         </TabsContext.Provider>
     )

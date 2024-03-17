@@ -1,12 +1,11 @@
 import { StyleSheet } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import ColorAuxiliar from "../asset/design/Color";
 import { useWindowDimensions } from "react-native";
+import { TabsContext } from "../contexts/tabs";
+import { useContext } from "react";
 
 export default function () {
 
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color } = useContext<any>(TabsContext)
 
     const { width } = useWindowDimensions()
 
@@ -26,14 +25,12 @@ export default function () {
         title: {
             padding: 6,
             flex: 3,
-            // backgroundColor: 'red',
             justifyContent: 'center',
             alignItems: 'flex-start'
         },
         icon: {
             padding: 6,
             flex: 1,
-            // backgroundColor: 'blue',
             justifyContent: 'center',
             alignItems: 'flex-end'
         },
@@ -42,7 +39,6 @@ export default function () {
             padding: 6,
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
-            //backgroundColor: 'green'
         },
         text: {
             color: Color.onTertiary,

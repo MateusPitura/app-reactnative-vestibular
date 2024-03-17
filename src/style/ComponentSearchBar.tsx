@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import ColorAuxiliar from "../asset/design/Color";
+import { TabsContext } from "../contexts/tabs";
+import { useContext } from "react";
 
 export default function () {
 
-    const { dark } = useTheme();
-    const Color = dark == true ? ColorAuxiliar['dark'] : ColorAuxiliar['light']
+    const { Color } = useContext<any>(TabsContext)
 
     return StyleSheet.create({
         box: {
@@ -31,7 +30,7 @@ export default function () {
         text: {
             color: Color.onSurfaceVariant
         },
-        textSelected:{
+        textSelected: {
             color: Color.onSurface
         },
         iconContainer: {
