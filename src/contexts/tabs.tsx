@@ -21,7 +21,7 @@ const TabsProvider = ({ children }: any) => {
 
     useEffect(()=>{
         try{
-            changeNavigationBarColor(Color.surfaceContainer);
+            changeNavigationBarColor(Color.surfaceContainer, dark?false:true, false);
         }catch(e){
         }
     }, [Color])
