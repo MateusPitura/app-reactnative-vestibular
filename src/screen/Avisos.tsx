@@ -25,7 +25,8 @@ export default function () {
             title: "ENEM",
             vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "04 nov"
+            trailing: "04 nov",
+            url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem"
         },
         {
             id: "2",
@@ -33,7 +34,8 @@ export default function () {
             title: "PSS",
             vestibularId: "2",
             body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "05 nov"
+            trailing: "05 nov",
+            url: "https://www.uepg.br/"
         },
         {
             id: "3",
@@ -41,7 +43,8 @@ export default function () {
             title: "UTFPR",
             vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "06 nov"
+            trailing: "06 nov",
+            url: "https://www.utfpr.edu.br/"
         },
         {
             id: "4",
@@ -49,7 +52,8 @@ export default function () {
             title: "ENEM",
             vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "04 nov"
+            trailing: "04 nov",
+            url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem"
         },
         {
             id: "5",
@@ -57,7 +61,8 @@ export default function () {
             title: "PSS",
             vestibularId: "2",
             body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "05 nov"
+            trailing: "05 nov",
+            url: "https://www.uepg.br/"
         },
         {
             id: "6",
@@ -65,7 +70,8 @@ export default function () {
             title: "UTFPR",
             vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "06 nov"
+            trailing: "06 nov",
+            url: "https://www.utfpr.edu.br/"
         },
         {
             id: "7",
@@ -73,7 +79,8 @@ export default function () {
             title: "ENEM",
             vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "04 nov"
+            trailing: "04 nov",
+            url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem"
         },
         {
             id: "8",
@@ -81,7 +88,8 @@ export default function () {
             title: "PSS",
             vestibularId: "2",
             body: "PSS dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "05 nov"
+            trailing: "05 nov",
+            url: "https://www.uepg.br/"
         },
         {
             id: "9",
@@ -89,7 +97,8 @@ export default function () {
             title: "UTFPR",
             vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "06 nov"
+            trailing: "06 nov",
+            url: "https://www.utfpr.edu.br/"
         },
         {
             id: "10",
@@ -97,7 +106,8 @@ export default function () {
             title: "ENEM",
             vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "04 nov"
+            trailing: "04 nov",
+            url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem"
         },
         {
             id: "11",
@@ -105,7 +115,8 @@ export default function () {
             title: "PSS",
             vestibularId: "2",
             body: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "05 nov"
+            trailing: "05 nov",
+            url: "https://www.uepg.br/"
         },
         {
             id: "12",
@@ -113,7 +124,8 @@ export default function () {
             title: "UTFPR",
             vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "06 nov"
+            trailing: "06 nov",
+            url: "https://www.utfpr.edu.br/"
         },
         {
             id: "13",
@@ -121,7 +133,8 @@ export default function () {
             title: "UTFPR",
             vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "06 nov"
+            trailing: "06 nov",
+            url: "https://www.utfpr.edu.br/"
         },
         {
             id: "14",
@@ -129,7 +142,8 @@ export default function () {
             title: "ENEM",
             vestibularId: "1",
             body: "ENEM ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "04 nov"
+            trailing: "04 nov",
+            url: "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem"
         },
         {
             id: "15",
@@ -137,7 +151,8 @@ export default function () {
             title: "PSS",
             vestibularId: "2",
             body: "Ipsum dolor sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "05 nov"
+            trailing: "05 nov",
+            url: "https://www.uepg.br/"
         },
         {
             id: "16",
@@ -145,7 +160,8 @@ export default function () {
             title: "UTFPR",
             vestibularId: "7",
             body: "UTFPR sit amet consectetur adipisicing elit. Adipisci, maxime",
-            trailing: "06 nov"
+            trailing: "06 nov",
+            url: "https://www.utfpr.edu.br/"
         },
     ]
 
@@ -175,6 +191,7 @@ export default function () {
                         title={item.title}
                         body={item.body}
                         trailing={item.trailing}
+                        url={item.url}
                     />
                 }
                 ItemSeparatorComponent={() => <Divisor />}
