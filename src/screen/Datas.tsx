@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
-import { Calendar, LocaleConfig } from 'react-native-calendars';
-
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -12,21 +10,9 @@ import ListItemCalendar from '../component/ListItemCalendar'
 import EmptyContent from '../component/EmptyContent'
 import Label from '../component/Label'
 import Tabs from '../component/Tabs'
-
-//icon
-import ArrowLeft from '../asset/icon/arrow-left.svg'
-import ArrowRight from '../asset/icon/arrow-right.svg'
-import { TabsContext } from '../contexts/tabs';
+import Calendar from '../component/Calendar';
 
 export default function () {
-
-    const [tabSelected, setTabSelected] = useState(0)
-    const [tabSelectedName, setTabSelectedName] = useState('')
-    const [daySelected, setDaySelected] = useState('');
-    const [firstDay, setFirstDay] = useState('');
-    const [markedDates, setMarkedDates] = useState({})
-
-    const { Color } = useContext<any>(TabsContext)
 
     const Style = StyleAuxiliar()
 
@@ -141,7 +127,14 @@ export default function () {
         },
     ]
 
+    // const array = null
+
+    const [tabSelected, setTabSelected] = useState(0)
     const [data, setData] = useState(array)
+    const [tabSelectedName, setTabSelectedName] = useState('')
+    const [daySelected, setDaySelected] = useState('');
+    const [markedDates, setMarkedDates] = useState({})
+    const [firstDay, setFirstDay] = useState('');
 
     const markData = () => {
         const days = { //Cria um array com um dia por default que será responsável por marcar os dias selecionados
@@ -155,7 +148,7 @@ export default function () {
             const isSelected = item.date == daySelected
             days[item.date] = {
                 selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
-                marked: tabSelected==0?true:item.title == tabSelectedName, //Propriedade da bolinha
+                marked: tabSelected == 0 ? true : item.title == tabSelectedName, //Propriedade da bolinha
                 disableTouchEvent: isSelected
             }
         })
@@ -163,45 +156,20 @@ export default function () {
     }
 
     useEffect(() => {
-        if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se um dia estiver selecionado
-            const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected && item.date == daySelected);
+        if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se algum dia estiver selecionado
+            const newData = array.filter((item: any) => parseInt(item.vestibularId) == tabSelected && item.date == daySelected);
             setData(newData)
         } else if (tabSelected != 0) { //Se não for a tab 'all'
-            const newData = array.filter(item => parseInt(item.vestibularId) == tabSelected);
+            const newData = array.filter((item: any) => parseInt(item.vestibularId) == tabSelected);
             setData(newData)
         } else if (daySelected != '') { // Se um dia estiver selecionado
-            const newData = array.filter(item => item.date == daySelected);
+            const newData = array.filter((item: any) => item.date == daySelected);
             setData(newData)
         } else { //No caso quando nenhum filtro é aplicado
             setData(array)
         }
         markData()
     }, [tabSelected, daySelected])
-
-    // const array = null
-
-    LocaleConfig.locales['br'] = {
-        monthNames: [
-            'Janeiro',
-            'Fevereiro',
-            'Março',
-            'Abril',
-            'Maio',
-            'Junho',
-            'Julho',
-            'Agosto',
-            'Setembro',
-            'Outubro',
-            'Novembro',
-            'Dezembro'
-        ],
-        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dec'],
-        dayNames: ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'],
-        dayNamesShort: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-        today: "Hoje"
-    };
-
-    LocaleConfig.defaultLocale = 'br';
 
     return (
         <SafeAreaView style={Style.container}>
@@ -226,34 +194,10 @@ export default function () {
                         <View>
                             <View style={Style.calendarContainer}>
                                 <Calendar
-                                    style={Style.calendar}
-                                    onDayPress={day => {
-                                        setDaySelected(day.dateString);
-                                    }}
-                                    onMonthChange={day => {
-                                        setFirstDay(day.dateString)
-                                    }}
-                                    theme={Style.themeCalendar}
-                                    showSixWeeks={true}
-                                    initialDate={firstDay} //Caso seja '' usa a data atual, quando é selecionado uma data ao renderizar o componente voltaria para a data atual caso não tivesse esse argumento
-                                    hideExtraDays={false}
-                                    renderArrow={direction =>
-                                        direction == "left" ?
-                                            <ArrowLeft
-                                                height={24}
-                                                width={24}
-                                                fill={Color.onSurfaceVariant}
-                                            />
-                                            :
-                                            <ArrowRight
-                                                height={24}
-                                                width={24}
-                                                fill={Color.onSurfaceVariant}
-                                            />
-                                    }
-                                    headerStyle={Style.headerCalendar}
+                                    setDaySelected={setDaySelected}
                                     markedDates={markedDates}
-
+                                    firstDay={firstDay}
+                                    setFirstDay={setFirstDay}
                                 />
                             </View>
                             <View style={Style.buttonContainerHigh}>
