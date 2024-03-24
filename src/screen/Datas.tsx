@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
+import notifee from '@notifee/react-native';
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -171,9 +172,36 @@ export default function () {
         markData()
     }, [tabSelected, daySelected])
 
+    async function onDisplayNotification() {
+
+        await notifee.requestPermission()
+
+        // Create a channel (required for Android)
+        const channelId = await notifee.createChannel({
+            id: 'default',
+            name: 'Default Channel',
+        });
+
+        // Display a notification
+        await notifee.displayNotification({
+            title: 'Notification Title',
+            body: 'Main body content of the notification',
+            android: {
+                channelId,
+                
+                smallIcon: 'icon_round', // optional, defaults to 'ic_launcher'.
+                color: '#9c27b0',
+                // pressAction is needed if you want the notification to open the app when pressed
+                pressAction: {
+                    id: 'default',
+                },
+            },
+        });
+    }
+
     return (
         <SafeAreaView style={Style.container}>
-            <Tabs setSelected={setTabSelected} selected={tabSelected} tabName={setTabSelectedName}/>
+            <Tabs setSelected={setTabSelected} selected={tabSelected} tabName={setTabSelectedName} />
             <View>
                 <FlatList
                     data={data}
@@ -203,7 +231,10 @@ export default function () {
                             <View style={Style.buttonContainerHigh}>
                                 <TouchableOpacity
                                     style={Style.buttonContainer}
-                                    onPress={() => { setDaySelected('') }}
+                                    onPress={() => { 
+                                        setDaySelected('') 
+                                        onDisplayNotification()
+                                    }}
                                 >
                                     <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>
                                 </TouchableOpacity>
