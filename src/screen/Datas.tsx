@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
-import notifee from '@notifee/react-native';
+import { TabsContext } from "../contexts/tabs";
+import { shecheduleNotification } from '../model/NotificationsController'
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -25,7 +26,7 @@ export default function () {
             body: "13h00 às 14h00",
             day: "30",
             month: "jan",
-            date: '2024-02-05'
+            date: '2024-03-24'
         },
         {
             id: "2",
@@ -130,6 +131,8 @@ export default function () {
 
     // const array = null
 
+    const { Color } = useContext<any>(TabsContext)
+
     const [tabSelected, setTabSelected] = useState(0)
     const [data, setData] = useState(array)
     const [tabSelectedName, setTabSelectedName] = useState('')
@@ -173,30 +176,8 @@ export default function () {
     }, [tabSelected, daySelected])
 
     async function onDisplayNotification() {
-
-        await notifee.requestPermission()
-
-        // Create a channel (required for Android)
-        const channelId = await notifee.createChannel({
-            id: 'default',
-            name: 'Default Channel',
-        });
-
-        // Display a notification
-        await notifee.displayNotification({
-            title: 'Notification Title',
-            body: 'Main body content of the notification',
-            android: {
-                channelId,
-                
-                smallIcon: 'icon_round', // optional, defaults to 'ic_launcher'.
-                color: '#9c27b0',
-                // pressAction is needed if you want the notification to open the app when pressed
-                pressAction: {
-                    id: 'default',
-                },
-            },
-        });
+        
+        shecheduleNotification(Color.primary, array)
     }
 
     return (
@@ -231,8 +212,8 @@ export default function () {
                             <View style={Style.buttonContainerHigh}>
                                 <TouchableOpacity
                                     style={Style.buttonContainer}
-                                    onPress={() => { 
-                                        setDaySelected('') 
+                                    onPress={() => {
+                                        setDaySelected('')
                                         onDisplayNotification()
                                     }}
                                 >
