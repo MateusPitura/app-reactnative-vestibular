@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { SafeAreaView, FlatList, View, TouchableOpacity, Text } from 'react-native'
+import { SafeAreaView, FlatList, View, TouchableOpacity, Text, Button } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
-import { shecheduleNotification } from '../model/NotificationsController'
+import { shecheduleNotification, cancelAllNotification, showAllNotification } from '../model/NotificationsController'
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -26,7 +26,7 @@ export default function () {
             body: "13h00 às 14h00",
             day: "30",
             month: "jan",
-            date: '2024-03-24'
+            date: '2024-03-26'
         },
         {
             id: "2",
@@ -214,11 +214,22 @@ export default function () {
                                     style={Style.buttonContainer}
                                     onPress={() => {
                                         setDaySelected('')
-                                        onDisplayNotification()
                                     }}
                                 >
                                     <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>
                                 </TouchableOpacity>
+                                <Button
+                                    onPress={onDisplayNotification}
+                                    title='Agendar'
+                                />
+                                <Button
+                                    onPress={cancelAllNotification}
+                                    title="Cancelar"
+                                />
+                                <Button
+                                    onPress={showAllNotification}
+                                    title="Exibir"
+                                />
                             </View>
                             <Label text="Próximos eventos" />
                         </View>

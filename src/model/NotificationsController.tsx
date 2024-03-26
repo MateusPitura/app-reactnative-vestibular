@@ -1,10 +1,15 @@
 import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
 
-export const shecheduleNotification = async (color: any, data: any) => {
+export const cancelAllNotification = async () => {
+    console.log('Cancelando todas as notificações...')
+    await notifee.cancelTriggerNotifications()
+}
 
-    await notifee.cancelTriggerNotifications() //Excluir todas as notificações
-
+export const showAllNotification = async() => {
     console.log(await notifee.getTriggerNotifications())
+}
+
+export const shecheduleNotification = async (color: any, data: any) => {
 
     const validatedDates = validateDates(data)
 
@@ -35,13 +40,9 @@ export const shecheduleNotification = async (color: any, data: any) => {
 
 const validateDates = (data: any) => { //Valida os eventos filtrando apenas as que são após a data de hoje
     const dates = data.filter((item: any) => {
-        const notificationDate = new Date(item.date).getTime() + (1000 * 60 * 60 * 23) + (1000 * 60 * 55) //Pega a data que por padrão é meia noite e soma mais 9 horas
-        console.log(new Date(notificationDate))
-        const currentTime = new Date(Date.now()).getTime() + (1000 * 60 * 10) - (1000 * 60 * 60 * 3) //Momento atual + 10 minutos de margem de segurança - 3h pelo fuso horário
-        console.log(new Date(currentTime))
-        console.log()
+        const notificationDate = new Date(item.date).getTime() + (1000 * 60 * 60 * 9) //Pega a data que por padrão é meia noite e soma mais 9 horas
+        const currentTime = new Date(Date.now()).getTime() + (1000 * 60 * 1) //Momento atual + 1 minuto de margem de segurança
         if (notificationDate > currentTime) { //Estou comparando para saber se a data da notificação é mais antiga que o momento atual
-            console.log('entrou')
             item.date = notificationDate
             return item
         }
