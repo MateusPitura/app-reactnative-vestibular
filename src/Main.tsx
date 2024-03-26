@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useColorScheme } from 'react-native';
 import TabsProvider from './contexts/tabs';
+import notifee from '@notifee/react-native';
 
 //component
 import IconNavigation from './component/IconNavigation';
@@ -52,8 +53,13 @@ export default function () {
         setLoading(false);
     }
 
+    const requestNotificationPermission = async() => {
+        await notifee.requestPermission()
+    }
+
     useEffect(() => { //Essa função executa apenas uma vez ao iniciar o aplicativo
         restoreThemeLocalyAuxiliar()
+        requestNotificationPermission()
     }, [])
 
     function AjustesAuxiliar() { //Cria uma tela auxiliar para poder passar um parâmetro para a tela a ser chamada

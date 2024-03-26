@@ -1,9 +1,5 @@
 import notifee, { TimestampTrigger, TriggerType } from '@notifee/react-native';
 
-type eventType = {
-    date: number
-}
-
 export const shecheduleNotification = async (color: any, data: any) => {
 
     await notifee.cancelTriggerNotifications() //Excluir todas as notificações
@@ -11,8 +7,6 @@ export const shecheduleNotification = async (color: any, data: any) => {
     console.log(await notifee.getTriggerNotifications())
 
     const validatedDates = validateDates(data)
-
-    await notifee.requestPermission()
 
     const channelId = await notifee.createChannel({
         id: 'default',
