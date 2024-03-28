@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { SafeAreaView, FlatList, View, TouchableOpacity, Text, Button } from 'react-native'
+import { SafeAreaView, FlatList, View, TouchableOpacity, Text, Button, ScrollView } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
 import { shecheduleNotification, cancelAllNotification, showAllNotification } from '../model/NotificationsController'
 
@@ -176,14 +176,45 @@ export default function () {
     }, [tabSelected, daySelected])
 
     async function onDisplayNotification() {
-        
+
         shecheduleNotification(Color.primary, array)
     }
 
     return (
         <SafeAreaView style={Style.container}>
             <Tabs setSelected={setTabSelected} selected={tabSelected} tabName={setTabSelectedName} />
-            <View>
+            <ScrollView>
+                <View style={Style.calendarContainer}>
+                    <Calendar
+                        setDaySelected={setDaySelected}
+                        markedDates={markedDates}
+                        firstDay={firstDay}
+                        setFirstDay={setFirstDay}
+                    />
+                </View>
+                <View style={Style.buttonContainerHigh}>
+                    <TouchableOpacity
+                        style={Style.buttonContainer}
+                        onPress={() => {
+                            setDaySelected('')
+                        }}
+                    >
+                        <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>
+                    </TouchableOpacity>
+                    {/* <Button
+                        onPress={onDisplayNotification}
+                        title='Agendar'
+                    />
+                    <Button
+                        onPress={cancelAllNotification}
+                        title="Cancelar"
+                    />
+                    <Button
+                        onPress={showAllNotification}
+                        title="Exibir"
+                    /> */}
+                </View>
+                <Label text="Próximos eventos" />
                 <FlatList
                     data={data}
                     keyExtractor={item => item.id}
@@ -196,46 +227,12 @@ export default function () {
                         />
                     }
                     contentContainerStyle={Style.listContainer}
+                    scrollEnabled={false}
                     ListEmptyComponent={
                         <EmptyContent text="Nenhum evento encontrado" />
                     }
-                    ListHeaderComponent={() => (
-                        <View>
-                            <View style={Style.calendarContainer}>
-                                <Calendar
-                                    setDaySelected={setDaySelected}
-                                    markedDates={markedDates}
-                                    firstDay={firstDay}
-                                    setFirstDay={setFirstDay}
-                                />
-                            </View>
-                            <View style={Style.buttonContainerHigh}>
-                                <TouchableOpacity
-                                    style={Style.buttonContainer}
-                                    onPress={() => {
-                                        setDaySelected('')
-                                    }}
-                                >
-                                    <Text style={[Style.button, Typography.labelLarge]}>Limpar</Text>
-                                </TouchableOpacity>
-                                <Button
-                                    onPress={onDisplayNotification}
-                                    title='Agendar'
-                                />
-                                <Button
-                                    onPress={cancelAllNotification}
-                                    title="Cancelar"
-                                />
-                                <Button
-                                    onPress={showAllNotification}
-                                    title="Exibir"
-                                />
-                            </View>
-                            <Label text="Próximos eventos" />
-                        </View>
-                    )}
                 />
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 } 
