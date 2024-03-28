@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, FlatList, SafeAreaView, ToastAndroid } from 'react-native'
+import { View, FlatList, SafeAreaView, ToastAndroid, ScrollView } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
 
 //style
@@ -111,64 +111,63 @@ export default () => {
     return (
         <SafeAreaView style={Style.container}>
             <SearchBar add={addNewData} text="Pesquise por vestibulares" />
-            <FlatList
-                data={tabs}
-                // @ts-ignore
-                keyExtractor={item => item.id}
-                renderItem={({ item }: any) =>
-                    <CardVertical
-                        title={item.title}
-                        body={item.body}
-                        onPress={() => { removeData(item.id) }}
-                    >
-                        <Trash
-                            height={24}
-                            width={24}
-                            fill={Color.onTertiary}
-                        />
-                    </CardVertical>
-                }
-                contentContainerStyle={Style.containerListVertical}
-                numColumns={2}
-                ListHeaderComponent={
-                    <View>
-                        <Label text="Vestibulares recomendados" />
-                        <FlatList
-                            data={array}
-                            keyExtractor={item => item.id}
-                            renderItem={({ item }) =>
-                                <CardHorizontal
-                                    title={item.title}
-                                    body={item.body}
-                                    onPress={() => { addNewData(item) }}
-                                >
-                                    <Save
-                                        height={24}
-                                        width={24}
-                                        fill={Color.onTertiary}
-                                    />
-                                </CardHorizontal>
-                            }
-                            contentContainerStyle={
-                                array == null ?
-                                    Style.containerListHorizontalIfNull
-                                    :
-                                    Style.containerListHorizontal
-                            }
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            ListEmptyComponent={
-                                <EmptyContent text="No momento não há recomendações" />
-                            }
-                        />
-                        <Label text="Vestibulares salvos" />
-                    </View>
-                }
-                ListEmptyComponent={
-                    <EmptyContent text="Adicione um vestibular na sua lista" />
-                }
-                columnWrapperStyle={Style.colums}
-            />
+            <ScrollView>
+                <Label text="Vestibulares recomendados" />
+                <FlatList
+                    data={array}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) =>
+                        <CardHorizontal
+                            title={item.title}
+                            body={item.body}
+                            onPress={() => { addNewData(item) }}
+                        >
+                            <Save
+                                height={24}
+                                width={24}
+                                fill={Color.onTertiary}
+                            />
+                        </CardHorizontal>
+                    }
+                    contentContainerStyle={
+                        array == null ?
+                            Style.containerListHorizontalIfNull
+                            :
+                            Style.containerListHorizontal
+                    }
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    ListEmptyComponent={
+                        <EmptyContent text="No momento não há recomendações" />
+                    }
+                />
+                <Label text="Vestibulares salvos" />
+                <FlatList
+                    scrollEnabled={false}
+                    data={tabs}
+                    // @ts-ignore
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }: any) =>
+                        <CardVertical
+                            title={item.title}
+                            body={item.body}
+                            onPress={() => { removeData(item.id) }}
+                        >
+                            <Trash
+                                height={24}
+                                width={24}
+                                fill={Color.onTertiary}
+                            />
+                        </CardVertical>
+                    }
+                    contentContainerStyle={Style.containerListVertical}
+                    numColumns={2}
+                    ListEmptyComponent={
+                        <EmptyContent text="Adicione um vestibular na sua lista" />
+                    }
+                    columnWrapperStyle={Style.colums}
+                />
+            </ScrollView>
         </SafeAreaView>
     )
 } 
