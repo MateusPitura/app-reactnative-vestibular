@@ -12,7 +12,6 @@ export default function (props: any) {
     const openURL = async (url: string) => {
         Linking.openURL(url)
         .catch(error => {
-            console.log(error)
         })
     }
 

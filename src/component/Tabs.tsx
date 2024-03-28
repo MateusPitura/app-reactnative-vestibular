@@ -1,11 +1,10 @@
-import React, { useContext, useRef,  } from "react";
+import React, { useContext, useRef } from "react";
 import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 import { TabsContext } from "../contexts/tabs";
 
 //style
 import StyleAuxiliar from '../style/ComponentTabs'
 import Typography from "../asset/design/Typography";
-
 
 export default function (props: any) {
 

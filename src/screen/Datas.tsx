@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { SafeAreaView, FlatList, View, TouchableOpacity, Text, Button, ScrollView } from 'react-native'
+import { SafeAreaView, FlatList, View, TouchableOpacity, Text, ScrollView } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
-import { shecheduleNotification, cancelAllNotification, showAllNotification } from '../model/NotificationsController'
 
 //style
 import StyleAuxiliar from '../style/ScreenDatas'
@@ -175,10 +174,10 @@ export default function () {
         markData()
     }, [tabSelected, daySelected])
 
-    async function onDisplayNotification() {
+    // async function onDisplayNotification() {
 
-        shecheduleNotification(Color.primary, array)
-    }
+    //     shecheduleNotification(Color.primary, array)
+    // }
 
     return (
         <SafeAreaView style={Style.container}>

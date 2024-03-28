@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { useTheme } from "@react-navigation/native";
-import ColorAuxiliar from "../asset/design/Color";
 import { StatusBar } from "react-native";
 import { TabsContext } from "../contexts/tabs";
 
