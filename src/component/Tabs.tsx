@@ -38,7 +38,6 @@ export default function (props: any) {
                                     index: tabs.indexOf(item) + 1
                                 })
                                 props.setSelected(item.id)
-                                props.tabName(item.title)
                             }}>
                             <View>
                                 <View style={Style.box}>

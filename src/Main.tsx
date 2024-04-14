@@ -172,7 +172,7 @@ export default function () {
     const scheduleNotifications = async () => {
         await cancelAllNotification()
         await shecheduleNotification(Color.primary, array)
-        // await showAllNotification()
+        await showAllNotification()
     }
 
     useEffect(() => { //Essa função executa apenas uma vez ao iniciar o aplicativo
@@ -181,7 +181,7 @@ export default function () {
 
         const subscription = AppState.addEventListener('change', nextAppState => {
             if(nextAppState === 'background'){
-                scheduleNotifications()
+                // scheduleNotifications()
             }
         });
 

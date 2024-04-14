@@ -25,7 +25,6 @@ type avisosType = {
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
-    const [tabSelectedName, setTabSelectedName] = useState('')
 
     const { tabs } = useContext<any>(TabsContext)
 
@@ -36,7 +35,7 @@ export default function () {
             const listUniversidadeId = tabs?.map((item: any) => item.id)
             const dataFromServer = await fetch(`http://172.17.0.1:3000/avisos?universidade=${listUniversidadeId}`)
             const dataJsoned = await dataFromServer.json()
-            setStaticData(dataJsoned.content)
+            setStaticData(dataJsoned)
         }
     }
 
@@ -58,7 +57,7 @@ export default function () {
 
     return (
         <SafeAreaView style={[Style.container]}>
-            <Tabs setSelected={setTabSelected} selected={tabSelected} tabName={setTabSelectedName} />
+            <Tabs setSelected={setTabSelected} selected={tabSelected}/>
             <StatusBar />
             <FlatList
                 data={data}
