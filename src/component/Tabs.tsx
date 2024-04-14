@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
 import { TabsContext } from "../contexts/tabs";
 

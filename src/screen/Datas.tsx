@@ -17,135 +17,8 @@ export default function () {
 
     const Style = StyleAuxiliar()
 
-    // const array = [
-    //     {
-    //         id: "1",
-    //         title: "ENEM",
-    //         vestibularId: "1",
-    //         body: "13h00 às 14h00",
-    //         day: "30",
-    //         month: "jan",
-    //         date: '2024-03-26'
-    //     },
-    //     {
-    //         id: "2",
-    //         title: "PSS",
-    //         vestibularId: "2",
-    //         body: "Todo o dia",
-    //         day: "05",
-    //         month: "fev",
-    //         date: '2024-02-05'
-    //     },
-    //     {
-    //         id: "3",
-    //         title: "UTFPR",
-    //         vestibularId: "7",
-    //         body: "13h00 às 14h00",
-    //         day: "06",
-    //         month: "mar",
-    //         date: '2024-03-06'
-    //     },
-    //     {
-    //         id: "4",
-    //         title: "ENEM",
-    //         vestibularId: "1",
-    //         body: "Todo o dia",
-    //         day: "04",
-    //         month: "abr",
-    //         date: '2024-04-04'
-    //     },
-    //     {
-    //         id: "5",
-    //         title: "PSS",
-    //         vestibularId: "2",
-    //         body: "13h00 às 14h00",
-    //         day: "05",
-    //         month: "mai",
-    //         date: '2024-05-05'
-    //     },
-    //     {
-    //         id: "6",
-    //         title: "UTFPR",
-    //         vestibularId: "7",
-    //         body: "Todo o dia",
-    //         day: "06",
-    //         month: "jun",
-    //         date: '2024-06-06'
-    //     },
-    //     {
-    //         id: "7",
-    //         title: "ENEM",
-    //         vestibularId: "1",
-    //         body: "13h00 às 14h00",
-    //         day: "04",
-    //         month: "jul",
-    //         date: '2024-07-04'
-    //     },
-    //     {
-    //         id: "8",
-    //         title: "PSS",
-    //         vestibularId: "2",
-    //         body: "Todo o dia",
-    //         day: "05",
-    //         month: "ago",
-    //         date: '2024-08-05'
-    //     },
-    //     {
-    //         id: "9",
-    //         title: "UTFPR",
-    //         vestibularId: "7",
-    //         body: "13h00 às 14h00",
-    //         day: "06",
-    //         month: "set",
-    //         date: '2024-09-06'
-    //     },
-    //     {
-    //         id: "10",
-    //         title: "ENEM",
-    //         vestibularId: "1",
-    //         body: "Todo o dia",
-    //         day: "04",
-    //         month: "out",
-    //         date: '2024-10-04'
-    //     },
-    //     {
-    //         id: "11",
-    //         title: "PSS",
-    //         vestibularId: "2",
-    //         body: "13h00 às 14h00",
-    //         day: "05",
-    //         month: "nov",
-    //         date: '2024-11-05'
-    //     },
-    //     {
-    //         id: "12",
-    //         title: "UTFPR",
-    //         vestibularId: "7",
-    //         body: "Todo o dia",
-    //         day: "06",
-    //         month: "dez",
-    //         date: '2024-12-06'
-    //     },
-    // ]
+    const { staticData } = useContext<any>(TabsContext)
 
-    // const array = null
-
-    const { tabs } = useContext<any>(TabsContext)
-
-    const retrieveData = async () => {
-        if(tabs[0]!=undefined){
-            const listUniversidadeId = tabs?.map((item: any) => item.id)
-            const dataFromServer = await fetch(`http://172.17.0.1:3000/eventos?universidade=${listUniversidadeId}`)
-            const dataJsoned = await dataFromServer.json()
-            setStaticData(dataJsoned)
-        }
-    }
-
-    useEffect(() => {
-        retrieveData()
-    }, [tabs])
-
-    const [staticData, setStaticData] = useState<any>()
     const [tabSelected, setTabSelected] = useState(0)
     const [data, setData] = useState()
     const [daySelected, setDaySelected] = useState('');
@@ -162,7 +35,8 @@ export default function () {
         }
         staticData?.map((item: any) => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
             const isSelected = daySelected?item.data.includes(daySelected):false
-            days[item.data.split("T")[0]] = {
+            const dia = new Date(item.data).toISOString()
+            days[dia.split("T")[0]] = {
                 selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
                 marked: tabSelected == 0 ? true : item.universidade == tabSelected, //Propriedade da bolinha
                 disableTouchEvent: isSelected
