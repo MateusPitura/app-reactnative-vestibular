@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, useCallback, useMemo } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 
 //style
@@ -7,8 +7,7 @@ import StyleAuxiliar from '../style/ScreenDatas'
 //icon
 import ArrowLeft from '../asset/icon/arrow-left.svg'
 import ArrowRight from '../asset/icon/arrow-right.svg'
-
-import { TabsContext } from '../contexts/tabs';
+import { TabsContext } from "../contexts/tabs";
 
 export default function ({ setDaySelected, markedDates, firstDay, setFirstDay }: any) {
 
@@ -36,11 +35,17 @@ export default function ({ setDaySelected, markedDates, firstDay, setFirstDay }:
     LocaleConfig.defaultLocale = 'br';
 
     const { Color } = useContext<any>(TabsContext)
+    const [updateBackgroundCalendar, setUpdateBackgroundCalendar] = useState(0)
 
     const Style = StyleAuxiliar()
 
+    useEffect(()=>{
+        setUpdateBackgroundCalendar(prev => prev + 1)
+    }, [Color])
+
     return (
         <Calendar
+            key={updateBackgroundCalendar}
             style={Style.calendar}
             onDayPress={day => {
                 setDaySelected(day.dateString);
