@@ -72,7 +72,7 @@ export default () => {
 
     return (
         <SafeAreaView style={Style.container}>
-            <SearchBar add={addNewData} text="Pesquise por universidades" />
+            <SearchBar add={addNewData} text="Pesquise por universidades" data={staticData}/>
             <ScrollView>
                 <Label text="Universidades recomendadas" />
                 <FlatList

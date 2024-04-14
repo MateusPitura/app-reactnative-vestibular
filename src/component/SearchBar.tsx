@@ -36,62 +36,12 @@ export default function (props: any) {
 
     const inputRef = React.useRef(null)
 
-    const array = [
-        {
-            id: '1',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
-        },
-        {
-            id: '2',
-            title: 'PSS',
-            body: 'Processo Seletivo Seriado',
-        },
-        {
-            id: '3',
-            title: 'UFPR',
-            body: 'Universidade Federal do Paraná',
-        },
-        {
-            id: '4',
-            title: 'UEL',
-            body: 'Universidade Estadual de Londrina',
-        },
-        {
-            id: '5',
-            title: 'UEM',
-            body: 'Universidade Estadual de Maringá',
-        },
-        {
-            id: '6',
-            title: 'PUCPR',
-            body: 'Pontifícia Universidade Católica do Paraná',
-        },
-        {
-            id: '7',
-            title: 'UTFPR',
-            body: 'Universidade Tecnológica Federal do Paraná',
-        },
-        {
-            id: '8',
-            title: 'UP',
-            body: 'Universidade Positivo',
-        },
-        {
-            id: '9',
-            title: 'UNOPAR',
-            body: 'Universidade Norte do Paraná',
-        },
-    ]
-
-    // const array = null
-
-    const [data, setData] = useState(array)
+    const [data, setData] = useState<any>()
 
     useEffect(() => {
         if (textInput != "") {
-            const newData = array.filter(item =>
-                item.title.toLowerCase().indexOf(textInput.toLowerCase()) > -1
+            const newData = props.data.filter((item: any) =>
+                item.sigla.toLowerCase().indexOf(textInput.toLowerCase()) > -1
             )
             setData(newData)
         } else {
@@ -184,8 +134,8 @@ export default function (props: any) {
                             keyboardShouldPersistTaps='handled'
                             renderItem={({ item }: any) =>
                                 <CardVertical
-                                    title={item.title}
-                                    body={item.body}
+                                    title={item.sigla}
+                                    body={item.nome}
                                     onPress={async () => {
                                         if(await props.add(item) != -1){
                                             Keyboard.dismiss()
