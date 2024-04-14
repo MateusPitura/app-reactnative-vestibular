@@ -40,7 +40,7 @@ export default function (props: any) {
 
     useEffect(() => {
         if (textInput != "") {
-            const newData = props.data.filter((item: any) =>
+            const newData = props.data?.filter((item: any) =>
                 item.sigla.toLowerCase().indexOf(textInput.toLowerCase()) > -1
             )
             setData(newData)

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { View, FlatList, SafeAreaView, ToastAndroid, ScrollView } from 'react-native'
+import { View, FlatList, SafeAreaView, ToastAndroid, ScrollView, RefreshControl } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
 
 //style
@@ -26,11 +26,16 @@ export default () => {
     const { Color } = useContext<any>(TabsContext)
 
     const { tabs, setTabs } = useContext<any>(TabsContext)
+    const [isRefreshing, setIsRefreshing] = useState(false)
 
     const retrieveData = async () => {
-        const dataFromServer = await fetch("http://172.17.0.1:3000/universidades")
-        const dataJsoned = await dataFromServer.json()
-        setStaticData(dataJsoned)
+        try {
+            const dataFromServer = await fetch("http://172.17.0.1:3000/universidades")
+            const dataJsoned = await dataFromServer.json()
+            setStaticData(dataJsoned)
+        } catch (e) {
+            console.log("Erro")
+        }
     }
 
     useEffect(() => {
@@ -72,8 +77,20 @@ export default () => {
 
     return (
         <SafeAreaView style={Style.container}>
-            <SearchBar add={addNewData} text="Pesquise por universidades" data={staticData}/>
-            <ScrollView>
+            <SearchBar add={addNewData} text="Pesquise por universidades" data={staticData} />
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isRefreshing}
+                        onRefresh={() => {
+                            retrieveData()
+                            setIsRefreshing(false)
+                        }}
+                        colors={[Color.primary]}
+                        progressBackgroundColor={Color.onPrimary}
+                    />
+                }
+            >
                 <Label text="Universidades recomendadas" />
                 <FlatList
                     data={staticData}

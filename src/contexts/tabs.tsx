@@ -32,10 +32,14 @@ const TabsProvider = ({ children }: any) => {
     const retrieveData = async () => {
         if (tabs[0] != undefined) {
             const listUniversidadeId = tabs?.map((item: any) => item.id)
-            const dataFromServer = await fetch(`http://172.17.0.1:3000/eventos?universidade=${listUniversidadeId}`)
-            const dataJsoned = await dataFromServer.json()
-            setStaticData(dataJsoned)
-            scheduleNotifications(dataJsoned)
+            try{
+                const dataFromServer = await fetch(`http://172.17.0.1:3000/eventos?universidade=${listUniversidadeId}`)
+                const dataJsoned = await dataFromServer.json()
+                setStaticData(dataJsoned)
+                scheduleNotifications(dataJsoned)
+            } catch(e){
+                console.log("Erro")
+            }
         }
     }
 
@@ -50,7 +54,7 @@ const TabsProvider = ({ children }: any) => {
     }
 
     return (
-        <TabsContext.Provider value={{ tabs, setTabs, Color, dark, staticData }}>
+        <TabsContext.Provider value={{ tabs, setTabs, Color, dark, staticData, retrieveData }}>
             {children}
         </TabsContext.Provider>
     )

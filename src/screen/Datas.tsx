@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { SafeAreaView, FlatList, View, TouchableOpacity, Text, ScrollView } from 'react-native'
+import { SafeAreaView, FlatList, View, TouchableOpacity, Text, ScrollView, RefreshControl } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
 
 //style
@@ -17,13 +17,14 @@ export default function () {
 
     const Style = StyleAuxiliar()
 
-    const { staticData } = useContext<any>(TabsContext)
+    const { staticData, retrieveData, Color } = useContext<any>(TabsContext)
 
     const [tabSelected, setTabSelected] = useState(0)
     const [data, setData] = useState()
     const [daySelected, setDaySelected] = useState('');
     const [markedDates, setMarkedDates] = useState({})
     const [firstDay, setFirstDay] = useState('');
+    const [isRefreshing, setIsRefreshing] = useState(false)
 
     const markData = () => {
         const days = { //Cria um array com um dia por default que será responsável por marcar os dias selecionados
@@ -49,7 +50,7 @@ export default function () {
         if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se algum dia estiver selecionado
             const newData = staticData?.filter((item: any) =>
                 parseInt(item.universidade) == tabSelected &&
-                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false
+                    daySelected ? new Date(item.data).toISOString().includes(daySelected) : false
             );
             setData(newData)
         } else if (tabSelected != 0) { //Se não for a tab 'all'
@@ -59,12 +60,12 @@ export default function () {
             );
             setData(newData)
         } else if (daySelected != '') { // Se um dia estiver selecionado
-            const newData = staticData?.filter((item: any) => 
+            const newData = staticData?.filter((item: any) =>
                 daySelected ? new Date(item.data).toISOString().includes(daySelected) : false
             );
             setData(newData)
         } else { //No caso quando nenhum filtro é aplicado
-            const newData = staticData?.filter((item: any) => 
+            const newData = staticData?.filter((item: any) =>
                 (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
             );
             setData(newData)
@@ -75,7 +76,19 @@ export default function () {
     return (
         <SafeAreaView style={Style.container}>
             <Tabs setSelected={setTabSelected} selected={tabSelected} />
-            <ScrollView>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isRefreshing}
+                        onRefresh={() => {
+                            retrieveData()
+                            setIsRefreshing(false)
+                        }}
+                        colors={[Color.primary]}
+                        progressBackgroundColor={Color.onPrimary}
+                    />
+                }
+            >
                 <View style={Style.calendarContainer}>
                     <Calendar
                         setDaySelected={setDaySelected}

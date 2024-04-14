@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { SafeAreaView, FlatList } from 'react-native'
+import { SafeAreaView, FlatList, RefreshControl } from 'react-native'
 
 //style
 import StyleAuxiliar from '../style/ScreenAvisos'
@@ -25,17 +25,22 @@ type avisosType = {
 export default function () {
 
     const [tabSelected, setTabSelected] = useState(0)
+    const [isRefreshing, setIsRefreshing] = useState(false)
 
-    const { tabs } = useContext<any>(TabsContext)
+    const { tabs, Color } = useContext<any>(TabsContext)
 
     const Style = StyleAuxiliar();
 
     const retrieveData = async () => {
-        if(tabs[0]!=undefined){
+        if (tabs[0] != undefined) {
             const listUniversidadeId = tabs?.map((item: any) => item.id)
-            const dataFromServer = await fetch(`http://172.17.0.1:3000/avisos?universidade=${listUniversidadeId}`)
-            const dataJsoned = await dataFromServer.json()
-            setStaticData(dataJsoned)
+            try {
+                const dataFromServer = await fetch(`http://172.17.0.1:3000/avisos?universidade=${listUniversidadeId}`)
+                const dataJsoned = await dataFromServer.json()
+                setStaticData(dataJsoned)
+            } catch (e) {
+                console.log("Erro")
+            }
         }
     }
 
@@ -57,7 +62,7 @@ export default function () {
 
     return (
         <SafeAreaView style={[Style.container]}>
-            <Tabs setSelected={setTabSelected} selected={tabSelected}/>
+            <Tabs setSelected={setTabSelected} selected={tabSelected} />
             <StatusBar />
             <FlatList
                 data={data}
@@ -76,6 +81,17 @@ export default function () {
                     <EmptyContent text="Adicione uma universidade na sua lista" />
                 }
                 contentContainerStyle={Style.listContainer} //Define o estilo do container
+                refreshControl={
+                    <RefreshControl
+                        refreshing={isRefreshing}
+                        onRefresh={()=>{
+                            retrieveData()
+                            setIsRefreshing(false)
+                        }}
+                        colors={[Color.primary]}
+                        progressBackgroundColor={Color.onPrimary}
+                    />
+                }
             />
         </SafeAreaView>
     )
