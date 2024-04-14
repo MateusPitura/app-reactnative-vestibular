@@ -25,7 +25,13 @@ export default function (props: any) {
     }
 
     return (
-        <View style={Style.listContainer}>
+        <View style={
+            (date.getTime() > (Date.now() - (1000 * 60 * 60 * 24)))
+                ?
+                Style.listContainerEnable
+                :
+                Style.listContainerDisable
+        }>
             <View style={Style.iconLabel}>
                 <View style={Style.dayLabel}>
                     <Text

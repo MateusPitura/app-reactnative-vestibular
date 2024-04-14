@@ -34,8 +34,8 @@ export default function () {
             },
         }
         staticData?.map((item: any) => { //Itera a lista de vestibulares adicionando ao array a data de cada evento para aparecer um bolinha no dia de cada evento
-            const isSelected = daySelected?item.data.includes(daySelected):false
             const dia = new Date(item.data).toISOString()
+            const isSelected = daySelected ? dia.includes(daySelected) : false
             days[dia.split("T")[0]] = {
                 selected: isSelected, //Se o dia do evento for igual a data selecionada ele irá selecionar o dia
                 marked: tabSelected == 0 ? true : item.universidade == tabSelected, //Propriedade da bolinha
@@ -47,23 +47,36 @@ export default function () {
 
     useEffect(() => {
         if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se algum dia estiver selecionado
-            const newData = staticData?.filter((item: any) => parseInt(item.universidade) == tabSelected && daySelected?item.data.includes(daySelected):false);
+            const newData = staticData?.filter((item: any) =>
+                parseInt(item.universidade) == tabSelected &&
+                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false &&
+                (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
+            );
             setData(newData)
         } else if (tabSelected != 0) { //Se não for a tab 'all'
-            const newData = staticData?.filter((item: any) => parseInt(item.universidade) == tabSelected);
+            const newData = staticData?.filter((item: any) =>
+                parseInt(item.universidade) == tabSelected &&
+                (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
+            );
             setData(newData)
         } else if (daySelected != '') { // Se um dia estiver selecionado
-            const newData = staticData?.filter((item: any) => daySelected?item.data.includes(daySelected):false);
+            const newData = staticData?.filter((item: any) => 
+                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false &&
+                (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
+            );
             setData(newData)
         } else { //No caso quando nenhum filtro é aplicado
-            setData(staticData)
+            const newData = staticData?.filter((item: any) => 
+                (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
+            );
+            setData(newData)
         }
         markData()
     }, [tabSelected, daySelected, staticData])
 
     return (
         <SafeAreaView style={Style.container}>
-            <Tabs setSelected={setTabSelected} selected={tabSelected}/>
+            <Tabs setSelected={setTabSelected} selected={tabSelected} />
             <ScrollView>
                 <View style={Style.calendarContainer}>
                     <Calendar

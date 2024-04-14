@@ -7,8 +7,15 @@ export default function () {
     const { Color } = useContext<any>(TabsContext)
 
     return StyleSheet.create({
-        listContainer: {
+        listContainerEnable: {
             flexDirection: 'row',
+            height: 72,
+            paddingVertical: 8,
+            paddingHorizontal: 16,
+        },
+        listContainerDisable: {
+            flexDirection: 'row',
+            opacity: 0.38,
             height: 72,
             paddingVertical: 8,
             paddingHorizontal: 16,

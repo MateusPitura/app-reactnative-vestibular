@@ -46,7 +46,7 @@ const validateDates = (data: any) => { //Valida os eventos filtrando apenas as q
         const dataFormated = item.data.split("T")[0]
         const notificationDate = new Date(dataFormated).getTime() + (1000 * 60 * 60 * 12)//Pega a data que por padrão é meia noite e soma mais 12 horas, considerando fuso horário de 3 horas a notificação vai aparecer 9 a.m.
         // const notificationDate = new Date(dataFormated).getTime() + (1000 * 60 * 60 * 20) + (1000 * 60 * 29)//Teste
-        const currentTime = new Date(Date.now()).getTime() + (1000 * 60 * 1) //Momento atual + 1 minuto de margem de segurança
+        const currentTime = Date.now() + (1000 * 60 * 1) //Momento atual + 1 minuto de margem de segurança
         if (notificationDate > currentTime) { //Estou comparando para saber se a data da notificação é mais antiga que o momento atual
             item.data = notificationDate
             return item
