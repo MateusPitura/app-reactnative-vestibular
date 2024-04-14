@@ -49,8 +49,7 @@ export default function () {
         if (tabSelected != 0 && daySelected != '') { //Se não for a tab 'all' e se algum dia estiver selecionado
             const newData = staticData?.filter((item: any) =>
                 parseInt(item.universidade) == tabSelected &&
-                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false &&
-                (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
+                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false
             );
             setData(newData)
         } else if (tabSelected != 0) { //Se não for a tab 'all'
@@ -61,8 +60,7 @@ export default function () {
             setData(newData)
         } else if (daySelected != '') { // Se um dia estiver selecionado
             const newData = staticData?.filter((item: any) => 
-                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false &&
-                (new Date(item.data).getTime() > (Date.now() - (1000 * 60 * 60 * 24 * 7)))
+                daySelected ? new Date(item.data).toISOString().includes(daySelected) : false
             );
             setData(newData)
         } else { //No caso quando nenhum filtro é aplicado
