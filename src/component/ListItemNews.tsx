@@ -11,8 +11,18 @@ export default function (props: any) {
 
     const openURL = async (url: string) => {
         Linking.openURL(url)
-        .catch(error => {
-        })
+            .catch(error => {
+            })
+    }
+
+    const transformData = () => {
+        const monthNames = ["jan", "fev", "mar", "abr", "mai", "jun",
+            "jul", "ago", "set", "out", "nov", "dez"
+        ];
+        const date = new Date(props.trailing)
+        const dayOfTheMonth = date.getDate()
+        const month = monthNames[date.getMonth()]
+        return dayOfTheMonth + ' ' + month
     }
 
     return (
@@ -23,7 +33,7 @@ export default function (props: any) {
             >
                 <View style={Style.imageContainer}>
                     <Image
-                        source={props.image}
+                        source={{ uri: props.image }}
                         style={Style.image}
                     />
                 </View>
@@ -46,7 +56,7 @@ export default function (props: any) {
                         numberOfLines={2}
                         style={[Typography.labelSmall, Style.trailingText]}
                     >
-                        {props.trailing}
+                        {transformData()}
                     </Text>
                 </View>
             </TouchableOpacity>
