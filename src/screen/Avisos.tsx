@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
 //style
@@ -10,6 +10,7 @@ import Divisor from '../component/Divisor';
 import EmptyContent from '../component/EmptyContent';
 import StatusBar from '../component/StatusBar';
 import Tabs from '../component/Tabs';
+import { TabsContext } from '../contexts/tabs';
 
 type avisosType = {
     id: number,
@@ -26,17 +27,22 @@ export default function () {
     const [tabSelected, setTabSelected] = useState(0)
     const [tabSelectedName, setTabSelectedName] = useState('')
 
+    const { tabs } = useContext<any>(TabsContext)
+
     const Style = StyleAuxiliar();
 
     const retrieveData = async () => {
-        const dataFromServer = await fetch("http://172.17.0.1:3000/avisos")
-        const dataJsoned = await dataFromServer.json()
-        setStaticData(dataJsoned.content)
+        if(tabs[0]!=undefined){
+            const listUniversidadeId = tabs?.map((item: any) => item.id)
+            const dataFromServer = await fetch(`http://172.17.0.1:3000/avisos?universidade=${listUniversidadeId}`)
+            const dataJsoned = await dataFromServer.json()
+            setStaticData(dataJsoned.content)
+        }
     }
 
     useEffect(() => {
         retrieveData()
-    }, [])
+    }, [tabs])
 
     const [staticData, setStaticData] = useState<avisosType[]>()
     const [data, setData] = useState<avisosType[]>()
@@ -68,7 +74,7 @@ export default function () {
                 }
                 ItemSeparatorComponent={() => <Divisor />}
                 ListEmptyComponent={ //Renderiza caso a lista esteja vazia
-                    <EmptyContent text="Adicione um vestibular na sua lista" />
+                    <EmptyContent text="Adicione uma universidade na sua lista" />
                 }
                 contentContainerStyle={Style.listContainer} //Define o estilo do container
             />

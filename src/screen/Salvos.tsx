@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, FlatList, SafeAreaView, ToastAndroid, ScrollView } from 'react-native'
 import { TabsContext } from "../contexts/tabs";
 
@@ -27,74 +27,36 @@ export default () => {
 
     const { tabs, setTabs } = useContext<any>(TabsContext)
 
-    const array = [
-        {
-            id: '1',
-            title: 'ENEM',
-            body: 'Exame Nacional do Ensino Médio',
-        },
-        {
-            id: '2',
-            title: 'PSS',
-            body: 'Processo Seletivo Seriado',
-        },
-        {
-            id: '3',
-            title: 'UFPR',
-            body: 'Universidade Federal do Paraná',
-        },
-        {
-            id: '4',
-            title: 'UEL',
-            body: 'Universidade Estadual de Londrina',
-        },
-        {
-            id: '5',
-            title: 'UEM',
-            body: 'Universidade Estadual de Maringá',
-        },
-        {
-            id: '6',
-            title: 'PUCPR',
-            body: 'Pontifícia Universidade Católica do Paraná',
-        },
-        {
-            id: '7',
-            title: 'UTFPR',
-            body: 'Universidade Tecnológica Federal do Paraná',
-        },
-        {
-            id: '8',
-            title: 'UP',
-            body: 'Universidade Positivo',
-        },
-        {
-            id: '9',
-            title: 'UNOPAR',
-            body: 'Universidade Norte do Paraná',
-        },
-    ]
+    const retrieveData = async () => {
+        const dataFromServer = await fetch("http://172.17.0.1:3000/universidades")
+        const dataJsoned = await dataFromServer.json()
+        setStaticData(dataJsoned)
+    }
 
-    // const array = null
+    useEffect(() => {
+        retrieveData()
+    }, [])
+
+    const [staticData, setStaticData] = useState()
 
     const addNewData = async (item: any) => {
         const newData = [{
             id: item.id,
-            title: item.title,
-            body: item.body
+            title: item.sigla,
+            body: item.nome
         }]
         if (await add(newData) == -1) {
-            handleCallToast("Vestibular já escolhido")
+            handleCallToast("Universidade já escolhida")
             return -1
         }
         read(setTabs)
-        handleCallToast("Vestibular adicionado")
+        handleCallToast("Universidade adicionada")
         return 0
     }
 
     const removeData = async (id: any) => {
         await remove(id)
-        handleCallToast("Vestibular removido")
+        handleCallToast("Universidade removida")
         read(setTabs)
     }
 
@@ -110,16 +72,16 @@ export default () => {
 
     return (
         <SafeAreaView style={Style.container}>
-            <SearchBar add={addNewData} text="Pesquise por vestibulares" />
+            <SearchBar add={addNewData} text="Pesquise por universidades" />
             <ScrollView>
-                <Label text="Vestibulares recomendados" />
+                <Label text="Universidades recomendadas" />
                 <FlatList
-                    data={array}
+                    data={staticData}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) =>
                         <CardHorizontal
-                            title={item.title}
-                            body={item.body}
+                            title={item.sigla}
+                            body={item.nome}
                             onPress={() => { addNewData(item) }}
                         >
                             <Save
@@ -130,7 +92,7 @@ export default () => {
                         </CardHorizontal>
                     }
                     contentContainerStyle={
-                        array == null ?
+                        staticData == null ?
                             Style.containerListHorizontalIfNull
                             :
                             Style.containerListHorizontal
@@ -141,7 +103,7 @@ export default () => {
                         <EmptyContent text="No momento não há recomendações" />
                     }
                 />
-                <Label text="Vestibulares salvos" />
+                <Label text="Universidades salvas" />
                 <FlatList
                     scrollEnabled={false}
                     data={tabs}
@@ -163,7 +125,7 @@ export default () => {
                     contentContainerStyle={Style.containerListVertical}
                     numColumns={2}
                     ListEmptyComponent={
-                        <EmptyContent text="Adicione um vestibular na sua lista" />
+                        <EmptyContent text="Adicione uma universidade na sua lista" />
                     }
                     columnWrapperStyle={Style.colums}
                 />
