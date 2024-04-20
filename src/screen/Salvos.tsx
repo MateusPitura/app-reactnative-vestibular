@@ -30,7 +30,7 @@ export default () => {
 
     const retrieveData = async () => {
         try {
-            const dataFromServer = await fetch("http://172.17.0.1:3000/universidades")
+            const dataFromServer = await fetch("http://164.152.51.188/universidades")
             const dataJsoned = await dataFromServer.json()
             setStaticData(dataJsoned)
         } catch (e) {

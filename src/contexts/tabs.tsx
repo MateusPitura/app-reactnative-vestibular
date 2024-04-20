@@ -33,7 +33,7 @@ const TabsProvider = ({ children }: any) => {
         if (tabs[0] != undefined) {
             const listUniversidadeId = tabs?.map((item: any) => item.id)
             try{
-                const dataFromServer = await fetch(`http://172.17.0.1:3000/eventos?universidade=${listUniversidadeId}`)
+                const dataFromServer = await fetch(`http://164.152.51.188/eventos?universidade=${listUniversidadeId}`)
                 const dataJsoned = await dataFromServer.json()
                 setStaticData(dataJsoned)
                 scheduleNotifications(dataJsoned)
