@@ -22,11 +22,8 @@ O Vest Info é um aplicativo desenvolvido em React Native projetado para fornece
 ## Índice 
 
 - [Funcionalidades](#funcionalidades) 
-
 - [Como executar](#como-executar) 
-
 - [Tecnologias usadas](#tecnologias-usadas) 
-
 - [Autores](#autores) 
 
 ## Funcionalidades 
