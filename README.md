@@ -28,7 +28,7 @@ O Vest Info é um aplicativo desenvolvido em React Native projetado para fornece
 
 ## Funcionalidades 
 
-:mega: **Avisos:** acesse s notícias mais relevantes dos seus vestibulares
+:mega: **Avisos:** acesse as notícias mais relevantes dos seus vestibulares
 
 :calendar: **Calendário integrado:** visualize as datas através de um calendário interativo 
 
