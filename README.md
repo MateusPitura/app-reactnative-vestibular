@@ -46,19 +46,21 @@ O Vest Info é um aplicativo desenvolvido em React Native projetado para fornece
 
 **Para devs:** 
 
-1. `git clone git@github.com:MateusPitura/app-portfolio-pessoal.git app`  
+1. `git clone git@github.com:MateusPitura/app-reactnative-vestibular.git app`  
 
 2. `npm install` 
 
-3. `npx react-native start` 
+3. `npx react-native start`
+
+4. Para compilar altere `<password>` em `android/gradle.properties`
 
 ## Tecnologias usadas 
 
-:heavy_check_mark: Tecnologia1 
+:heavy_check_mark: React Native 
 
-:heavy_check_mark: Tecnologia2 
+:heavy_check_mark: [react-native-calendar](https://github.com/wix/react-native-calendars)
  
-:heavy_check_mark: Tecnologia3  
+:heavy_check_mark: [Vest Info - REST API](https://github.com/MateusPitura/api-spring-vestibular)
 
 ## Autores 
 
