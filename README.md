@@ -35,7 +35,7 @@ O Vest Info é um aplicativo desenvolvido em React Native projetado para fornece
 :bell: **Notificações:** não perca nenhum evento através das notificações
 
 <p align="center"> 
-  <img src="https://github.com/MateusPitura/app-reactnative-vestibular/assets/119008106/157450e8-5b21-4b1c-a214-cff2a3535c10" alt="Gif com as funcionalidades" width="25%"> 
+  <img src="https://github.com/MateusPitura/app-reactnative-vestibular/assets/119008106/cdbd400f-f8ae-45a1-813c-59faceba06b0" alt="Gif com as funcionalidades" width="25%"> 
 </p>
 
 ## Como executar 
