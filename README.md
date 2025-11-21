@@ -13,8 +13,6 @@
   <img src="https://img.shields.io/github/stars/MateusPitura/app-reactnative-vestibular?style=social" alt="Badge indicando quantidade de estrelas no repositório"> 
 </p> 
 
-> :checkered_flag: Este projeto está finalizado :checkered_flag:  
-
 ## Descrição 
 
 O Vest Info é um aplicativo desenvolvido em React Native projetado para fornecer uma forma conveniente para acompanhar notícias e datas de vestibulares. Seu principal objetivo é facilitar o acesso a informações relevantes para estudantes que estão se preparando para ingressar em instituições de ensino superior
