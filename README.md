@@ -55,11 +55,11 @@ O Vest Info é um aplicativo desenvolvido em React Native projetado para fornece
 
 :heavy_check_mark: React Native 
 
-:heavy_check_mark: [react-native-calendar](https://github.com/wix/react-native-calendars)
+:heavy_check_mark: react-native-calendar
  
-:heavy_check_mark: [Vest Info - REST API](https://github.com/MateusPitura/api-spring-vestibular)
+:heavy_check_mark: [Vest Info - REST API](https://url.mateuspitura.com?q=github.com/MateusPitura/api-spring-vestibular)
 
-:heavy_check_mark: [Notifee](https://notifee.app/)
+:heavy_check_mark: Notifee
 
 ## Autores 
 
